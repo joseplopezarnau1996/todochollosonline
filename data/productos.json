@@ -389,5 +389,14 @@
         "imagen": "https://m.media-amazon.com/images/I/31Nqwao7f7L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B097PKT683",
+        "categoria": "motor",
+        "titulo": "REAPP Candado Moto Disco con Alarma 110 dB, Antirrobo Moto Freno 7mm",
+        "descripcion": "La pesadilla de los ladrones: El candado moto con alarma es imprescindible para el antirrobo de motocicletas y bicicletas en interiores y exteriores. Está equipado con un sensor sensible incorporado, una vez que se detecta vibración o movimiento, emitirá un Alarma continuo de 110 db para detener a los ladrones que intenten mover sus vehículos o abrir la cerradura Cilindro y lla",
+        "imagen": "https://m.media-amazon.com/images/I/41QAdG8AzGL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
