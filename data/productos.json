@@ -515,5 +515,14 @@
         "imagen": "https://m.media-amazon.com/images/I/414gp9v+8BL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B078XY5BY7",
+        "categoria": "deportes",
+        "titulo": "Amazon Basics - Par de mancuernas de neopreno, 8kg (4kg x 2 Unidad) Gris",
+        "descripcion": "Set de 2 mancuernas para entrenamiento de resistencia; cada una pesa 4 kg. Textura de neopreno que proporciona un agarre fácil y seguro",
+        "imagen": "https://m.media-amazon.com/images/I/41ksUB3uHkL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
