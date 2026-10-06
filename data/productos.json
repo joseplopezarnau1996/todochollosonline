@@ -128,5 +128,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51JLDC4+PoL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0BY9592V9",
+        "categoria": "hogar",
+        "titulo": "Rowenta Pure Pop, Plancha de Vapor 1300 W para Viaje, Coral",
+        "descripcion": "CUIDADO EFICIENTE DE LAS PRENDAS: disfruta de una salida de vapor de hasta 20 g/min, con un movimiento suave e intuitivo para eliminar las arrugas y purificar tus prendas eficazmente QUITAPELUSAS: usa el lado de microfibra del cabezal reversible para mantener tu ropa libre de pelusas y con un aspecto renovado",
+        "imagen": "https://m.media-amazon.com/images/I/31BUbLmgZQL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
