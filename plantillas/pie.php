@@ -5,10 +5,10 @@
       <div>
         <a class="logo" href="/">
           <span class="logo-ico"><?= icon('box', 22) ?></span>
-          <span class="logo-txt"><b>Todo<em>Chollos</em></b><small>Comparador de precios</small></span>
+          <span class="logo-txt"><b><?= e(aj('textos.logo_1', 'Todo')) ?><em><?= e(aj('textos.logo_2', 'Chollos')) ?></em></b><small><?= e(aj('textos.logo_sub', 'Comparador de precios')) ?></small></span>
         </a>
         <p class="aff">En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
-        <p class="small">Los precios y la disponibilidad mostrados son orientativos y pueden cambiar. El precio aplicable es el que figura en Amazon.es en el momento de la compra.</p>
+        <p class="small"><?= e(aj('textos.pie_texto')) ?></p>
       </div>
       <div>
         <h4>Explorar</h4>
@@ -19,10 +19,7 @@
       </div>
       <div>
         <h4>Legal</h4>
-        <a href="/aviso-legal">Aviso legal</a>
-        <a href="/privacidad">Privacidad</a>
-        <a href="/cookies">Cookies</a>
-        <a href="/condiciones">Condiciones</a>
+        <?php foreach (paginas() as $pg): ?><a href="/<?= e($pg['slug']) ?>"><?= e($pg['titulo']) ?></a><?php endforeach; ?>
         <a href="/contacto">Contacto</a>
       </div>
     </div>

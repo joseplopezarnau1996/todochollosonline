@@ -2,56 +2,56 @@
   {
     "slug": "halloween",
     "nombre": "Halloween",
-    "icono": "🎃"
+    "icono": "halloween"
   },
   {
     "slug": "suplementacion",
     "nombre": "Suplementación",
-    "icono": "💊"
+    "icono": "suplementacion"
   },
   {
     "slug": "motor",
     "nombre": "Motor",
-    "icono": "🚗"
+    "icono": "motor"
   },
   {
     "slug": "tecnologia",
     "nombre": "Tecnología",
-    "icono": "💻"
+    "icono": "tecnologia"
   },
   {
     "slug": "hogar",
     "nombre": "Hogar",
-    "icono": "🏠"
+    "icono": "hogar"
   },
   {
     "slug": "cocina",
     "nombre": "Cocina",
-    "icono": "🍳"
+    "icono": "cocina"
   },
   {
     "slug": "deportes",
     "nombre": "Deportes",
-    "icono": "🚴"
+    "icono": "deportes"
   },
   {
     "slug": "belleza",
     "nombre": "Belleza",
-    "icono": "💄"
+    "icono": "belleza"
   },
   {
     "slug": "moda",
     "nombre": "Moda",
-    "icono": "👕"
+    "icono": "moda"
   },
   {
     "slug": "bricolaje",
     "nombre": "Bricolaje",
-    "icono": "🔧"
+    "icono": "bricolaje"
   },
   {
     "slug": "juguetes",
     "nombre": "Juguetes",
-    "icono": "🧸"
+    "icono": "juguetes"
   }
 ]

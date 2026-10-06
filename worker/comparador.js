@@ -7,18 +7,25 @@
  *   - valorado: la mejor valorada (Amazon ordena por valoración media, mín. 4 estrellas)
  *   - popular:  la alternativa más relevante/destacada según Amazon
  *
+ * Además sirve la API del área privada (/api/...) para el panel todochollosonline.es/admin.
+ *
  * Variables (Settings > Variables and Secrets):
  *   AMZ_CLIENT_ID      (secreto)  ID de credencial de la Creators API
  *   AMZ_CLIENT_SECRET  (secreto)  Secreto de esa credencial
  *   PARTNER_TAG        (texto)    deskfind-21
+ *   GITHUB_TOKEN       (secreto)  Token de GitHub con permiso de escritura en el repositorio
+ * Binding KV:
+ *   DB                 Espacio KV donde se guardan usuarios y sesiones
  */
+
+const REPO = 'joseplopezarnau1996/todochollosonline';
 
 const MARKETPLACE = 'www.amazon.es';
 const TOKEN_URL = 'https://api.amazon.co.uk/auth/o2/token';
 const API = 'https://creatorsapi.amazon/catalog/v1';
 const ALLOWED_ORIGINS = ['https://todochollosonline.es', 'https://www.todochollosonline.es'];
 const RESOURCES = [
-  'images.primary.large', 'images.primary.medium', 'itemInfo.title', 'itemInfo.byLineInfo',
+  'images.primary.large', 'images.primary.medium', 'itemInfo.title', 'itemInfo.byLineInfo', 'itemInfo.features',
   'offersV2.listings.price', 'offersV2.listings.availability', 'offersV2.listings.isBuyBoxWinner',
 ];
 const CACHE_SECONDS = 3600;
@@ -47,6 +54,7 @@ function normalize(it, tag) {
     amount: l ? g(l, 'price.money.amount') : null,
     oldPrice: l ? g(l, 'price.savingBasis.money.displayAmount') : null,
     savings: l ? g(l, 'price.savings.percentage') : null,
+    features: (g(it, 'itemInfo.features.displayValues') || []).slice(0, 5),
     url: `https://${MARKETPLACE}/dp/${asin}?tag=${tag}`,
   };
 }
@@ -156,21 +164,219 @@ async function compare(env, input) {
   };
 }
 
+// ======================================================================
+//  ÁREA PRIVADA
+// ======================================================================
+const enc = new TextEncoder();
+const b64url = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+const randHex = n => hex(crypto.getRandomValues(new Uint8Array(n)));
+const utf8ToB64 = str => { const bytes = enc.encode(str); let bin = ''; for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000)); return btoa(bin); };
+const b64ToUtf8 = b64 => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), c => c.charCodeAt(0)));
+
+class HttpError extends Error { constructor(status, msg) { super(msg); this.status = status; } }
+
+async function hashPassword(pass, saltHex) {
+  const key = await crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveBits']);
+  const salt = Uint8Array.from(saltHex.match(/../g).map(h => parseInt(h, 16)));
+  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 100000 }, key, 256);
+  return hex(bits);
+}
+
+function safeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
+  let r = 0; for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
+}
+
+async function sessionKey(env) {
+  let k = await env.DB.get('session_key');
+  if (!k) { k = randHex(32); await env.DB.put('session_key', k); }
+  return crypto.subtle.importKey('raw', enc.encode(k), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+}
+
+async function makeToken(env, user) {
+  const payload = b64url(enc.encode(JSON.stringify({ u: user.name, r: user.role, v: user.ver || 1, exp: Date.now() + 7 * 86400000 })));
+  const sig = b64url(await crypto.subtle.sign('HMAC', await sessionKey(env), enc.encode(payload)));
+  return payload + '.' + sig;
+}
+
+async function auth(env, request) {
+  const t = (request.headers.get('Authorization') || '').replace(/^Bearer\s+/, '');
+  const [payload, sig] = t.split('.');
+  if (!payload || !sig) throw new HttpError(401, 'Inicia sesión.');
+  const good = b64url(await crypto.subtle.sign('HMAC', await sessionKey(env), enc.encode(payload)));
+  if (!safeEqual(good, sig)) throw new HttpError(401, 'Sesión no válida.');
+  const data = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(payload.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0))));
+  if (data.exp < Date.now()) throw new HttpError(401, 'La sesión ha caducado. Vuelve a entrar.');
+  const user = await getUser(env, data.u);
+  if (!user || (user.ver || 1) !== data.v) throw new HttpError(401, 'Sesión no válida.');
+  return user;
+}
+
+const userKey = name => 'user:' + name.toLowerCase();
+async function getUser(env, name) { return name ? env.DB.get(userKey(name), 'json') : null; }
+async function listUsers(env) {
+  const l = await env.DB.list({ prefix: 'user:' });
+  const out = [];
+  for (const k of l.keys) { const u = await env.DB.get(k.name, 'json'); if (u) out.push({ name: u.name, role: u.role, created: u.created }); }
+  return out;
+}
+function checkNewUser(name, pass) {
+  if (!/^[a-zA-Z0-9._-]{3,30}$/.test(name || '')) throw new HttpError(400, 'El usuario debe tener entre 3 y 30 caracteres (letras, números, punto, guion).');
+  if ((pass || '').length < 8) throw new HttpError(400, 'La contraseña debe tener al menos 8 caracteres.');
+}
+async function saveUser(env, name, pass, role, prev) {
+  const salt = randHex(16);
+  const u = { name, role: role === 'admin' ? 'admin' : 'editor', salt, hash: await hashPassword(pass, salt), created: prev?.created || new Date().toISOString(), ver: (prev?.ver || 0) + 1 };
+  await env.DB.put(userKey(name), JSON.stringify(u));
+  return u;
+}
+
+// ---------- GitHub ----------
+const ALLOWED_PATH = /^data\/((productos|categorias|ajustes)\.json|(guias|paginas)\/[a-z0-9-]{1,80}\.json)$/;
+async function gh(env, method, path, body) {
+  if (!env.GITHUB_TOKEN) throw new HttpError(500, 'Falta configurar GITHUB_TOKEN en Cloudflare.');
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method,
+    headers: { Authorization: 'Bearer ' + env.GITHUB_TOKEN.trim(), 'User-Agent': 'todochollos-panel', Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(body ? { 'Content-Type': 'application/json' } : {}) },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (r.status === 404) return null;
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new HttpError(502, 'GitHub: ' + (j.message || r.status));
+  return j;
+}
+async function readJson(env, path) {
+  const f = await gh(env, 'GET', path + '?ref=main');
+  return f ? { data: JSON.parse(b64ToUtf8(f.content)), sha: f.sha } : { data: null, sha: null };
+}
+async function readDir(env, dir) {
+  const list = await gh(env, 'GET', dir + '?ref=main') || [];
+  const out = [];
+  for (const f of list) if (f.type === 'file' && f.name.endsWith('.json')) out.push((await readJson(env, f.path)).data);
+  return out;
+}
+
+// ---------- Rutas /api ----------
+async function api(request, env, url) {
+  if (!env.DB) throw new HttpError(500, 'Falta conectar el espacio KV "DB" en Cloudflare.');
+  const path = url.pathname.replace(/^\/api\/?/, '');
+  const m = request.method;
+  const body = (m === 'POST' || m === 'PUT') ? await request.json().catch(() => ({})) : {};
+  const ip = request.headers.get('CF-Connecting-IP') || 'x';
+
+  if (path === 'estado' && m === 'GET') {
+    const l = await env.DB.list({ prefix: 'user:', limit: 1 });
+    return { hayUsuarios: l.keys.length > 0, github: !!env.GITHUB_TOKEN };
+  }
+  if (path === 'setup' && m === 'POST') {
+    const l = await env.DB.list({ prefix: 'user:', limit: 1 });
+    if (l.keys.length) throw new HttpError(403, 'Ya existe un usuario administrador.');
+    checkNewUser(body.usuario, body.clave);
+    const u = await saveUser(env, body.usuario, body.clave, 'admin');
+    return { token: await makeToken(env, u), usuario: u.name, rol: u.role };
+  }
+  if (path === 'login' && m === 'POST') {
+    const failKey = 'fail:' + ip;
+    const fails = parseInt(await env.DB.get(failKey) || '0', 10);
+    if (fails >= 10) throw new HttpError(429, 'Demasiados intentos. Espera 15 minutos.');
+    const u = await getUser(env, body.usuario || '');
+    const ok = u && safeEqual(await hashPassword(body.clave || '', u.salt), u.hash);
+    if (!ok) { await env.DB.put(failKey, String(fails + 1), { expirationTtl: 900 }); throw new HttpError(401, 'Usuario o contraseña incorrectos.'); }
+    await env.DB.delete(failKey);
+    return { token: await makeToken(env, u), usuario: u.name, rol: u.role };
+  }
+
+  // A partir de aquí, hay que haber iniciado sesión
+  const me = await auth(env, request);
+  const admin = () => { if (me.role !== 'admin') throw new HttpError(403, 'Solo un administrador puede hacer esto.'); };
+
+  if (path === 'yo' && m === 'GET') return { usuario: me.name, rol: me.role };
+  if (path === 'clave' && m === 'POST') {
+    if (!safeEqual(await hashPassword(body.actual || '', me.salt), me.hash)) throw new HttpError(400, 'La contraseña actual no es correcta.');
+    checkNewUser(me.name, body.nueva);
+    const u = await saveUser(env, me.name, body.nueva, me.role, me);
+    return { ok: true, token: await makeToken(env, u) };
+  }
+  if (path === 'usuarios' && m === 'GET') { admin(); return { usuarios: await listUsers(env) }; }
+  if (path === 'usuarios' && m === 'POST') {
+    admin(); checkNewUser(body.usuario, body.clave);
+    if (await getUser(env, body.usuario)) throw new HttpError(400, 'Ese usuario ya existe.');
+    await saveUser(env, body.usuario, body.clave, body.rol);
+    return { ok: true };
+  }
+  let um = path.match(/^usuarios\/([^/]+)$/);
+  if (um && m === 'DELETE') {
+    admin(); const name = decodeURIComponent(um[1]);
+    if (name.toLowerCase() === me.name.toLowerCase()) throw new HttpError(400, 'No puedes borrar tu propio usuario.');
+    await env.DB.delete(userKey(name)); return { ok: true };
+  }
+  um = path.match(/^usuarios\/([^/]+)\/clave$/);
+  if (um && m === 'POST') {
+    admin(); const name = decodeURIComponent(um[1]); const u = await getUser(env, name);
+    if (!u) throw new HttpError(404, 'Usuario no encontrado.');
+    checkNewUser(u.name, body.clave);
+    await saveUser(env, u.name, body.clave, body.rol || u.role, u); return { ok: true };
+  }
+
+  if (path === 'contenido' && m === 'GET') {
+    const [productos, categorias, ajustes] = await Promise.all(['productos', 'categorias', 'ajustes'].map(n => readJson(env, `data/${n}.json`).then(r => r.data)));
+    return { productos: productos || [], categorias: categorias || [], ajustes: ajustes || {}, guias: await readDir(env, 'data/guias'), paginas: await readDir(env, 'data/paginas') };
+  }
+  if (path === 'archivo' && m === 'PUT') {
+    const ruta = String(body.ruta || '');
+    if (!ALLOWED_PATH.test(ruta)) throw new HttpError(400, 'Ruta no permitida.');
+    const cur = await gh(env, 'GET', ruta + '?ref=main');
+    const content = JSON.stringify(body.datos, null, 4) + '\n';
+    await gh(env, 'PUT', ruta, { message: `Panel: ${ruta} (${me.name})`, content: utf8ToB64(content), branch: 'main', ...(cur ? { sha: cur.sha } : {}) });
+    return { ok: true };
+  }
+  if (path === 'archivo' && m === 'DELETE') {
+    const ruta = url.searchParams.get('ruta') || '';
+    if (!/^data\/(guias|paginas)\/[a-z0-9-]{1,80}\.json$/.test(ruta)) throw new HttpError(400, 'Ruta no permitida.');
+    const cur = await gh(env, 'GET', ruta + '?ref=main');
+    if (cur) await gh(env, 'DELETE', ruta, { message: `Panel: borrar ${ruta} (${me.name})`, sha: cur.sha, branch: 'main' });
+    return { ok: true };
+  }
+  if (path === 'producto' && m === 'GET') {
+    const tag = env.PARTNER_TAG || 'deskfind-21';
+    const asin = await asinFrom(url.searchParams.get('u') || '');
+    if (!asin) throw new HttpError(400, 'No reconozco ese enlace. Pega la URL de la ficha de Amazon.');
+    const got = await call(env, 'getItems', { itemIds: [asin], itemIdType: 'ASIN' });
+    const it = (g(got, 'itemsResult.items') || [])[0];
+    if (!it) throw new HttpError(404, 'Amazon no devuelve ese producto (puede que no esté disponible en Amazon.es).');
+    const p = normalize(it, tag);
+    return { asin: p.asin, titulo: p.title, marca: p.brand, imagen: p.image, precio: p.price, precioAnterior: p.oldPrice, descuento: p.savings, caracteristicas: p.features };
+  }
+  throw new HttpError(404, 'Ruta desconocida.');
+}
+
 export default {
   async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin') || '';
     const cors = {
       'Access-Control-Allow-Origin': ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Authorization, Content-Type',
       'Vary': 'Origin',
     };
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
 
     const url = new URL(request.url);
-    const input = url.searchParams.get('u') || '';
     const json = (obj, status = 200, extra = {}) => new Response(JSON.stringify(obj), {
       status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...cors, ...extra },
     });
+
+    if (url.pathname.startsWith('/api/')) {
+      try { return json(await api(request, env, url), 200, { 'Cache-Control': 'no-store' }); }
+      catch (e) {
+        if (!(e instanceof HttpError)) console.log('ERROR API', e.message);
+        return json({ error: true, message: e instanceof HttpError ? e.message : 'Error inesperado: ' + e.message }, e.status || 500);
+      }
+    }
+
+    const input = url.searchParams.get('u') || '';
     if (!input) return json({ ok: true, servicio: 'Comparador Todo Chollos Online' });
 
     // Caché de 1 hora por producto

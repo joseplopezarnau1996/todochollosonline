@@ -34,6 +34,33 @@ function write_json(string $file, $data): bool
     return file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), LOCK_EX) !== false;
 }
 
+/** Ajustes editables desde el panel (data/ajustes.json). aj('textos.hero_texto') */
+function aj(string $path, $default = '')
+{
+    static $a = null;
+    if ($a === null) $a = read_json(DATA_DIR . '/ajustes.json');
+    $v = $a;
+    foreach (explode('.', $path) as $k) {
+        if (!is_array($v) || !array_key_exists($k, $v)) return $default;
+        $v = $v[$k];
+    }
+    return ($v === '' || $v === null) ? $default : $v;
+}
+
+function paginas(): array
+{
+    $p = [];
+    foreach (glob(DATA_DIR . '/paginas/*.json') as $f) $p[] = read_json($f);
+    usort($p, fn($a, $b) => strcmp($a['titulo'], $b['titulo']));
+    return $p;
+}
+
+/** Color hexadecimal seguro para CSS. */
+function color(string $c, string $def): string
+{
+    return preg_match('/^#[0-9a-fA-F]{3,8}$/', $c) ? $c : $def;
+}
+
 function categorias(): array
 {
     $out = [];
@@ -113,6 +140,7 @@ function hora_precio(array $amz): string
 function icon(string $name, int $size = 24): string
 {
     $p = [
+        'etiqueta'       => '<path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
         'halloween'      => '<path d="M12 6c-1-2 0-3 1-3"/><path d="M12 6c-4-1-8 2-8 7s3 7 8 7 8-2 8-7-4-8-8-7z"/><path d="M8 11l1.5 1.5L11 11M13 11l1.5 1.5L16 11M8.5 15.5c2 1.2 5 1.2 7 0"/>',
         'suplementacion' => '<rect x="6" y="7" width="12" height="14" rx="2"/><path d="M8 3h8v4H8zM9 12h6M9 15h6M9 18h4"/>',
         'motor'          => '<path d="M3 16v-3l2-5h14l2 5v3z"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/><path d="M5 13h14"/>',
@@ -138,7 +166,9 @@ function icon(string $name, int $size = 24): string
         'clock'          => '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
         'arrow'          => '<path d="M5 12h14M13 6l6 6-6 6"/>',
         'menu'           => '<path d="M4 7h16M4 12h16M4 17h16"/>',
-    ][$name] ?? '<circle cx="12" cy="12" r="8"/>';
+    ];
+    if ($name === '__list') return implode(',', array_keys($p));
+    $p = $p[$name] ?? '<path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/>';
     return '<svg class="ico" width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $p . '</svg>';
 }
 
@@ -157,7 +187,7 @@ function tarjeta(?array $p, ?array $amz, int $n = 0): string
     $title = $p['titulo'] ?? ($amz['title'] ?? $asin);
     $cats  = categorias();
     $cat   = $p ? ($cats[$p['categoria']]['nombre'] ?? '') : '';
-    $img   = $amz['image'] ?? null;
+    $img   = $amz['image'] ?? ($p['imagen'] ?? null);
     $link  = amazon_link($asin);
     $page  = $p ? '/producto/' . $asin : $link;
     $ext   = $p ? '' : ' rel="sponsored nofollow noopener" target="_blank"';

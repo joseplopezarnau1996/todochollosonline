@@ -46,8 +46,8 @@ foreach (array_slice($conP, 0, 3) as $p) { if ($ejemplo = amz_comparar($p['asin'
 echo $ejemplo ? "Ejemplo de comparativa: {$ejemplo['original']['title']}\n" : "Sin ejemplo de comparativa\n";
 
 out('index.html', capture('inicio', [
-    'title' => 'Comparador de precios y chollos de Amazon | ' . $site,
-    'description' => 'Compara productos de Amazon, consulta precios actualizados y encuentra alternativas más baratas o mejor valoradas antes de comprar.',
+    'title' => aj('textos.seo_titulo', 'Comparador de precios y chollos de Amazon') . ' | ' . $site,
+    'description' => aj('textos.seo_descripcion'),
     'canonical' => url(), 'prods' => $prods, 'amz' => $amz, 'guias' => array_slice(guias(), 0, 3), 'ejemplo' => $ejemplo,
 ]));
 
@@ -79,8 +79,14 @@ foreach (guias() as $g) {
     ]));
 }
 
-$legales = ['aviso-legal' => 'Aviso legal', 'privacidad' => 'Política de privacidad', 'cookies' => 'Política de cookies', 'condiciones' => 'Condiciones de uso'];
-foreach ($legales as $slug => $t) out("$slug.html", capture("legal/$slug", ['title' => "$t | $site", 'canonical' => url($slug)]));
+$reservados = ['index', 'comparar', 'categorias', 'contacto', '404', 'admin', 'sitemap', 'robots'];
+$legales = [];
+foreach (paginas() as $pg) {
+    $slug = preg_replace('/[^a-z0-9\-]/', '', $pg['slug'] ?? '');
+    if ($slug === '' || in_array($slug, $reservados, true)) continue;
+    $legales[] = $slug;
+    out("$slug.html", capture('pagina', ['title' => $pg['titulo'] . " | $site", 'canonical' => url($slug), 'pg' => $pg]));
+}
 out('contacto.html', capture('contacto', ['title' => 'Contacto | ' . $site, 'canonical' => url('contacto')]));
 out('404.html', capture('404', ['title' => 'Página no encontrada | ' . $site, 'noindex' => true]));
 
@@ -89,13 +95,18 @@ $urls = [url(), url('categorias'), url('guias/')];
 foreach (categorias() as $c) $urls[] = url('categoria/' . $c['slug']);
 foreach ($prods as $p) $urls[] = url('producto/' . $p['asin']);
 foreach (guias() as $g) $urls[] = url('guias/' . $g['slug']);
-foreach (array_merge(array_keys($legales), ['contacto']) as $l) $urls[] = url($l);
+foreach (array_merge($legales, ['contacto']) as $l) $urls[] = url($l);
 $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 foreach ($urls as $u) $xml .= '  <url><loc>' . e($u) . "</loc></url>\n";
 out('sitemap.xml', $xml . '</urlset>' . "\n");
-out('robots.txt', "User-agent: *\nDisallow: /comparar\nSitemap: " . url('sitemap.xml') . "\n");
+out('robots.txt', "User-agent: *\nDisallow: /comparar\nDisallow: /admin\nSitemap: " . url('sitemap.xml') . "\n");
 out('CNAME', parse_url(cfg()['site_url'], PHP_URL_HOST) . "\n");
 out('.nojekyll', '');
 foreach (glob(ROOT_DIR . '/assets/*') as $f) out('assets/' . basename($f), file_get_contents($f));
+$ic = [];
+foreach (explode(',', icon('__list')) as $n) $ic[$n] = icon($n, 28);
+out('assets/iconos.json', json_encode($ic, JSON_UNESCAPED_SLASHES));
+// Panel privado (página estática que habla con el Worker)
+out('admin.html', str_replace(['{{API}}', '{{V}}'], [rtrim(cfg()['compare_api'], '/'), BUILD_VERSION], file_get_contents(ROOT_DIR . '/admin/index.html')));
 
 echo 'Web generada en _site/ (' . count($urls) . " páginas)\n";
