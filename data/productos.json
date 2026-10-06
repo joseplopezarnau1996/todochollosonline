@@ -317,5 +317,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41ihqespUsL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0DXQ6TJJD",
+        "categoria": "suplementacion",
+        "titulo": "Warrior Creatina + Electrolitos Polvo 360 g – Mix de Frutos del Bosque",
+        "descripcion": "CREATINA CON ELECTROLITOS – Combina creatina monohidrato con electrolitos (sodio, potasio, magnesio) para fuerza e hidratación. HIDRATACIÓN Y RENDIMIENTO – Repone sales minerales durante el entrenamiento y ayuda al rendimiento y la recuperación.",
+        "imagen": "https://m.media-amazon.com/images/I/51JfLRKLm3L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
