@@ -254,5 +254,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41qQINR8-SL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0BFQ9RD5B",
+        "categoria": "belleza",
+        "titulo": "d'alba Piedmont Trufa Blanca Italiana First Spray Serum (100ml)",
+        "descripcion": "Ingrediente característico Trufferol: Las trufas blancas premium cuidadosamente extraídas del Piamonte, Italia, infundidas con tocoferol (vitamina E) constituyen el ingrediente característico de d'Alba, Trufferol, que es rico en antioxidantes Certificación Vegana y Dermatológicamente Probado: Certificado Vegano después de pruebas meticulosas realizadas por la etiqueta V italian",
+        "imagen": "https://m.media-amazon.com/images/I/31f5KqI2DRL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
