@@ -227,5 +227,14 @@
         "imagen": "https://m.media-amazon.com/images/I/21ONn0S6dEL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0C815WY3Z",
+        "categoria": "belleza",
+        "titulo": "Philips OneBlade 360 - Maquinilla de Afeitar Híbrida, Barbero Eléctrico y Afeitadora, 2 Cuchillas 360, Peine-Guía Ajustable 5 en 1 (modelo QP2734/30)",
+        "descripcion": "Tecnología OneBlade: la velocidad de corte de la cuchilla (12.000 movimientos por minuto) es eficaz incluso con el vello más largo, y el sistema de protección doble con un revestimiento deslizante y puntas redondeadas hace que el afeitado sea más fácil y cómodo Cuchilla 360: se puede inclinar en todas las direcciones para permitir un contacto y control constantes sobre la piel,",
+        "imagen": "https://m.media-amazon.com/images/I/418SzmOvNGL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
