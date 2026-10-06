@@ -90,14 +90,14 @@
   }
 
   // ---------- estructura ----------
-  var VIEWS = [['productos', '📦 Productos'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
+  var VIEWS = [['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
   function shell() {
     app.innerHTML = '<div class="layout"><aside class="side" id="side">' + brand() +
       VIEWS.filter(function (v) { return v[0] !== 'usuarios' || S.role === 'admin'; }).map(function (v) { return '<button data-view="' + v[0] + '">' + v[1] + '</button>'; }).join('') +
       '<a class="btn btn-ghost btn-sm" href="/" target="_blank" style="margin-top:12px">Ver la web ↗</a>' +
       '<div class="who">Conectado como <b>' + esc(S.user) + '</b> (' + (S.role === 'admin' ? 'administrador' : 'editor') + ')<br><a href="#" id="logout">Cerrar sesión</a></div></aside>' +
       '<main class="main" id="main"></main></div>';
-    app.querySelectorAll('[data-view]').forEach(function (b) { b.onclick = function () { S.view = b.dataset.view; S.editing = null; $('#side').classList.remove('open'); render(); }; });
+    app.querySelectorAll('[data-view]').forEach(function (b) { b.onclick = function () { S.view = b.dataset.view; S.editing = null; S.secs = null; $('#side').classList.remove('open'); render(); }; });
     $('#logout').onclick = function (e) { e.preventDefault(); logout(); };
     render();
   }
@@ -105,8 +105,8 @@
     app.querySelectorAll('[data-view]').forEach(function (b) { b.classList.toggle('on', b.dataset.view === S.view); });
     var m = $('#main');
     var menu = '<button class="btn btn-ghost btn-sm menu-btn" onclick="document.getElementById(\'side\').classList.toggle(\'open\')">☰ Menú</button>';
-    m.onclick = null;
-    m.innerHTML = menu + ({ productos: vProductos, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
+    m.onclick = null; m.onchange = null;
+    m.innerHTML = menu + ({ productos: vProductos, portada: vPortada, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
     bind[S.view] && bind[S.view](m);
     window.scrollTo(0, 0);
   }
@@ -188,6 +188,67 @@
         saveFile('data/productos.json', next, b).then(function () { S.data.productos = next; render(); });
       }
     };
+  };
+
+  // ---------- PORTADA (tiras de productos) ----------
+  function seccionesPorDefecto() {
+    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 5 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 5 }];
+    S.data.categorias.forEach(function (c) { out.push({ titulo: c.nombre, tipo: 'categoria', categoria: c.slug, cantidad: 5 }); });
+    return out;
+  }
+  var TIPOS = { ofertas: 'Ofertas (productos con descuento ahora mismo)', novedades: 'Novedades (los últimos que has añadido)', categoria: 'Una categoría', manual: 'Productos elegidos a mano' };
+  function vPortada() {
+    if (!S.secs) S.secs = JSON.parse(JSON.stringify((S.data.ajustes.secciones && S.data.ajustes.secciones.length) ? S.data.ajustes.secciones : seccionesPorDefecto()));
+    var P = S.data.productos;
+    return '<div class="head"><h1>Portada</h1><div class="row"><button class="btn btn-ghost" id="sAuto">Generar automáticamente</button><button class="btn" id="sSave">Guardar portada</button></div></div>' +
+      '<p class="muted">Cada bloque es una tira de productos en la portada, en este orden. Las tiras vacías (por ejemplo, «Ofertas» si ahora no hay descuentos) no se muestran.</p>' +
+      S.secs.map(function (sec, i) {
+        var tipo = sec.tipo || 'categoria';
+        return '<div class="card" data-sec="' + i + '"><div class="row" style="margin-bottom:10px"><b class="grow">' + (i + 1) + '. ' + esc(sec.titulo || '(sin título)') + (sec.oculta ? ' <span class="tag">oculta</span>' : '') + '</b>' +
+          '<button class="btn btn-ghost btn-sm" data-act="sUp">↑</button><button class="btn btn-ghost btn-sm" data-act="sDown">↓</button>' +
+          '<button class="btn btn-ghost btn-sm" data-act="sHide">' + (sec.oculta ? 'Mostrar' : 'Ocultar') + '</button><button class="btn btn-danger btn-sm" data-act="sDel">Quitar</button></div>' +
+          '<div class="grid3"><label>Título de la tira<input data-f="titulo" value="' + esc(sec.titulo || '') + '"></label>' +
+          '<label>Qué productos muestra<select data-f="tipo">' + Object.keys(TIPOS).map(function (k) { return '<option value="' + k + '"' + (k === tipo ? ' selected' : '') + '>' + TIPOS[k] + '</option>'; }).join('') + '</select></label>' +
+          '<label>Cuántos productos<input data-f="cantidad" type="number" min="1" max="20" value="' + esc(sec.cantidad || 5) + '"></label></div>' +
+          (tipo === 'categoria' ? '<label>Categoría<select data-f="categoria">' + catOptions(sec.categoria) + '</select></label>' : '') +
+          (tipo === 'manual' ? '<label>Elige los productos <small>(en el orden en que los marques)</small></label><div class="list" style="max-height:260px;overflow:auto">' +
+            P.slice().reverse().map(function (p) { var on = (sec.asins || []).indexOf(p.asin) >= 0;
+              return '<label class="item" style="flex-direction:row;margin:0;cursor:pointer"><input type="checkbox" data-asin="' + esc(p.asin) + '"' + (on ? ' checked' : '') + '>' +
+                (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="">' : '<span class="ph"></span>') + '<span class="t"><b>' + esc(p.titulo) + '</b><small>' + esc(catName(p.categoria)) + '</small></span></label>'; }).join('') + '</div>' : '') +
+          '</div>';
+      }).join('') +
+      '<button class="btn btn-ghost" id="sAdd">+ Añadir tira</button> <button class="btn" id="sSave2">Guardar portada</button>';
+  }
+  bind.portada = function (m) {
+    function sync() {
+      m.querySelectorAll('[data-sec]').forEach(function (card) {
+        var sec = S.secs[+card.dataset.sec];
+        card.querySelectorAll('[data-f]').forEach(function (el) { sec[el.dataset.f] = el.dataset.f === 'cantidad' ? Math.max(1, Math.min(20, parseInt(el.value, 10) || 5)) : el.value.trim(); });
+        if (sec.tipo !== 'categoria') delete sec.categoria;
+        if (sec.tipo === 'manual') {
+          var prev = sec.asins || [], now = [].map.call(card.querySelectorAll('[data-asin]:checked'), function (c) { return c.dataset.asin; });
+          sec.asins = prev.filter(function (a) { return now.indexOf(a) >= 0; }).concat(now.filter(function (a) { return prev.indexOf(a) < 0; }));
+        } else delete sec.asins;
+      });
+    }
+    m.onchange = function (ev) { if (ev.target.dataset.f === 'tipo') { sync(); var sec = S.secs[+ev.target.closest('[data-sec]').dataset.sec]; if (sec.tipo === 'categoria' && !sec.categoria) sec.categoria = (S.data.categorias[0] || {}).slug; render(); } };
+    m.onclick = function (ev) {
+      var b = ev.target.closest('[data-act]'); if (!b) return; sync();
+      var i = +b.closest('[data-sec]').dataset.sec, a = b.dataset.act, L = S.secs;
+      if (a === 'sDel') { if (!confirm('¿Quitar la tira «' + (L[i].titulo || '') + '»?')) return; L.splice(i, 1); }
+      if (a === 'sHide') L[i].oculta = !L[i].oculta;
+      if (a === 'sUp' && i > 0) { var t = L[i]; L[i] = L[i - 1]; L[i - 1] = t; }
+      if (a === 'sDown' && i < L.length - 1) { var t2 = L[i]; L[i] = L[i + 1]; L[i + 1] = t2; }
+      render();
+    };
+    $('#sAdd').onclick = function () { sync(); S.secs.push({ titulo: 'Nueva tira', tipo: 'categoria', categoria: (S.data.categorias[0] || {}).slug, cantidad: 5 }); render(); window.scrollTo(0, document.body.scrollHeight); };
+    $('#sAuto').onclick = function () { if (!confirm('¿Sustituir las tiras actuales por: Ofertas, Novedades y una tira por cada categoría?')) return; S.secs = seccionesPorDefecto(); render(); };
+    function save() {
+      sync();
+      var A = JSON.parse(JSON.stringify(S.data.ajustes)); A.secciones = S.secs;
+      saveFile('data/ajustes.json', A, this).then(function () { S.data.ajustes = A; });
+    }
+    $('#sSave').onclick = save; $('#sSave2').onclick = save;
   };
 
   // ---------- CATEGORÍAS ----------

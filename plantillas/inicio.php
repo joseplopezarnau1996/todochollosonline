@@ -64,17 +64,24 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
     <h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.prod_titulo')) ?> <em><?= e(aj('textos.prod_destacado')) ?></em></h2>
     <div class="tools">
       <label class="search-box"><?= icon('search', 18) ?><input id="q" type="search" placeholder="Buscar en el catálogo..." aria-label="Buscar en el catálogo"></label>
-      <select id="fcat" aria-label="Filtrar por categoría">
-        <option value="">Todos</option>
-        <?php $usadas = array_unique(array_column($prods, 'categoria')); foreach ($cats as $c): if (!in_array($c['slug'], $usadas, true)) continue; ?>
-          <option value="<?= e($c['slug']) ?>"><?= e($c['nombre']) ?></option>
-        <?php endforeach; ?>
-      </select>
       <a class="more-link" href="/categorias">Ver catálogo <?= icon('arrow', 18) ?></a>
     </div>
   </div>
-  <div class="grid" id="grid">
-    <?php $n = 1; foreach (array_reverse($prods) as $p) echo tarjeta($p, $amz[$p['asin']] ?? null, $n++); ?>
+  <div id="strips">
+    <?php $ico = ['ofertas' => 'coin', 'novedades' => 'star', 'manual' => 'fire', 'categoria' => 'etiqueta']; foreach (secciones_portada($prods, $amz) as $sec): ?>
+      <div class="strip-block">
+        <div class="strip-head">
+          <h3><span class="strip-ico"><?= icon($sec['tipo'] === 'categoria' ? ((categorias()[substr($sec['link'], 11)]['icono'] ?? 'etiqueta')) : $ico[$sec['tipo']], 22) ?></span> <?= e($sec['titulo']) ?></h3>
+          <?php if ($sec['link']): ?><a class="more-link" href="<?= e($sec['link']) ?>">Ver todos <?= icon('arrow', 16) ?></a><?php endif; ?>
+        </div>
+        <div class="strip">
+          <?php $n = 1; foreach ($sec['productos'] as $p) echo tarjeta($p, $amz[$p['asin']] ?? null, $n++); ?>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+  <div class="grid" id="grid" hidden>
+    <?php foreach (array_reverse($prods) as $p) echo tarjeta($p, $amz[$p['asin']] ?? null); ?>
   </div>
   <p class="empty" id="empty" hidden>No hay productos que coincidan. Prueba con el comparador de arriba.</p>
 </section>

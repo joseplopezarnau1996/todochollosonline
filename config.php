@@ -8,7 +8,7 @@
  */
 return [
     'site_name'     => 'Todo Chollos Online',
-    'site_url'      => 'https://todochollosonline.es',
+    'site_url'      => 'https://www.todochollosonline.es',
     'owner_name'    => 'Josep López Arnau',
     'contact_email' => 'joseplopezarnau1996@gmail.com',
 

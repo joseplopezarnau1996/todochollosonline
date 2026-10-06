@@ -7,18 +7,15 @@
   // ---------- Menú móvil ----------
   $$('.nav a').forEach(function (a) { a.addEventListener('click', function () { document.body.classList.remove('menu-open'); }); });
 
-  // ---------- Filtro y búsqueda del catálogo ----------
-  var q = $('#q'), fcat = $('#fcat');
-  function filtrar() {
-    var t = (q && q.value || '').toLowerCase().trim(), c = fcat && fcat.value, vis = 0;
-    $$('#grid .card').forEach(function (card) {
-      var ok = (!c || card.getAttribute('data-cat') === c) && (!t || card.getAttribute('data-q').indexOf(t) > -1);
-      card.hidden = !ok; if (ok) vis++;
-    });
-    var e = $('#empty'); if (e) e.hidden = vis > 0;
-  }
-  if (q) q.addEventListener('input', filtrar);
-  if (fcat) fcat.addEventListener('change', filtrar);
+  // ---------- Búsqueda en el catálogo (oculta las tiras mientras se busca) ----------
+  var q = $('#q');
+  if (q) q.addEventListener('input', function () {
+    var t = q.value.toLowerCase().trim(), vis = 0, grid = $('#grid'), strips = $('#strips');
+    if (strips) strips.hidden = !!t;
+    if (grid) grid.hidden = !t;
+    $$('#grid .card').forEach(function (card) { var ok = !!t && card.getAttribute('data-q').indexOf(t) > -1; card.hidden = !ok; if (ok) vis++; });
+    var e = $('#empty'); if (e) e.hidden = !t || vis > 0;
+  });
 
   // ---------- Compartir ----------
   document.addEventListener('click', function (ev) {

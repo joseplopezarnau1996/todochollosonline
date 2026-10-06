@@ -172,6 +172,44 @@ function icon(string $name, int $size = 24): string
     return '<svg class="ico" width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $p . '</svg>';
 }
 
+/** Tiras de la portada configuradas en el panel (ajustes.secciones). Si no hay, se generan solas. */
+function secciones_portada(array $prods, array $amz): array
+{
+    $cfg = aj('secciones', []);
+    if (!is_array($cfg) || !$cfg) {
+        $cfg = [['titulo' => 'Ofertas', 'tipo' => 'ofertas'], ['titulo' => 'Novedades', 'tipo' => 'novedades']];
+        foreach (categorias() as $c) $cfg[] = ['titulo' => $c['nombre'], 'tipo' => 'categoria', 'categoria' => $c['slug']];
+    }
+    $visibles = array_values(array_filter($prods, fn($p) => ($p['destacado'] ?? true) !== false));
+    $porAsin = [];
+    foreach ($prods as $p) $porAsin[$p['asin']] = $p;
+    $out = [];
+    foreach ($cfg as $s) {
+        if (!empty($s['oculta'])) continue;
+        $n = max(1, min(20, (int) ($s['cantidad'] ?? 5)));
+        $tipo = $s['tipo'] ?? 'categoria';
+        $lista = [];
+        $link = null;
+        if ($tipo === 'ofertas') {
+            $lista = array_values(array_filter($visibles, fn($p) => precio_valido($amz[$p['asin']] ?? null) && !empty($amz[$p['asin']]['savings_pct'])));
+            usort($lista, fn($a, $b) => ($amz[$b['asin']]['savings_pct'] ?? 0) <=> ($amz[$a['asin']]['savings_pct'] ?? 0));
+        } elseif ($tipo === 'novedades') {
+            $lista = array_reverse($visibles);
+            usort($lista, fn($a, $b) => strcmp($b['alta'] ?? '', $a['alta'] ?? ''));
+        } elseif ($tipo === 'manual') {
+            foreach ((array) ($s['asins'] ?? []) as $a) if (isset($porAsin[$a])) $lista[] = $porAsin[$a];
+        } else {
+            $slug = $s['categoria'] ?? '';
+            $lista = array_reverse(array_values(array_filter($visibles, fn($p) => $p['categoria'] === $slug)));
+            $link = '/categoria/' . $slug;
+        }
+        $lista = array_slice($lista, 0, $n);
+        if (!$lista) continue;
+        $out[] = ['titulo' => $s['titulo'] ?? '', 'tipo' => $tipo, 'productos' => $lista, 'link' => $link];
+    }
+    return $out;
+}
+
 /** Etiqueta honesta para la tarjeta (sin inventar "más vendido"). */
 function etiqueta(?array $p, ?array $amz): ?array
 {
