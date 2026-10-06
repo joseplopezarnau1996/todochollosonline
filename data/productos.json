@@ -191,5 +191,14 @@
         "imagen": "https://m.media-amazon.com/images/I/31kxCT14VIL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0DBF65JYY",
+        "categoria": "belleza",
+        "titulo": "medicube PDRN Pink Peptide Serum with Salmon DNA",
+        "descripcion": "PIEL COREANA GLASS GLOW: Este sérum Pink Glow con PDRN ayuda a revitalizar la piel apagada y mejorar la elasticidad. Combina hidratación intensa con ingredientes activos de alta eficacia para una textura más suave y una luminosidad firme y rosada. PDRN DE ADN DE SALMÓN (10.000 PPM): Fórmula concentrada y compatible con la piel que ayuda a mejorar la elasticidad, renovar la piel",
+        "imagen": "https://m.media-amazon.com/images/I/31h8gOXMB7L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
