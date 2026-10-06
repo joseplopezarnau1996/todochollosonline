@@ -596,5 +596,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41AR6dmzD7L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B009I4HRDW",
+        "categoria": "bricolaje",
+        "titulo": "Mannesmann M29166, Maletín con juego de llaves de vaso y puntas de destornillador, 130 Piezas (Paquete de 1)",
+        "descripcion": "Maletín de plástico duro con llaves de vaso y puntas Incluidas en un maletín de plástico",
+        "imagen": "https://m.media-amazon.com/images/I/51BhhlVjotL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
