@@ -641,5 +641,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41N5DOMoZyL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0D2R86W4B",
+        "categoria": "bricolaje",
+        "titulo": "FEIFANKE ARC140 Mini Soldador Inverter 140A Maquina de Soldar IGBT DC Portátil Soldador Electrodo con Elevador Lift TIG,Pantalla LED, Hot Start,Anti-Stick,210 x 130 x 90 mm",
+        "descripcion": "Ultracompacto: el soldador por arco portátil pesa sólo 2,1 kg, mide 210 mm x 130 mm x 90 mm e incluye una correa de transporte para facilitar su traslado. La protección contra sobrecorriente, sobrecalentamiento, sobretensión y subtensión garantiza un funcionamiento seguro y una larga vida útil del soldador por arco. Eficiencia energética:Los cables de alta calidad y la tecnolog",
+        "imagen": "https://m.media-amazon.com/images/I/41HCvwoySXL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
