@@ -479,5 +479,14 @@
         "imagen": "https://m.media-amazon.com/images/I/319GCFkiCyL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B08DD7KL13",
+        "categoria": "deportes",
+        "titulo": "PUMA Calcetines unisex. negro 39-42",
+        "descripcion": "Algodón suave para confort Diseño de talón real para un ajuste adecuado",
+        "imagen": "https://m.media-amazon.com/images/I/31QclgN6U1L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
