@@ -155,5 +155,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41cvVMVWDTL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B01N9XEUH6",
+        "categoria": "cocina",
+        "titulo": "Philips Tostadora de pan 2 Ranuras, 8 Ajustes, Calientabollos, Blanco",
+        "descripcion": "Tostadas doradas y crujientes: tostadora de pan Daily Collection Philips para tostadas perfectas - 2 ranuras para cada tamaño y resultados perfectos con pan de cualquier tamaño y forma Ajustes para todos los gustos: 8 opciones al tostar para adaptarse a todas las preferencias",
+        "imagen": "https://m.media-amazon.com/images/I/21kPBYL-J+L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
