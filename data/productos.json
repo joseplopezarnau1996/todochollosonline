@@ -209,5 +209,14 @@
         "imagen": "https://m.media-amazon.com/images/I/31KIVRMwFEL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0B2RM68G2",
+        "categoria": "belleza",
+        "titulo": "BIODANCE Bio-Collagen Real Deep Mask - Mascarilla Nocturna Hidratante, Minimiza Poros y Mejora la Elasticidad - Mascarilla Facial de Hidratación Profunda con Colágeno - 34g x 4 Unidades",
+        "descripcion": "HIDRATACIÓN PROFUNDA: Contiene ácido oligo-hialurónico que ofrece una hidratación superior en comparación con el ácido hialurónico convencional. Humecta rápidamente la superficie y penetra en las capas de la piel, manteniéndola saludable y profundamente hidratada. REFINA POROS Y MEJORA LA ELASTICIDAD: Gracias al colágeno de ultra bajo peso molecular, se maximiza la absorción. A",
+        "imagen": "https://m.media-amazon.com/images/I/41tWrXK7Z8L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
