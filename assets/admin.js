@@ -85,12 +85,12 @@
     app.innerHTML = '<div class="center-box"><span class="spin"></span></div>';
     api('GET', 'contenido').then(function (d) {
       d.ajustes = d.ajustes || {}; d.ajustes.textos = d.ajustes.textos || {}; d.ajustes.colores = d.ajustes.colores || {};
-      S.data = d; shell();
+      S.data = d; S.view = 'estadisticas'; shell();
     }).catch(function (e) { app.innerHTML = '<div class="center-box"><div class="login"><h2>Error al cargar</h2><p class="err">' + esc(e.message) + '</p><button class="btn" onclick="location.reload()">Reintentar</button></div></div>'; });
   }
 
   // ---------- estructura ----------
-  var VIEWS = [['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
+  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
   function shell() {
     app.innerHTML = '<div class="layout"><aside class="side" id="side">' + brand() +
       VIEWS.filter(function (v) { return v[0] !== 'usuarios' || S.role === 'admin'; }).map(function (v) { return '<button data-view="' + v[0] + '">' + v[1] + '</button>'; }).join('') +
@@ -106,13 +106,149 @@
     var m = $('#main');
     var menu = '<button class="btn btn-ghost btn-sm menu-btn" onclick="document.getElementById(\'side\').classList.toggle(\'open\')">☰ Menú</button>';
     m.onclick = null; m.onchange = null;
-    m.innerHTML = menu + ({ productos: vProductos, portada: vPortada, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
+    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
     bind[S.view] && bind[S.view](m);
     window.scrollTo(0, 0);
   }
   var bind = {};
   function catOptions(sel) { return S.data.categorias.map(function (c) { return '<option value="' + esc(c.slug) + '"' + (c.slug === sel ? ' selected' : '') + '>' + esc(c.nombre) + '</option>'; }).join(''); }
   function catName(slug) { var c = S.data.categorias.find(function (x) { return x.slug === slug; }); return c ? c.nombre : slug; }
+
+  // ---------- ESTADÍSTICAS (clics y pedidos) ----------
+  S.dias = 30;
+  function fmtN(n) { return Number(n || 0).toLocaleString('es-ES'); }
+  function fmtE(n) { return Number(n || 0).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }); }
+  function vStats() {
+    return '<div class="head"><h1>Estadísticas</h1><div class="row"><select id="stDias">' + [[7, 'Últimos 7 días'], [30, 'Últimos 30 días'], [90, 'Últimos 90 días'], [365, 'Último año']].map(function (o) {
+      return '<option value="' + o[0] + '"' + (o[0] === S.dias ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></div></div><div id="st"><div class="card"><span class="spin"></span></div></div>';
+  }
+  bind.estadisticas = function (m) {
+    $('#stDias').onchange = function () { S.dias = +this.value; render(); };
+    Promise.all([api('GET', 'clics?dias=' + S.dias), api('GET', 'pedidos')]).then(function (r) { S.clics = r[0].clics || []; S.pedidos = r[1] || { productos: {} }; drawStats(); })
+      .catch(function (e) { $('#st').innerHTML = '<div class="card"><p class="err">' + esc(e.message) + '</p></div>'; });
+  };
+  function prodInfo(asin, fallback) {
+    var p = S.data.productos.find(function (x) { return x.asin === asin; });
+    return { titulo: p ? p.titulo : (fallback || asin), imagen: p ? p.imagen : '', enWeb: !!p };
+  }
+  function drawStats() {
+    var C = S.clics, PED = (S.pedidos && S.pedidos.productos) || {};
+    var porProd = {}, porPag = {}, porDia = {};
+    var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+    for (var d = S.dias - 1; d >= 0; d--) { var k = new Date(hoy - d * 86400000); porDia[k.toISOString().slice(0, 10)] = 0; }
+    C.forEach(function (c) {
+      var dia = new Date(c.ts); dia.setHours(0, 0, 0, 0); var key = new Date(dia.getTime() - dia.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      if (key in porDia) porDia[key]++;
+      var a = c.a || '?'; var pp = porProd[a] = porProd[a] || { asin: a, clics: 0, t: c.t, origen: {} };
+      pp.clics++; var o = (c.s ? c.s + ' · ' : '') + (c.p || '/'); pp.origen[o] = (pp.origen[o] || 0) + 1;
+      var pg = c.p || '/'; porPag[pg] = (porPag[pg] || 0) + 1;
+    });
+    Object.keys(PED).forEach(function (a) { if (!porProd[a]) porProd[a] = { asin: a, clics: 0, t: PED[a].titulo, origen: {} }; });
+    var filas = Object.keys(porProd).map(function (a) { var x = porProd[a], ped = PED[a] || {}; return Object.assign(x, { pedidos: ped.pedidos || 0, ingresos: ped.ingresos || 0 }, prodInfo(a, x.t || ped.titulo)); })
+      .sort(function (a, b) { return b.clics - a.clics || b.pedidos - a.pedidos; });
+    var totalPed = filas.reduce(function (s, f) { return s + f.pedidos; }, 0), totalIng = filas.reduce(function (s, f) { return s + f.ingresos; }, 0);
+    var prodClic = filas.filter(function (f) { return f.clics > 0 && f.asin !== 'busqueda'; }).length;
+    var tiles = [['Clics a Amazon', fmtN(C.length)], ['Productos con clics', fmtN(prodClic)], ['Pedidos (importados)', fmtN(totalPed)],
+      ['Conversión', C.length ? (totalPed / C.length * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 }) + ' %' : '—'], ['Ingresos (importados)', fmtE(totalIng)]];
+    var html = '<div class="tiles">' + tiles.map(function (t) { return '<div class="tile"><small>' + t[0] + '</small><b>' + t[1] + '</b></div>'; }).join('') + '</div>';
+    html += '<div class="card"><h2>Clics por día</h2>' + chartDias(porDia) + '</div>';
+    var top = filas.filter(function (f) { return f.clics > 0; }).slice(0, 12);
+    html += '<div class="card"><h2>Productos con más clics</h2>' + (top.length ? chartTop(top) : '<p class="muted">Todavía no hay clics en este periodo. Los clics se empiezan a contar desde hoy.</p>') + '</div>';
+    html += '<div class="card"><div class="head"><h2 style="margin:0">Detalle por producto</h2><button class="btn btn-sm" id="pedSave">Guardar pedidos</button></div>' +
+      '<p class="muted small">«Pedidos» e «Ingresos» vienen del informe de Amazon (impórtalo abajo) o puedes escribirlos a mano. Amazon no dice qué clic concreto acabó en compra: se cruza por producto.</p>' +
+      '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Producto</th><th>Clics</th><th>Desde dónde</th><th>Pedidos</th><th>Ingresos €</th><th>Conv.</th></tr></thead><tbody>' +
+      (filas.length ? filas.map(function (f) {
+        var orig = Object.keys(f.origen).sort(function (a, b) { return f.origen[b] - f.origen[a]; }).slice(0, 3).map(function (o) { return esc(o) + ' <span class="muted">(' + f.origen[o] + ')</span>'; }).join('<br>');
+        var esBus = f.asin === 'busqueda';
+        return '<tr><td><div class="pcell">' + (f.imagen ? '<img src="' + esc(f.imagen) + '" alt="">' : '<span class="ph"></span>') + '<div><b>' + esc(esBus ? 'Búsquedas en Amazon (guías y botones)' : f.titulo) + '</b>' +
+          (esBus ? '' : '<small><a href="https://www.amazon.es/dp/' + esc(f.asin) + '" target="_blank" rel="noopener">' + esc(f.asin) + '</a>' + (f.enWeb ? '' : ' · desde el comparador') + '</small>') + '</div></div></td>' +
+          '<td class="num">' + fmtN(f.clics) + '</td><td class="small">' + (orig || '—') + '</td>' +
+          (esBus ? '<td></td><td></td><td></td>' : '<td><input class="mini" type="number" min="0" data-ped="' + esc(f.asin) + '" value="' + (f.pedidos || 0) + '"></td><td><input class="mini" type="number" min="0" step="0.01" data-ing="' + esc(f.asin) + '" value="' + (f.ingresos || 0) + '"></td>' +
+          '<td class="num">' + (f.clics ? (f.pedidos / f.clics * 100).toLocaleString('es-ES', { maximumFractionDigits: 0 }) + ' %' : '—') + '</td>') + '</tr>';
+      }).join('') : '<tr><td colspan="6" class="muted">Sin datos todavía.</td></tr>') + '</tbody></table></div></div>';
+    var pags = Object.keys(porPag).sort(function (a, b) { return porPag[b] - porPag[a]; });
+    html += '<div class="card"><h2>Clics por página de la web</h2>' + (pags.length ? '<table class="tbl"><thead><tr><th>Página (URL)</th><th>Clics</th></tr></thead><tbody>' +
+      pags.map(function (p) { return '<tr><td><a href="' + esc(p) + '" target="_blank">' + esc(p === '/' ? '/ (portada)' : p) + '</a></td><td class="num">' + fmtN(porPag[p]) + '</td></tr>'; }).join('') + '</tbody></table>' : '<p class="muted">Sin datos todavía.</p>') + '</div>';
+    html += '<div class="card"><h2>📥 Importar pedidos de Amazon Afiliados</h2><ol class="small muted"><li>En afiliados.amazon.es ve a <b>Informes → Descargar informes</b>.</li><li>Descarga el informe de <b>Pedidos</b> (o de Ganancias) en formato <b>CSV</b> o <b>TSV</b>.</li><li>Elígelo aquí: se sumarán los pedidos e ingresos de cada producto (ASIN).</li></ol>' +
+      '<div class="row"><input type="file" id="pedFile" accept=".csv,.tsv,.txt" style="max-width:340px"><input id="pedPeriodo" placeholder="Periodo (ej. octubre 2026)" value="' + esc((S.pedidos && S.pedidos.periodo) || '') + '" style="max-width:240px"></div>' +
+      (S.pedidos && S.pedidos.actualizado ? '<p class="small muted">Últimos pedidos guardados: ' + esc(new Date(S.pedidos.actualizado).toLocaleString('es-ES')) + (S.pedidos.periodo ? ' · ' + esc(S.pedidos.periodo) : '') + '</p>' : '') + '</div>';
+    $('#st').innerHTML = html;
+    bindTooltips($('#st'));
+    $('#pedSave').onclick = function () { guardarPedidos(leerPedidosTabla(), this); };
+    $('#pedFile').onchange = function () {
+      var file = this.files[0]; if (!file) return; var rd = new FileReader();
+      rd.onload = function () {
+        var res = parseInforme(String(rd.result));
+        if (!res.ok) { toast('❌ ' + res.msg, true); return; }
+        if (!confirm('He encontrado ' + res.pedidos + ' artículos pedidos de ' + Object.keys(res.productos).length + ' productos. ¿Sustituir los pedidos guardados por estos?')) return;
+        guardarPedidos(res.productos, null);
+      };
+      rd.readAsText(file);
+    };
+  }
+  function leerPedidosTabla() {
+    var out = {}; var PED = (S.pedidos && S.pedidos.productos) || {};
+    app.querySelectorAll('[data-ped]').forEach(function (i) {
+      var a = i.dataset.ped, ing = app.querySelector('[data-ing="' + a + '"]');
+      var ped = +i.value || 0, eur = +(ing && ing.value) || 0;
+      if (ped || eur) out[a] = { pedidos: ped, ingresos: eur, titulo: (PED[a] && PED[a].titulo) || prodInfo(a).titulo };
+    });
+    return out;
+  }
+  function guardarPedidos(prods, btn) {
+    busy(btn, true);
+    api('PUT', 'pedidos', { productos: prods, periodo: ($('#pedPeriodo') || {}).value || '' }).then(function (d) { S.pedidos = d; toast('✅ Pedidos guardados.'); drawStats(); })
+      .catch(function (e) { toast('❌ ' + e.message, true); }).finally(function () { busy(btn, false); });
+  }
+  // Lee el informe de Amazon (CSV/TSV, en español o inglés) y suma pedidos e ingresos por ASIN.
+  function parseInforme(txt) {
+    var lines = txt.replace(/^﻿/, '').split(/\r?\n/).filter(function (l) { return l.trim(); });
+    var sep = (lines.slice(0, 5).join('').split('\t').length > lines.slice(0, 5).join('').split(',').length) ? '\t' : (lines[1] && lines[1].split(';').length > lines[1].split(',').length ? ';' : ',');
+    function split(l) { var out = [], cur = '', q = false; for (var i = 0; i < l.length; i++) { var ch = l[i]; if (ch === '"') { if (q && l[i + 1] === '"') { cur += '"'; i++; } else q = !q; } else if (ch === sep && !q) { out.push(cur); cur = ''; } else cur += ch; } out.push(cur); return out.map(function (x) { return x.trim(); }); }
+    var hi = -1, H = [];
+    for (var i = 0; i < Math.min(lines.length, 10); i++) { var c = split(lines[i]).map(function (x) { return x.toLowerCase(); }); if (c.some(function (x) { return x.indexOf('asin') >= 0; })) { hi = i; H = c; break; } }
+    if (hi < 0) return { ok: false, msg: 'No encuentro la columna «ASIN» en el archivo. ¿Es el informe de pedidos de Amazon?' };
+    function col(words) { return H.findIndex(function (h) { return words.some(function (w) { return h.indexOf(w) >= 0; }); }); }
+    var cA = col(['asin']), cQ = col(['cantidad', 'qty', 'quantity', 'artículos', 'items', 'unidades']), cE = col(['ingresos por publicidad', 'ganancias', 'earnings', 'ad fees', 'comisi', 'ingresos']), cN = col(['nombre', 'name', 'título', 'title', 'producto']);
+    var prods = {}, total = 0;
+    lines.slice(hi + 1).forEach(function (l) {
+      var c = split(l), a = (c[cA] || '').toUpperCase(); if (!/^[A-Z0-9]{10}$/.test(a)) return;
+      var q = cQ >= 0 ? parseFloat((c[cQ] || '1').replace(',', '.')) || 0 : 1;
+      var e = cE >= 0 ? parseFloat((c[cE] || '0').replace(/[^\d,.\-]/g, '').replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.')) || 0 : 0;
+      var p = prods[a] = prods[a] || { pedidos: 0, ingresos: 0, titulo: cN >= 0 ? (c[cN] || '').slice(0, 120) : '' };
+      p.pedidos += q; p.ingresos = Math.round((p.ingresos + e) * 100) / 100; total += q;
+    });
+    if (!total) return { ok: false, msg: 'El archivo no tiene filas de pedidos con ASIN.' };
+    return { ok: true, productos: prods, pedidos: total };
+  }
+  // Gráficos SVG sencillos (una sola serie, color principal) con tooltip al pasar el ratón.
+  function chartDias(porDia) {
+    var keys = Object.keys(porDia), vals = keys.map(function (k) { return porDia[k]; }), max = Math.max(1, Math.max.apply(null, vals));
+    var W = 900, H = 200, pl = 34, pb = 26, pt = 10, bw = (W - pl) / keys.length, step = Math.ceil(max / 4);
+    var g = '';
+    for (var y = 0; y <= max; y += step) { var yy = pt + (H - pt - pb) * (1 - y / max); g += '<line x1="' + pl + '" x2="' + W + '" y1="' + yy + '" y2="' + yy + '" class="grid"/><text x="' + (pl - 6) + '" y="' + (yy + 4) + '" class="ax" text-anchor="end">' + y + '</text>'; }
+    var bars = keys.map(function (k, i) {
+      var v = porDia[k], h = (H - pt - pb) * v / max, x = pl + i * bw, label = new Date(k + 'T12:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+      var every = Math.ceil(keys.length / 10);
+      return '<g class="hit" data-tip="' + esc(label + ': ' + v + ' clic' + (v === 1 ? '' : 's')) + '"><rect x="' + x + '" y="' + pt + '" width="' + bw + '" height="' + (H - pt - pb) + '" fill="transparent"/>' +
+        (v ? '<rect class="bar" x="' + (x + Math.min(2, bw * .15)) + '" y="' + (H - pb - h) + '" width="' + Math.max(1, bw - Math.min(4, bw * .3)) + '" height="' + h + '" rx="' + Math.min(4, bw / 3) + '"/>' : '') + '</g>' +
+        (i % every === 0 ? '<text x="' + (x + bw / 2) + '" y="' + (H - 8) + '" class="ax" text-anchor="middle">' + esc(label) + '</text>' : '');
+    }).join('');
+    return '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Clics por día">' + g + bars + '</svg>';
+  }
+  function chartTop(rows) {
+    var max = Math.max.apply(null, rows.map(function (r) { return r.clics; }));
+    return '<div class="hbars">' + rows.map(function (r) {
+      var name = r.asin === 'busqueda' ? 'Búsquedas en Amazon' : r.titulo;
+      return '<div class="hb hit" data-tip="' + esc(name + ' — ' + r.clics + ' clics' + (r.pedidos ? ' · ' + r.pedidos + ' pedidos' : '')) + '"><span class="hb-l">' + esc(name) + '</span>' +
+        '<span class="hb-t"><span class="hb-b" style="width:' + Math.max(2, r.clics / max * 100) + '%"></span></span><span class="hb-v">' + fmtN(r.clics) + (r.pedidos ? ' <small class="muted">· ' + fmtN(r.pedidos) + ' ped.</small>' : '') + '</span></div>';
+    }).join('') + '</div>';
+  }
+  function bindTooltips(root) {
+    var tip = document.getElementById('chartTip'); if (!tip) { tip = document.createElement('div'); tip.id = 'chartTip'; tip.className = 'ctip'; tip.hidden = true; document.body.appendChild(tip); }
+    root.addEventListener('mousemove', function (ev) { var h = ev.target.closest && ev.target.closest('[data-tip]'); if (!h) { tip.hidden = true; return; } tip.textContent = h.dataset.tip; tip.hidden = false; tip.style.left = (ev.clientX + 14) + 'px'; tip.style.top = (ev.clientY + 14) + 'px'; });
+    root.addEventListener('mouseleave', function () { tip.hidden = true; });
+  }
 
   // ---------- PRODUCTOS ----------
   function vProductos() {

@@ -17,6 +17,23 @@
     var e = $('#empty'); if (e) e.hidden = !t || vis > 0;
   });
 
+  // ---------- Registro anónimo de clics hacia Amazon (para las estadísticas del panel) ----------
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href*="amazon."]');
+    if (!a || !TC.api || !navigator.sendBeacon) return;
+    var m = a.href.match(/\/dp\/([A-Z0-9]{10})/i);
+    var holder = a.closest('.card, .opt, .ex-col, .product, .res-orig');
+    var tEl = holder && holder.querySelector('h1, h3, h4, img[alt]');
+    var titulo = tEl ? (tEl.getAttribute('alt') || tEl.textContent) : document.title;
+    var strip = a.closest('.strip-block'), sec = strip ? strip.querySelector('h3').textContent.trim()
+      : a.closest('#resultado') ? 'Comparador' : a.closest('.example') ? 'Ejemplo portada' : a.closest('.product') ? 'Ficha de producto' : '';
+    try {
+      navigator.sendBeacon(TC.api.replace(/\/$/, '') + '/c', new Blob([JSON.stringify({
+        a: m ? m[1].toUpperCase() : 'busqueda', t: (titulo || '').trim().slice(0, 90), p: location.pathname, s: sec
+      })], { type: 'text/plain' }));
+    } catch (e) {}
+  }, true);
+
   // ---------- Compartir ----------
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('.share');
