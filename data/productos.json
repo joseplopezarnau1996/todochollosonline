@@ -686,5 +686,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51bdKXUuRtL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0B34KXBC5",
+        "categoria": "juguetes",
+        "titulo": "BORRAS - Pokémon Mission Juego de Mesa Interactivo, Conviertete en Entrenador Pokémon y Atrápalos a Todos. Juego de Entrenador, Aprende Datos Divertidos de tús Pokémones Favoritos (19442)",
+        "descripcion": "Con tu detector de Pokémon y tu mapa de entrenador, lleva a cabo las distintas misiones. Sigue las instrucciones de luz y de voz para cazar a los distintos Pokémon y añadirlos a tu colección electrónica de Pokémon.",
+        "imagen": "https://m.media-amazon.com/images/I/51YnEfaNzkL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
