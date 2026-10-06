@@ -632,5 +632,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41n0t06JlAL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0CCNNBVZ2",
+        "categoria": "bricolaje",
+        "titulo": "WORKPRO Cúter Plegable de Aluminio con Cambio Rápido",
+        "descripcion": "Contenido Completo: Incluye 1 cúter plegable, 10 cuchillas de repuesto SK5 y 1 caja de almacenamiento Corte Resistente: La cuchilla trapezoidal de acero SK5 con tratamiento térmico ofrece buena durabilidad para cortar cartón, embalajes de plástico y cinta",
+        "imagen": "https://m.media-amazon.com/images/I/41N5DOMoZyL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
