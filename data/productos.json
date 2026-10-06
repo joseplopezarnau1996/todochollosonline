@@ -119,5 +119,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41n33PwVS0L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B09Q57M9B4",
+        "categoria": "hogar",
+        "titulo": "Protector de Colchón Impermeable 150x200 cm, hasta 30 cm",
+        "descripcion": "Diseño frottee: Este protector de colchón se adapta perfectamente a su cama, con dobladillos profesionalmente doblados y bolsillos de ajuste profundo. Superficie De Ropa Suave Y Confortable: La superficie de rizo conserva el tacto suave, acogedor, silencioso y transpirable de su colchón",
+        "imagen": "https://m.media-amazon.com/images/I/51JLDC4+PoL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
