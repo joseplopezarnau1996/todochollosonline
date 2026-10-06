@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "halloween",
+    "nombre": "Halloween",
+    "icono": "🎃"
+  },
+  {
+    "slug": "suplementacion",
+    "nombre": "Suplementación",
+    "icono": "💊"
+  },
+  {
+    "slug": "motor",
+    "nombre": "Motor",
+    "icono": "🚗"
+  },
+  {
+    "slug": "tecnologia",
+    "nombre": "Tecnología",
+    "icono": "💻"
+  },
+  {
+    "slug": "hogar",
+    "nombre": "Hogar",
+    "icono": "🏠"
+  },
+  {
+    "slug": "cocina",
+    "nombre": "Cocina",
+    "icono": "🍳"
+  },
+  {
+    "slug": "deportes",
+    "nombre": "Deportes",
+    "icono": "🚴"
+  },
+  {
+    "slug": "belleza",
+    "nombre": "Belleza",
+    "icono": "💄"
+  },
+  {
+    "slug": "moda",
+    "nombre": "Moda",
+    "icono": "👕"
+  },
+  {
+    "slug": "bricolaje",
+    "nombre": "Bricolaje",
+    "icono": "🔧"
+  },
+  {
+    "slug": "juguetes",
+    "nombre": "Juguetes",
+    "icono": "🧸"
+  }
+]
