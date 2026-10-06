@@ -614,5 +614,14 @@
         "imagen": "https://m.media-amazon.com/images/I/31nqx0FnovL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B00GGKMNTO",
+        "categoria": "bricolaje",
+        "titulo": "Bosch Maletín de 91 V-Line unidades para taladrar y atornillar (para madera, piedra y metal, con destornillador dinamométrico y barra imantada, Accesorios herramientas de perforación y atornillado)",
+        "descripcion": "El set de 91 puntas de atornillar y brocas V-Line de titanio de Bosch: adecuado para una amplia variedad de aplicaciones en madera, mampostería y metal Adecuado para todos los taladros portátiles y estacionarios con un práctico maletín Bosch V-Line para una disposición clara del contenido",
+        "imagen": "https://m.media-amazon.com/images/I/51nBbHpVnZL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
