@@ -1,0 +1,46 @@
+name: Publicar web
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 * * * *'   # cada hora (minuto 17) para refrescar precios
+  workflow_dispatch:        # botón "Run workflow" para publicar a mano
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, mbstring
+      - name: Generar la web con precios de Amazon
+        env:
+          AMZ_CLIENT_ID: ${{ secrets.AMZ_CLIENT_ID }}
+          AMZ_CLIENT_SECRET: ${{ secrets.AMZ_CLIENT_SECRET }}
+        run: |
+          php build.php
+          if [ -f data/cache/api.log ]; then echo "--- Registro de la API ---"; cat data/cache/api.log; fi
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
