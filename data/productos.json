@@ -218,5 +218,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41tWrXK7Z8L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B09SZ5JX2Y",
+        "categoria": "belleza",
+        "titulo": "d'alba Piedmont Trufa Blanca Double Serum All-in-one Multi Balm",
+        "descripcion": "Ingrediente característico Trufferol: Las trufas blancas premium cuidadosamente extraídas del Piamonte, Italia, infundidas con tocoferol (vitamina E) constituyen el ingrediente característico de d'Alba, Trufferol, que es rico en antioxidantes Certificaciones y pruebas dermatológicas: Certificado vegano tras pruebas meticulosas realizadas por el V-label italiano, dermatológicame",
+        "imagen": "https://m.media-amazon.com/images/I/21ONn0S6dEL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
