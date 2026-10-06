@@ -605,5 +605,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51BhhlVjotL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B00DY1Y22Y",
+        "categoria": "bricolaje",
+        "titulo": "STANLEY Destornillador multipuntas, juego de 34 piezas, STHT0-70885",
+        "descripcion": "Adecuado para una gran variedad de aplicaciónes profesionales de atornillado La cabeza magnética mantiene las puntas en su sitio de forma segura y permite cambiar los accesorios de forma rápida y sencilla",
+        "imagen": "https://m.media-amazon.com/images/I/31nqx0FnovL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
