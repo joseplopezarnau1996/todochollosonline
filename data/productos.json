@@ -560,5 +560,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41NiFQJFYFL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B078XXSXRX",
+        "categoria": "deportes",
+        "titulo": "Amazon Basics Neoprene Dumbbell Pair, 10kgs (5 kg x 2 count), Blue",
+        "descripcion": "Set de 2 mancuernas para entrenamiento de resistencia; cada una pesa 5 kg. Textura de neopreno que proporciona un agarre fácil y seguro",
+        "imagen": "https://m.media-amazon.com/images/I/4126HXJpp8L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
