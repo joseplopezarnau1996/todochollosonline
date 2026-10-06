@@ -173,5 +173,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41yAeprOR-L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B07RN64P2R",
+        "categoria": "hogar",
+        "titulo": "Amazon Basics Paquete de 6 Bolsas de vacío para Almacenamiento de Ropa, Incluyen Bomba Manual de vacío, con Cremallera, tamaño Extragrande,Jumbo, Transparente",
+        "descripcion": "Conjunto de bolsas de vacío para almacenamiento, de plástico resistente Reduce el tamaño de tu ropa, toallas o sábanas hasta en un 80 %",
+        "imagen": "https://m.media-amazon.com/images/I/519ULj1nv8L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
