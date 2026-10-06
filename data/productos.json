@@ -659,5 +659,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41grn0BIPaL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B005I5M2F8",
+        "categoria": "juguetes",
+        "titulo": "Mattel Games Juego de Cartas UNO, 7+ años, 2-10 Jugadores",
+        "descripcion": "El clásico juego de cartas de emparejar colores y números. Las cartas especiales y los comodines le dan más diversión al juego",
+        "imagen": "https://m.media-amazon.com/images/I/51RXvOulYZL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
