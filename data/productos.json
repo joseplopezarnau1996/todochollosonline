@@ -650,5 +650,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41HCvwoySXL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B07GZ4BWZ2",
+        "categoria": "bricolaje",
+        "titulo": "BLACK+DECKER Taladro percutor con cable de 710 W, BEH710K-QS",
+        "descripcion": "KIT DE TALADRO PERCUTOR TODO EN UNO PARA TRABAJOS DIFÍCILES Y BRICOLAJE DIARIO: Combina un potente hilado con una rápida acción de martillo, lo que facilita la perforación de materiales duros como hormigón, ladrillo y piedra. Ligero, apto para principiantes y repleto de funciones y accesorios fáciles de usar, este kit le permite manejar con confianza casi cualquier proyecto dom",
+        "imagen": "https://m.media-amazon.com/images/I/41grn0BIPaL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
