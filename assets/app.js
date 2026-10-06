@@ -17,10 +17,18 @@
     var e = $('#empty'); if (e) e.hidden = !t || vis > 0;
   });
 
+  // ---------- Visitantes únicos (el servidor cuenta 1 por dispositivo y día) ----------
+  try {
+    if (TC.api && navigator.sendBeacon && !/^\/admin/.test(location.pathname) && localStorage.getItem('tc_no_contar') !== '1') {
+      navigator.sendBeacon(TC.api.replace(/\/$/, '') + '/v', new Blob([JSON.stringify({ p: location.pathname, r: document.referrer })], { type: 'text/plain' }));
+    }
+  } catch (e) {}
+
   // ---------- Registro anónimo de clics hacia Amazon (para las estadísticas del panel) ----------
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest && ev.target.closest('a[href*="amazon."]');
     if (!a || !TC.api || !navigator.sendBeacon) return;
+    try { if (localStorage.getItem('tc_no_contar') === '1') return; } catch (e) {}
     var m = a.href.match(/\/dp\/([A-Z0-9]{10})/i);
     var holder = a.closest('.card, .opt, .ex-col, .product, .res-orig');
     var tEl = holder && holder.querySelector('h1, h3, h4, img[alt]');

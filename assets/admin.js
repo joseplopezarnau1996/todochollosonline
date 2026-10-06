@@ -124,7 +124,7 @@
   }
   bind.estadisticas = function (m) {
     $('#stDias').onchange = function () { S.dias = +this.value; render(); };
-    Promise.all([api('GET', 'clics?dias=' + S.dias), api('GET', 'pedidos')]).then(function (r) { S.clics = r[0].clics || []; S.pedidos = r[1] || { productos: {} }; drawStats(); })
+    Promise.all([api('GET', 'clics?dias=' + S.dias), api('GET', 'pedidos'), api('GET', 'visitas?dias=' + S.dias).catch(function () { return { visitas: [] }; })]).then(function (r) { S.clics = r[0].clics || []; S.pedidos = r[1] || { productos: {} }; S.vis = r[2]; drawStats(); })
       .catch(function (e) { $('#st').innerHTML = '<div class="card"><p class="err">' + esc(e.message) + '</p></div>'; });
   };
   function prodInfo(asin, fallback) {
@@ -134,10 +134,10 @@
   function drawStats() {
     var C = S.clics, PED = (S.pedidos && S.pedidos.productos) || {};
     var porProd = {}, porPag = {}, porDia = {};
-    var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
-    for (var d = S.dias - 1; d >= 0; d--) { var k = new Date(hoy - d * 86400000); porDia[k.toISOString().slice(0, 10)] = 0; }
+    var fmtDia = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Madrid' }), ahora = Date.now();
+    for (var d = S.dias - 1; d >= 0; d--) porDia[fmtDia.format(new Date(ahora - d * 86400000))] = 0;
     C.forEach(function (c) {
-      var dia = new Date(c.ts); dia.setHours(0, 0, 0, 0); var key = new Date(dia.getTime() - dia.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      var key = fmtDia.format(new Date(c.ts));
       if (key in porDia) porDia[key]++;
       var a = c.a || '?'; var pp = porProd[a] = porProd[a] || { asin: a, clics: 0, t: c.t, origen: {} };
       pp.clics++; var o = (c.s ? c.s + ' · ' : '') + (c.p || '/'); pp.origen[o] = (pp.origen[o] || 0) + 1;
@@ -150,7 +150,28 @@
     var prodClic = filas.filter(function (f) { return f.clics > 0 && f.asin !== 'busqueda'; }).length;
     var tiles = [['Clics a Amazon', fmtN(C.length)], ['Productos con clics', fmtN(prodClic)], ['Pedidos (importados)', fmtN(totalPed)],
       ['Conversión', C.length ? (totalPed / C.length * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 }) + ' %' : '—'], ['Ingresos (importados)', fmtE(totalIng)]];
-    var html = '<div class="tiles">' + tiles.map(function (t) { return '<div class="tile"><small>' + t[0] + '</small><b>' + t[1] + '</b></div>'; }).join('') + '</div>';
+    var VIS = (S.vis && S.vis.visitas) || [], visDia = {}, hoyK = (S.vis && S.vis.hoy) || '';
+    Object.keys(porDia).forEach(function (k) { visDia[k] = 0; });
+    var by = { d: {}, o: {}, c: {}, p: {} };
+    VIS.forEach(function (v) { if (v.dia in visDia) visDia[v.dia]++; ['d', 'o', 'c', 'p'].forEach(function (k) { var x = v[k] || '—'; by[k][x] = (by[k][x] || 0) + 1; }); });
+    var diasConDatos = Object.keys(visDia).filter(function (k) { return visDia[k] > 0; }).length;
+    var vt = [['Visitantes hoy', fmtN(VIS.filter(function (v) { return v.dia === hoyK; }).length)], ['Visitantes en el periodo', fmtN(VIS.length)],
+      ['Media por día', diasConDatos ? fmtN(Math.round(VIS.length / diasConDatos)) : '—'], ['Clics por visitante', VIS.length ? (C.length / VIS.length).toLocaleString('es-ES', { maximumFractionDigits: 2 }) : '—']];
+    function lista(obj, nombre) {
+      var ks = Object.keys(obj).sort(function (a, b) { return obj[b] - obj[a]; }).slice(0, 8), mx = ks.length ? obj[ks[0]] : 1;
+      return '<div><h3>' + nombre + '</h3>' + (ks.length ? '<div class="hbars">' + ks.map(function (k) {
+        return '<div class="hb hit" data-tip="' + esc(k + ': ' + obj[k] + ' visitantes (' + Math.round(obj[k] / VIS.length * 100) + ' %)') + '"><span class="hb-l">' + esc(k) + '</span><span class="hb-t"><span class="hb-b" style="width:' + Math.max(2, obj[k] / mx * 100) + '%"></span></span><span class="hb-v">' + fmtN(obj[k]) + '</span></div>';
+      }).join('') + '</div>' : '<p class="muted small">Sin datos todavía.</p>') + '</div>';
+    }
+    var noContar = false; try { noContar = localStorage.getItem('tc_no_contar') === '1'; } catch (e) {}
+    var html = '<h2 class="sec-t">👥 Visitantes únicos</h2><p class="muted small">Se cuenta <b>1 visita por dispositivo y día</b>: aunque alguien entre 20 veces hoy, cuenta 1. Si vuelve mañana, cuenta otra vez (el «Visitantes en el periodo» suma los visitantes de cada día). No se usan cookies y los robots (Google, etc.) no se cuentan.</p>' +
+      '<div class="tiles t4">' + vt.map(function (t) { return '<div class="tile"><small>' + t[0] + '</small><b>' + t[1] + '</b></div>'; }).join('') + '</div>' +
+      '<div class="card"><h2>Visitantes únicos por día</h2>' + chartDias(visDia, 'visitante', 'visitantes') + '</div>' +
+      '<div class="card"><div class="grid2 gap">' + lista(by.d, 'Dispositivo') + lista(by.o, 'De dónde vienen') + lista(by.c, 'País') + lista(by.p, 'Página por la que entran') + '</div></div>' +
+      '<div class="card row" style="justify-content:space-between"><div><b>No contarme a mí</b><br><small class="muted">Actívalo en cada móvil u ordenador que uses tú, para que tus propias visitas y clics no se sumen.</small></div>' +
+      '<label class="sw"><input type="checkbox" id="noContar"' + (noContar ? ' checked' : '') + '> <span>' + (noContar ? 'Este dispositivo NO se cuenta' : 'Este dispositivo se cuenta') + '</span></label></div>' +
+      '<h2 class="sec-t">🛒 Clics a Amazon</h2>';
+    html += '<div class="tiles">' + tiles.map(function (t) { return '<div class="tile"><small>' + t[0] + '</small><b>' + t[1] + '</b></div>'; }).join('') + '</div>';
     html += '<div class="card"><h2>Clics por día</h2>' + chartDias(porDia) + '</div>';
     var top = filas.filter(function (f) { return f.clics > 0; }).slice(0, 12);
     html += '<div class="card"><h2>Productos con más clics</h2>' + (top.length ? chartTop(top) : '<p class="muted">Todavía no hay clics en este periodo. Los clics se empiezan a contar desde hoy.</p>') + '</div>';
@@ -175,6 +196,7 @@
     $('#st').innerHTML = html;
     bindTooltips($('#st'));
     $('#pedSave').onclick = function () { guardarPedidos(leerPedidosTabla(), this); };
+    $('#noContar').onchange = function () { try { if (this.checked) localStorage.setItem('tc_no_contar', '1'); else localStorage.removeItem('tc_no_contar'); } catch (e) {} this.nextElementSibling.textContent = this.checked ? 'Este dispositivo NO se cuenta' : 'Este dispositivo se cuenta'; toast(this.checked ? '✅ Tus visitas desde este dispositivo ya no se cuentan.' : 'Este dispositivo vuelve a contarse.'); };
     $('#pedFile').onchange = function () {
       var file = this.files[0]; if (!file) return; var rd = new FileReader();
       rd.onload = function () {
@@ -222,7 +244,8 @@
     return { ok: true, productos: prods, pedidos: total };
   }
   // Gráficos SVG sencillos (una sola serie, color principal) con tooltip al pasar el ratón.
-  function chartDias(porDia) {
+  function chartDias(porDia, uno, varios) {
+    uno = uno || 'clic'; varios = varios || 'clics';
     var keys = Object.keys(porDia), vals = keys.map(function (k) { return porDia[k]; }), max = Math.max(1, Math.max.apply(null, vals));
     var W = 900, H = 200, pl = 34, pb = 26, pt = 10, bw = (W - pl) / keys.length, step = Math.ceil(max / 4);
     var g = '';
@@ -230,11 +253,11 @@
     var bars = keys.map(function (k, i) {
       var v = porDia[k], h = (H - pt - pb) * v / max, x = pl + i * bw, label = new Date(k + 'T12:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
       var every = Math.ceil(keys.length / 10);
-      return '<g class="hit" data-tip="' + esc(label + ': ' + v + ' clic' + (v === 1 ? '' : 's')) + '"><rect x="' + x + '" y="' + pt + '" width="' + bw + '" height="' + (H - pt - pb) + '" fill="transparent"/>' +
+      return '<g class="hit" data-tip="' + esc(label + ': ' + v + ' ' + (v === 1 ? uno : varios)) + '"><rect x="' + x + '" y="' + pt + '" width="' + bw + '" height="' + (H - pt - pb) + '" fill="transparent"/>' +
         (v ? '<rect class="bar" x="' + (x + Math.min(2, bw * .15)) + '" y="' + (H - pb - h) + '" width="' + Math.max(1, bw - Math.min(4, bw * .3)) + '" height="' + h + '" rx="' + Math.min(4, bw / 3) + '"/>' : '') + '</g>' +
         (i % every === 0 ? '<text x="' + (x + bw / 2) + '" y="' + (H - 8) + '" class="ax" text-anchor="middle">' + esc(label) + '</text>' : '');
     }).join('');
-    return '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Clics por día">' + g + bars + '</svg>';
+    return '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + varios + ' por día">' + g + bars + '</svg>';
   }
   function chartTop(rows) {
     var max = Math.max.apply(null, rows.map(function (r) { return r.clics; }));
