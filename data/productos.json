@@ -236,5 +236,14 @@
         "imagen": "https://m.media-amazon.com/images/I/418SzmOvNGL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0DGPSZVW3",
+        "categoria": "belleza",
+        "titulo": "medicube Collagen Jelly Cream",
+        "descripcion": "Face Cream",
+        "imagen": "https://m.media-amazon.com/images/I/31As19qSjUL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
