@@ -1,69 +1,69 @@
 {
-  "colores": {
-    "fondo": "#0a0e0b",
-    "tarjetas": "#121a15",
-    "acento": "#ffd21f",
-    "texto": "#f4f6f3"
-  },
-  "fondo_imagen": "",
-  "textos": {
-    "logo_1": "Todo",
-    "logo_2": "Chollos",
-    "logo_sub": "Comparador de precios",
-    "hero_kicker": "Tu comparador de precios",
-    "hero_titulo": "Compara antes de",
-    "hero_destacado": "comprar.",
-    "hero_texto": "Pega el enlace de un producto de Amazon y encuentra alternativas más baratas, mejor valoradas y populares en segundos.",
-    "buscador_placeholder": "Pega aquí el enlace del producto de Amazon...",
-    "boton_comparar": "Comparar",
-    "mano": "Encuentra el mejor precio en segundos",
-    "feats": [
-      {
-        "titulo": "Más barato",
-        "texto": "Compara precios"
-      },
-      {
-        "titulo": "Mejor valorados",
-        "texto": "Opciones con buenas opiniones"
-      },
-      {
-        "titulo": "Alternativas populares",
-        "texto": "Descubre otras opciones"
-      },
-      {
-        "titulo": "100% Gratis",
-        "texto": "El precio no cambia"
-      }
-    ],
-    "cat_titulo": "Explora por",
-    "cat_destacado": "categorías",
-    "prod_titulo": "Chollos y productos",
-    "prod_destacado": "destacados",
-    "guias_titulo": "Guías de",
-    "guias_destacado": "compra",
-    "nosotros_titulo": "Sobre",
-    "nosotros_destacado": "nosotros",
-    "nosotros_texto": "Todo Chollos Online es un proyecto independiente. Organizamos productos por su utilidad, publicamos guías originales y te ayudamos a comparar antes de comprar.",
-    "faq": [
-      {
-        "p": "¿Vendéis vosotros los productos?",
-        "r": "No. La compra, el pago, el envío y las devoluciones se hacen directamente en Amazon.es."
-      },
-      {
-        "p": "¿Sube el precio si compro desde vuestro enlace?",
-        "r": "No. Pagas exactamente lo mismo. Amazon nos paga una pequeña comisión que nos ayuda a mantener la web."
-      },
-      {
-        "p": "¿De dónde salen los precios?",
-        "r": "Los consultamos automáticamente en Amazon. Junto a cada precio verás la fecha y hora de la consulta; el precio válido es el que aparezca en Amazon al comprar."
-      },
-      {
-        "p": "¿Cómo funciona el comparador?",
-        "r": "Pega el enlace de cualquier producto de Amazon. Buscamos productos parecidos en Amazon y te mostramos la alternativa más barata, una con muy buenas valoraciones (4 estrellas o más) y la alternativa más popular."
-      }
-    ],
-    "pie_texto": "Los precios y la disponibilidad mostrados son orientativos y pueden cambiar. El precio aplicable es el que figura en Amazon.es en el momento de la compra.",
-    "seo_titulo": "Comparador de precios y chollos de Amazon",
-    "seo_descripcion": "Compara productos de Amazon, consulta precios actualizados y encuentra alternativas más baratas o mejor valoradas antes de comprar."
-  }
+    "colores": {
+        "fondo": "#0a0e0b",
+        "tarjetas": "#121a15",
+        "acento": "#ffd21f",
+        "texto": "#f4f6f3"
+    },
+    "fondo_imagen": "",
+    "textos": {
+        "logo_1": "Todo",
+        "logo_2": "ChollosOnline",
+        "logo_sub": "Comparador de precios",
+        "hero_kicker": "Tu comparador de precios",
+        "hero_titulo": "Compara antes de",
+        "hero_destacado": "comprar.",
+        "hero_texto": "Pega el enlace de un producto de Amazon y encuentra alternativas más baratas, mejor valoradas y populares en segundos.",
+        "buscador_placeholder": "Pega aquí el enlace del producto de Amazon...",
+        "boton_comparar": "Comparar",
+        "mano": "Encuentra el mejor precio en segundos",
+        "feats": [
+            {
+                "titulo": "Más barato",
+                "texto": "Compara precios"
+            },
+            {
+                "titulo": "Mejor valorados",
+                "texto": "Opciones con buenas opiniones"
+            },
+            {
+                "titulo": "Alternativas populares",
+                "texto": "Descubre otras opciones"
+            },
+            {
+                "titulo": "100% Gratis",
+                "texto": "El precio no cambia"
+            }
+        ],
+        "cat_titulo": "Explora por",
+        "cat_destacado": "categorías",
+        "prod_titulo": "Chollos y productos",
+        "prod_destacado": "destacados",
+        "guias_titulo": "Guías de",
+        "guias_destacado": "compra",
+        "nosotros_titulo": "Sobre",
+        "nosotros_destacado": "nosotros",
+        "nosotros_texto": "Todo Chollos Online es un proyecto independiente. Organizamos productos por su utilidad, publicamos guías originales y te ayudamos a comparar antes de comprar.",
+        "faq": [
+            {
+                "p": "¿Vendéis vosotros los productos?",
+                "r": "No. La compra, el pago, el envío y las devoluciones se hacen directamente en Amazon.es."
+            },
+            {
+                "p": "¿Sube el precio si compro desde vuestro enlace?",
+                "r": "No. Pagas exactamente lo mismo. Amazon nos paga una pequeña comisión que nos ayuda a mantener la web."
+            },
+            {
+                "p": "¿De dónde salen los precios?",
+                "r": "Los consultamos automáticamente en Amazon. Junto a cada precio verás la fecha y hora de la consulta; el precio válido es el que aparezca en Amazon al comprar."
+            },
+            {
+                "p": "¿Cómo funciona el comparador?",
+                "r": "Pega el enlace de cualquier producto de Amazon. Buscamos productos parecidos en Amazon y te mostramos la alternativa más barata, una con muy buenas valoraciones (4 estrellas o más) y la alternativa más popular."
+            }
+        ],
+        "pie_texto": "Los precios y la disponibilidad mostrados son orientativos y pueden cambiar. El precio aplicable es el que figura en Amazon.es en el momento de la compra.",
+        "seo_titulo": "Comparador de precios y chollos de Amazon",
+        "seo_descripcion": "Compara productos de Amazon, consulta precios actualizados y encuentra alternativas más baratas o mejor valoradas antes de comprar."
+    }
 }
