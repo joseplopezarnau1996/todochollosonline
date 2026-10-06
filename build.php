@@ -7,6 +7,7 @@
 
 define('ROOT_DIR', __DIR__);
 define('DATA_DIR', __DIR__ . '/data');
+define('BUILD_VERSION', date('YmdHi'));
 date_default_timezone_set('Europe/Madrid');
 mb_internal_encoding('UTF-8');
 
@@ -37,10 +38,17 @@ $conPrecio = count(array_filter($amz, 'precio_valido'));
 echo amz_configured() ? "Amazon: $conPrecio/" . count($prods) . " productos con precio\n" : "Amazon: sin credenciales, se publica sin precios\n";
 
 // 2) Páginas
+// Ejemplo real de comparativa para la portada (el producto con precio más alto).
+$ejemplo = null;
+$conP = array_filter($prods, fn($p) => precio_valido($amz[$p['asin']] ?? null));
+usort($conP, fn($a, $b) => ($amz[$b['asin']]['amount'] ?? 0) <=> ($amz[$a['asin']]['amount'] ?? 0));
+foreach (array_slice($conP, 0, 3) as $p) { if ($ejemplo = amz_comparar($p['asin'])) break; }
+echo $ejemplo ? "Ejemplo de comparativa: {$ejemplo['original']['title']}\n" : "Sin ejemplo de comparativa\n";
+
 out('index.html', capture('inicio', [
     'title' => 'Comparador de precios y chollos de Amazon | ' . $site,
     'description' => 'Compara productos de Amazon, consulta precios actualizados y encuentra alternativas más baratas o mejor valoradas antes de comprar.',
-    'canonical' => url(), 'prods' => $prods, 'amz' => $amz, 'guias' => array_slice(guias(), 0, 3),
+    'canonical' => url(), 'prods' => $prods, 'amz' => $amz, 'guias' => array_slice(guias(), 0, 3), 'ejemplo' => $ejemplo,
 ]));
 
 out('comparar.html', capture('comparar', ['title' => 'Comparador de productos de Amazon | ' . $site, 'noindex' => true, 'amz' => $amz]));

@@ -7,7 +7,7 @@ $link = amazon_link($p['asin']);
   <p class="crumbs"><a href="/">Inicio</a> › <?php if ($cat): ?><a href="/categoria/<?= e($cat['slug']) ?>"><?= e($cat['nombre']) ?></a> › <?php endif; ?><?= e(mb_strimwidth($title, 0, 60, '…')) ?></p>
   <div class="product">
     <div class="product-img">
-      <?php if (!empty($amz['image'])): ?><img src="<?= e($amz['image']) ?>" alt="<?= e($title) ?>"><?php else: ?><span class="noimg big">🛍️</span><?php endif; ?>
+      <?php if (!empty($amz['image'])): ?><img src="<?= e($amz['image']) ?>" alt="<?= e($title) ?>"><?php else: ?><span class="noimg"><?= icon('box', 80) ?></span><?php endif; ?>
     </div>
     <div class="product-info">
       <?php if ($cat): ?><span class="tag"><?= e($cat['nombre']) ?></span><?php endif; ?>
@@ -31,7 +31,7 @@ $link = amazon_link($p['asin']);
         <ul class="features"><?php foreach ($amz['features'] as $f): ?><li><?= e($f) ?></li><?php endforeach; ?></ul>
       <?php endif; ?>
       <div class="compare-actions row">
-        <a class="btn btn-ghost" href="/comparar?u=<?= e($p['asin']) ?>">🔎 Comparar alternativas</a>
+        <a class="btn btn-ghost" href="/comparar?u=<?= e($p['asin']) ?>"><?= icon('search', 18) ?> Comparar con alternativas</a>
       </div>
     </div>
   </div>

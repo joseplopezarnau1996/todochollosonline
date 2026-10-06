@@ -109,36 +109,85 @@ function hora_precio(array $amz): string
     return date('d/m/Y H:i', (int) $amz['fetched_at']);
 }
 
-/** Tarjeta de producto. $p = producto propio (puede ser null), $amz = datos de Amazon. */
-function tarjeta(?array $p, ?array $amz): string
+/** Iconos de línea (SVG propio). */
+function icon(string $name, int $size = 24): string
+{
+    $p = [
+        'halloween'      => '<path d="M12 6c-1-2 0-3 1-3"/><path d="M12 6c-4-1-8 2-8 7s3 7 8 7 8-2 8-7-4-8-8-7z"/><path d="M8 11l1.5 1.5L11 11M13 11l1.5 1.5L16 11M8.5 15.5c2 1.2 5 1.2 7 0"/>',
+        'suplementacion' => '<rect x="6" y="7" width="12" height="14" rx="2"/><path d="M8 3h8v4H8zM9 12h6M9 15h6M9 18h4"/>',
+        'motor'          => '<path d="M3 16v-3l2-5h14l2 5v3z"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/><path d="M5 13h14"/>',
+        'tecnologia'     => '<rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
+        'hogar'          => '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10M10 20v-6h4v6"/>',
+        'cocina'         => '<path d="M7 14a4 4 0 01-1-7.9A5 5 0 0116 5a4 4 0 012 7.6V14z"/><path d="M7 14v6h10v-6M7 17h10"/>',
+        'deportes'       => '<path d="M6 8v8M3.5 10v4M18 8v8M20.5 10v4M6 12h12"/>',
+        'belleza'        => '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/>',
+        'moda'           => '<path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c0 2-1.5 3-4 3S8 5 8 3z"/>',
+        'bricolaje'      => '<path d="M14.5 6.5a4 4 0 00-5.3 5.2L3.5 17.5l3 3 5.8-5.7a4 4 0 005.2-5.3l-2.5 2.5-2.5-.5-.5-2.5z"/>',
+        'juguetes'       => '<rect x="4" y="9" width="16" height="11" rx="1"/><circle cx="8" cy="7" r="1.6"/><circle cx="16" cy="7" r="1.6"/><path d="M4 14h16"/>',
+        'box'            => '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+        'search'         => '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+        'link'           => '<path d="M10 14a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1M14 10a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/>',
+        'cart'           => '<path d="M3 4h2l2.5 11h11L21 7H6.5"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/>',
+        'share'          => '<path d="M10 14a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1M14 10a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/>',
+        'coin'           => '<circle cx="9" cy="14" r="6"/><path d="M15 4.3A6 6 0 0121 10a6 6 0 01-4 5.7M9 11v6M7 12.5h3a1.5 1.5 0 010 3H8"/>',
+        'star'           => '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+        'chart'          => '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
+        'gift'           => '<rect x="3" y="8" width="18" height="4"/><path d="M5 12v9h14v-9M12 8v13M12 8c-2-4-6-4-6-1.5S10 8 12 8zm0 0c2-4 6-4 6-1.5S14 8 12 8z"/>',
+        'fire'           => '<path d="M12 21c4 0 7-2.5 7-6.5 0-3-2-5.5-3.5-7-.3 2-1.5 3-2.5 3 .5-3-1-6.5-4-8 .3 3-1.5 5-3 7S5 12.5 5 14.5C5 18.5 8 21 12 21z"/><path d="M12 21c-1.8 0-3-1.2-3-3 0-2 2-3 2.5-5 1.5 1 3.5 2.6 3.5 5 0 1.8-1.2 3-3 3z"/>',
+        'check'          => '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+        'clock'          => '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+        'arrow'          => '<path d="M5 12h14M13 6l6 6-6 6"/>',
+        'menu'           => '<path d="M4 7h16M4 12h16M4 17h16"/>',
+    ][$name] ?? '<circle cx="12" cy="12" r="8"/>';
+    return '<svg class="ico" width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $p . '</svg>';
+}
+
+/** Etiqueta honesta para la tarjeta (sin inventar "más vendido"). */
+function etiqueta(?array $p, ?array $amz): ?array
+{
+    if (precio_valido($amz) && !empty($amz['savings_pct'])) return ['OFERTA', 'red'];
+    if ($p && !empty($p['alta']) && strtotime($p['alta']) > time() - 21 * 86400) return ['NOVEDAD', 'green'];
+    return null;
+}
+
+/** Tarjeta de producto. $p = producto propio (puede ser null), $amz = datos de Amazon, $n = número. */
+function tarjeta(?array $p, ?array $amz, int $n = 0): string
 {
     $asin  = $p['asin'] ?? $amz['asin'];
     $title = $p['titulo'] ?? ($amz['title'] ?? $asin);
-    $desc  = $p['descripcion'] ?? '';
     $cats  = categorias();
     $cat   = $p ? ($cats[$p['categoria']]['nombre'] ?? '') : '';
     $img   = $amz['image'] ?? null;
     $link  = amazon_link($asin);
+    $page  = $p ? '/producto/' . $asin : $link;
+    $ext   = $p ? '' : ' rel="sponsored nofollow noopener" target="_blank"';
+    $tag   = etiqueta($p, $amz);
     ob_start(); ?>
-    <article class="card" data-cat="<?= e($p['categoria'] ?? '') ?>">
-      <a class="card-img" href="<?= $p ? '/producto/' . e($asin) : e($link) ?>" <?= $p ? '' : 'rel="sponsored nofollow noopener" target="_blank"' ?>>
-        <?php if ($img): ?><img src="<?= e($img) ?>" alt="<?= e($title) ?>" loading="lazy"><?php else: ?><span class="noimg">🛍️</span><?php endif; ?>
-        <?php if (precio_valido($amz) && !empty($amz['savings_pct'])): ?><span class="badge">-<?= (int) $amz['savings_pct'] ?>%</span><?php endif; ?>
+    <article class="card" data-cat="<?= e($p['categoria'] ?? '') ?>" data-q="<?= e(mb_strtolower($title . ' ' . $cat)) ?>">
+      <div class="card-top">
+        <?php if ($n): ?><span class="num"><?= $n ?></span><?php endif; ?>
+        <?php if ($tag): ?><span class="lbl lbl-<?= $tag[1] ?>"><?= e($tag[0]) ?></span><?php endif; ?>
+      </div>
+      <a class="card-img" href="<?= e($page) ?>"<?= $ext ?>>
+        <?php if ($img): ?><img src="<?= e($img) ?>" alt="<?= e($title) ?>" loading="lazy"><?php else: ?><span class="noimg"><?= icon('box', 48) ?></span><?php endif; ?>
       </a>
       <div class="card-body">
         <?php if ($cat): ?><span class="tag"><?= e($cat) ?></span><?php endif; ?>
-        <h3><?= $p ? '<a href="' . '/producto/' . e($asin) . '">' . e($title) . '</a>' : e($title) ?></h3>
-        <?php if ($desc): ?><p class="desc"><?= e($desc) ?></p><?php endif; ?>
+        <h3><a href="<?= e($page) ?>"<?= $ext ?>><?= e($title) ?></a></h3>
         <div class="price-box">
           <?php if (precio_valido($amz)): ?>
             <span class="price"><?= e($amz['price']) ?></span>
             <?php if (!empty($amz['old_price'])): ?><s class="old"><?= e($amz['old_price']) ?></s><?php endif; ?>
-            <small class="when">Precio a <?= e(hora_precio($amz)) ?> <button type="button" class="info" title="Los precios y la disponibilidad pueden cambiar. El precio que se aplica es el que aparece en Amazon en el momento de la compra.">ⓘ</button></small>
+            <?php if (!empty($amz['savings_pct'])): ?><span class="disc">-<?= (int) $amz['savings_pct'] ?>%</span><?php endif; ?>
+            <small class="when"><?= icon('clock', 13) ?> Precio a <?= e(hora_precio($amz)) ?> <span class="info" tabindex="0" title="Los precios y la disponibilidad pueden cambiar. Se aplica el precio que figure en Amazon en el momento de la compra.">ⓘ</span></small>
           <?php else: ?>
             <span class="price muted">Consulta el precio en Amazon</span>
           <?php endif; ?>
         </div>
-        <a class="btn" href="<?= e($link) ?>" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a>
+        <div class="card-actions">
+          <a class="btn btn-buy" href="<?= e($link) ?>" rel="sponsored nofollow noopener" target="_blank">Comprar <?= icon('cart', 16) ?></a>
+          <button type="button" class="btn btn-ghost share" data-url="<?= e($p ? url('producto/' . $asin) : $link) ?>" data-title="<?= e($title) ?>"><?= icon('share', 15) ?> Compartir</button>
+        </div>
       </div>
     </article>
     <?php return ob_get_clean();

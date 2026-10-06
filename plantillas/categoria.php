@@ -1,6 +1,6 @@
 <section class="wrap section">
   <p class="crumbs"><a href="/">Inicio</a> › <a href="/categorias">Categorías</a> › <?= e($cat['nombre']) ?></p>
-  <h1><?= e($cat['icono']) ?> <?= e($cat['nombre']) ?></h1>
+  <h1><em><?= e($cat['nombre']) ?></em></h1>
   <?php if ($prods): ?>
     <div class="grid">
       <?php foreach (array_reverse($prods) as $p) echo tarjeta($p, $amz[$p['asin']] ?? null); ?>

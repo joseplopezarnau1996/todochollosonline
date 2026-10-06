@@ -110,8 +110,13 @@ function amz_call(string $path, array $payload): ?array
     if (!amz_configured()) return null;
     $c = cfg();
     $payload += ['marketplace' => $c['marketplace'], 'partnerTag' => $c['partner_tag']];
-    for ($try = 0; $try < 2; $try++) {
-        $token = amz_token($try > 0);
+    static $last = 0.0;
+    for ($try = 0; $try < 5; $try++) {
+        // Amazon permite ~1 petición/segundo: espaciar llamadas.
+        $wait = $last + 1.1 - microtime(true);
+        if ($wait > 0) usleep((int) ($wait * 1e6));
+        $last = microtime(true);
+        $token = amz_token($try === 1);
         if (!$token) return null;
         [$code, $resp, $err] = amz_http_post($c['api_base_url'] . $path, [
             'Authorization: Bearer ' . $token,
@@ -119,6 +124,7 @@ function amz_call(string $path, array $payload): ?array
             'x-marketplace: ' . $c['marketplace'],
         ], json_encode($payload));
         if ($code === 401 && $try === 0) continue; // token caducado: reintenta
+        if ($code === 429 && $try < 4) { usleep(1200000 * ($try + 1)); continue; } // límite de Amazon
         $j = json_decode($resp, true);
         if ($code !== 200 || !is_array($j)) {
             amz_log("API ERROR $path http=$code err=$err body=" . substr($resp, 0, 800));
@@ -198,24 +204,54 @@ function amz_items(array $asins): array
     return $out;
 }
 
-/** Búsqueda por palabras clave (para el comparador). */
-function amz_search(string $keywords, int $count = 6, string $sortBy = ''): array
+/** Búsqueda por palabras clave. $extra admite sortBy, minReviewsRating, minPrice, maxPrice... */
+function amz_search(string $keywords, int $count = 10, array $extra = []): array
 {
-    $key = DATA_DIR . '/cache/search_' . md5($keywords . '|' . $sortBy) . '.json';
+    $key = DATA_DIR . '/cache/search_' . md5($keywords . '|' . json_encode($extra)) . '.json';
     if (is_file($key) && filemtime($key) > time() - (int) (cfg()['price_cache_ttl'] ?? 3600)) {
         return json_decode((string) file_get_contents($key), true) ?: [];
     }
-    $payload = [
-        'keywords'  => mb_substr($keywords, 0, 120),
-        'itemCount' => $count,
-        'resources' => AMZ_RESOURCES,
-    ];
-    if ($sortBy) $payload['sortBy'] = $sortBy;
+    $payload = ['keywords' => mb_substr($keywords, 0, 120), 'itemCount' => $count, 'resources' => AMZ_RESOURCES] + $extra;
     $r = amz_call('/catalog/v1/searchItems', $payload);
     $res = [];
-    foreach ((array) amz_get($r, 'searchResult.items', []) as $it) {
-        $res[] = amz_normalize($it);
-    }
+    foreach ((array) amz_get($r, 'searchResult.items', []) as $it) $res[] = amz_normalize($it);
     if ($res) file_put_contents($key, json_encode($res, JSON_UNESCAPED_UNICODE), LOCK_EX);
     return $res;
+}
+
+/** Palabras clave genéricas a partir del título (misma lógica que el Worker). */
+function amz_keywords(string $title, string $brand = ''): string
+{
+    $stop = ['de', 'para', 'con', 'y', 'el', 'la', 'los', 'las', 'en', 'a', 'un', 'una', 'del', 'por', 'sin'];
+    $out = [];
+    foreach (preg_split('/[\s,|()\[\]:;–\-\/]+/u', $title, -1, PREG_SPLIT_NO_EMPTY) as $w) {
+        $lw = mb_strtolower($w);
+        if (in_array($lw, $stop, true) || $lw === mb_strtolower($brand) || preg_match('/^\d+([.,]\d+)?$/', $w)) continue;
+        $out[] = $w;
+        if (count($out) >= 5) break;
+    }
+    return implode(' ', $out);
+}
+
+/** Comparativa de 3 opciones para un producto (para el ejemplo de la portada). */
+function amz_comparar(string $asin): ?array
+{
+    $orig = amz_items([$asin])[$asin] ?? null;
+    if (!$orig || empty($orig['title'])) return null;
+    $kw = amz_keywords($orig['title'], (string) ($orig['brand'] ?? '')) ?: mb_substr($orig['title'], 0, 60);
+    $price = (float) ($orig['amount'] ?? 0);
+    $ok = fn($x) => $x['asin'] !== $asin && !empty($x['price']);
+    $rel = array_values(array_filter(amz_search($kw, 10, ['sortBy' => 'Relevance']), $ok));
+    $extra = ['sortBy' => 'AvgCustomerReviews', 'minReviewsRating' => 4];
+    if ($price) $extra += ['minPrice' => (int) round($price * 50), 'maxPrice' => (int) round($price * 150)];
+    $rated = array_values(array_filter(amz_search($kw, 10, $extra), $ok));
+    $used = [$asin => 1];
+    $cheaper = array_values(array_filter($rel, fn($x) => !$price || ($x['amount'] < $price && $x['amount'] >= $price * 0.3)));
+    usort($cheaper, fn($a, $b) => $a['amount'] <=> $b['amount']);
+    $take = function (array $list) use (&$used) { foreach ($list as $x) if (!isset($used[$x['asin']])) { $used[$x['asin']] = 1; return $x; } return null; };
+    $barato = $take($cheaper);
+    $valorado = $take($rated) ?: $take($rel);
+    $popular = $take($rel);
+    if (!$barato && !$valorado && !$popular) return null;
+    return ['original' => $orig, 'barato' => $barato, 'valorado' => $valorado, 'popular' => $popular];
 }

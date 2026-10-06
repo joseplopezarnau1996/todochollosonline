@@ -12,6 +12,9 @@ return [
     'owner_name'    => 'Josep López Arnau',
     'contact_email' => 'joseplopezarnau1996@gmail.com',
 
+    // URL del comparador (Cloudflare Worker). Vacío = comparador desactivado.
+    'compare_api'   => getenv('COMPARE_API') ?: 'https://todochollos-comparador.joseplopezarnau1996.workers.dev/',
+
     'partner_tag'   => 'deskfind-21',
     'marketplace'   => 'www.amazon.es',
 
