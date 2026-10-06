@@ -146,5 +146,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41e7oMGw5LL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B00FXNAAW2",
+        "categoria": "hogar",
+        "titulo": "Amazon Basics - Perchas de terciopelo para trajes - Paquete de 50, Negro",
+        "descripcion": "Superficie de terciopelo negro con muescas antideslizantes en las hombreras para evitar que la ropa se escurra. Perfil ultra fino para maximizar el espacio en tu armario.",
+        "imagen": "https://m.media-amazon.com/images/I/41cvVMVWDTL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
