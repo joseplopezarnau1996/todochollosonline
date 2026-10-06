@@ -200,5 +200,14 @@
         "imagen": "https://m.media-amazon.com/images/I/31h8gOXMB7L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0GHMZXX8Y",
+        "categoria": "belleza",
+        "titulo": "medicube PDRN Pink Collagen Volume Multi Balm Stick",
+        "descripcion": "medicube PDRN Pink Collagen Volume Multi Balm Stick | Volufiline, PDRN, NAD, Collagen | Face & Body Balm for Under-Eyes, Neck, Forehead, Smile Lines, Lips | Plumping, Radiance, Line Care | K-Beauty",
+        "imagen": "https://m.media-amazon.com/images/I/31KIVRMwFEL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
