@@ -344,5 +344,14 @@
         "imagen": "https://m.media-amazon.com/images/I/511qb87X41L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-06"
+    },
+    {
+        "asin": "B0013G8I0O",
+        "categoria": "suplementacion",
+        "titulo": "Salus Floradix Suplemento, Reduce Cansancio y Fatiga, 84 Comprimidos",
+        "descripcion": "Envase de 84 comprimidos, práctico para llevar, sin lactosa ni gluten. Apto para mujeres (embarazo y lactancia), adolescentes, ancianos, convalecientes y personas con un estilo de vida activo Contiene hierro orgánico de gluconato ferroso, ácido fólico, vitaminas B1, B2, B6, B12, C y niacina, extracto de levadura, mezcla de extractos de espinaca, ortiga, zanahoria, hinojo y cent",
+        "imagen": "https://m.media-amazon.com/images/I/51MdXuub1OL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-06"
     }
 ]
