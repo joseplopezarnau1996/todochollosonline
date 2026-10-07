@@ -91,5 +91,94 @@
         "efecto": "pulso",
         "tamano": "normal",
         "etiqueta": ""
-    }
+    },
+    "secciones": [
+        {
+            "titulo": "Ofertas",
+            "tipo": "ofertas",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Novedades",
+            "tipo": "novedades",
+            "cantidad": 10
+        },
+        {
+            "titulo": "🔥 Futuras tendencias",
+            "tipo": "categoria",
+            "categoria": "futuras-tendencias",
+            "cantidad": 12
+        },
+        {
+            "titulo": "Lo más comparado",
+            "tipo": "comparados",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Halloween",
+            "tipo": "categoria",
+            "categoria": "halloween",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Suplementación",
+            "tipo": "categoria",
+            "categoria": "suplementacion",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Motor",
+            "tipo": "categoria",
+            "categoria": "motor",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Tecnología",
+            "tipo": "categoria",
+            "categoria": "tecnologia",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Hogar",
+            "tipo": "categoria",
+            "categoria": "hogar",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Cocina",
+            "tipo": "categoria",
+            "categoria": "cocina",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Deportes",
+            "tipo": "categoria",
+            "categoria": "deportes",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Belleza",
+            "tipo": "categoria",
+            "categoria": "belleza",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Moda",
+            "tipo": "categoria",
+            "categoria": "moda",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Bricolaje",
+            "tipo": "categoria",
+            "categoria": "bricolaje",
+            "cantidad": 10
+        },
+        {
+            "titulo": "Juguetes",
+            "tipo": "categoria",
+            "categoria": "juguetes",
+            "cantidad": 10
+        }
+    ]
 }
