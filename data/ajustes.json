@@ -65,5 +65,18 @@
         "pie_texto": "Los precios y la disponibilidad mostrados son orientativos y pueden cambiar. El precio aplicable es el que figura en Amazon.es en el momento de la compra.",
         "seo_titulo": "Comparador de precios y chollos de Amazon",
         "seo_descripcion": "Compara productos de Amazon, consulta precios actualizados y encuentra alternativas más baratas o mejor valoradas antes de comprar."
+    },
+    "buscador_amazon": {
+        "activo": true,
+        "posicion": "arriba_todo",
+        "titulo": "Busca en la pagina oficial de Amazon",
+        "placeholder": "Busca cualquier producto en Amazon...",
+        "boton": "Buscar en Amazon",
+        "nota": "",
+        "color_fondo": "#ffd21f",
+        "color_texto": "#111111",
+        "color_boton": "#111111",
+        "color_texto_boton": "#ffd21f",
+        "nueva_pestana": true
     }
 }
