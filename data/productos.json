@@ -877,5 +877,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51kH8hXqFTL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0C8T7SRYL",
+        "categoria": "belleza",
+        "titulo": "NIVEA MEN POWER Crema facial antimanchas y antiarrugas FPS 30, 50 ml",
+        "descripcion": "EFECTO ANTIEDAD: La nueva crema facial de NIVEA MEN combate eficazmente las manchas y los signos del envejecimiento para conseguir una piel de aspecto más joven HIDRATANTE Y ANTIMANCHAS: Además de las propiedades hidratantes del ácido hialurónico, esta crema antiedad contiene el ingrediente patentado Luminous 630 con efecto antimanchas",
+        "imagen": "https://m.media-amazon.com/images/I/41eErHmnW4L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
