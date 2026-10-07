@@ -57,18 +57,20 @@
   var ICON = {
     coin: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="14" r="6"/><path d="M15 4.3A6 6 0 0121 10a6 6 0 01-4 5.7M9 11v6M7 12.5h3a1.5 1.5 0 010 3H8"/></svg>',
     star: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+    search: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
     fire: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21c4 0 7-2.5 7-6.5 0-3-2-5.5-3.5-7-.3 2-1.5 3-2.5 3 .5-3-1-6.5-4-8 .3 3-1.5 5-3 7S5 12.5 5 14.5C5 18.5 8 21 12 21z"/></svg>'
   };
   var box = $('#resultado');
 
-  function prodCard(p, cls, label, ico, note) {
+  function prodCard(p, cls, label, ico, note, badge) {
     var head = '<div class="opt-head">' + ICON[ico] + ' ' + label + '</div>';
     if (!p) return '<div class="opt opt-' + cls + '">' + head + '<div class="opt-body opt-none">' + note + '</div></div>';
+    var tipo = badge || (p.mismo ? '<span class="opt-tag same">✓ Mismo modelo</span>' : '<span class="opt-tag">Producto similar</span>');
     return '<div class="opt opt-' + cls + '">' + head +
       '<div class="opt-body"><a class="opt-img" href="' + esc(p.url) + '" rel="sponsored nofollow noopener" target="_blank">' +
       (p.image ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '">' : '') + '</a>' +
-      '<div class="opt-info"><h4>' + esc(p.title) + '</h4>' +
-      '<div class="price-box"><span class="price">' + esc(p.price || '') + '</span>' +
+      '<div class="opt-info">' + tipo + '<h4>' + esc(p.title) + '</h4>' +
+      '<div class="price-box"><span class="price">' + esc(p.price || 'Sin precio disponible') + '</span>' +
       (p.oldPrice ? ' <s class="old">' + esc(p.oldPrice) + '</s>' : '') +
       (p.savings ? ' <span class="disc">-' + esc(p.savings) + '%</span>' : '') + '</div>' +
       '<a class="btn btn-buy" href="' + esc(p.url) + '" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div></div></div>';
@@ -78,15 +80,15 @@
     var o = d.original, op = d.opciones || {};
     var when = new Date(d.actualizado || Date.now());
     var hora = when.toLocaleDateString('es-ES') + ' ' + when.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-    box.innerHTML =
-      '<div class="res-orig">' + (o.image ? '<img src="' + esc(o.image) + '" alt="">' : '') +
-      '<div><small>Has comparado</small><h3>' + esc(o.title) + '</h3><span class="price">' + esc(o.price || 'Sin precio disponible') + '</span>' +
-      ' <a href="' + esc(o.url) + '" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div></div>' +
-      '<div class="opts">' +
-      prodCard(op.barato, 'green', 'Más barato', 'coin', '¡Buena elección! No hemos encontrado una alternativa comparable más barata.') +
-      prodCard(op.valorado, 'blue', 'Mejor valorado', 'star', 'No hay alternativas con 4 estrellas o más en este rango de precio.') +
+    var intro = d.modo === 'modelo' ? 'Hemos encontrado <b>el mismo modelo' + (d.modelo ? ' (' + esc(d.modelo) + ')' : '') + '</b> en otras ofertas de Amazon.'
+      : d.modo === 'mixto' ? 'Hemos encontrado <b>el mismo modelo' + (d.modelo ? ' (' + esc(d.modelo) + ')' : '') + '</b> en algunas ofertas, y lo completamos con productos parecidos.'
+      : 'No hemos encontrado otras ofertas del mismo modelo, así que te mostramos <b>productos parecidos</b>.';
+    box.innerHTML = '<p class="res-intro">' + intro + '</p><div class="opts opts4">' +
+      prodCard(o, 'yellow', 'Tu producto', 'search', '', '<span class="opt-tag">El que estás mirando</span>') +
+      prodCard(op.barato, 'green', 'Más barato', 'coin', '¡Buena elección! No hemos encontrado una opción comparable más barata.') +
+      prodCard(op.valorado, 'blue', 'Mejor valorado', 'star', 'No hay alternativas mejor valoradas en este rango de precio.') +
       prodCard(op.popular, 'orange', 'Alternativa popular', 'fire', 'No hemos encontrado más alternativas.') +
-      '</div><p class="res-foot">Alternativas comparables buscadas en Amazon.es · Precios a ' + esc(hora) +
+      '</div><p class="res-foot">Buscado en Amazon.es · Precios a ' + esc(hora) +
       ' · Pueden cambiar; se aplica el que figure en Amazon al comprar. ' +
       (d.busqueda ? '<a href="' + esc(d.busqueda) + '" rel="sponsored nofollow noopener" target="_blank">Ver más resultados en Amazon</a>' : '') + '</p>';
   }
