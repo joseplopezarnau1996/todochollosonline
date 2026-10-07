@@ -119,3 +119,7 @@ input.mini{width:90px;padding:6px 8px}
 .grid2 h3{font-size:.95rem;margin-bottom:10px}
 label.sw{flex-direction:row;align-items:center;gap:8px;margin:0;font-weight:600}
 @media (max-width:820px){.tiles.t4{grid-template-columns:repeat(2,1fr)}}
+.pgroup{margin-top:14px}
+.pg-h{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line2);margin:0 0 4px;color:var(--y)}
+.item .pos{width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--card2);border:1px solid var(--line2);font-weight:800;font-size:.85rem}
+.btn:disabled{opacity:.3;cursor:default}

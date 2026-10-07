@@ -274,6 +274,23 @@
   }
 
   // ---------- PRODUCTOS ----------
+  function catExiste(slug) { return S.data.categorias.some(function (c) { return c.slug === slug; }); }
+  // Índices (en productos.json) de los productos de una categoría, en el orden en que se ven en la web.
+  function enCategoria(slug, lista) {
+    lista = lista || S.data.productos; var out = [];
+    lista.forEach(function (p, i) { if (slug === '__sin' ? !catExiste(p.categoria) : p.categoria === slug) out.push(i); });
+    return out.reverse();
+  }
+  // Devuelve una copia de la lista con el producto i colocado en la posición «pos» (1 = primero) de su categoría.
+  function colocar(lista, i, pos) {
+    var item = lista[i], arr = lista.slice(); arr.splice(i, 1);
+    var D = arr.filter(function (p) { return p.categoria === item.categoria; }).reverse();
+    pos = Math.max(1, Math.min(D.length + 1, Math.round(pos) || 1));
+    if (!D.length) arr.push(item);
+    else if (pos <= D.length) arr.splice(arr.indexOf(D[pos - 1]) + 1, 0, item);
+    else arr.splice(arr.indexOf(D[D.length - 1]), 0, item);
+    return arr;
+  }
   function vProductos() {
     var P = S.data.productos;
     var f = S.found;
@@ -288,23 +305,32 @@
         '<label>Destacado en portada<select id="nDest"><option value="1">Sí</option><option value="0">No</option></select></label></div>' +
         '<div class="row"><button class="btn" id="bAdd">Añadir a la web</button><button class="btn btn-ghost" id="bCancel">Cancelar</button></div>' +
         '<p class="small muted">El precio no se guarda: la web lo consulta en Amazon cada hora.</p></div></div>' : '') + '</div>';
-    var list = '<div class="card"><div class="head"><h2 style="margin:0">Productos en la web (' + P.length + ')</h2><input id="q" placeholder="Buscar…" style="max-width:240px"></div><div class="list">' +
-      P.map(function (p, i) { return { p: p, i: i }; }).reverse().map(function (o) {
-        var p = o.p, i = o.i;
-        if (S.editing === 'p' + i) {
-          return '<div class="item" style="display:block"><div class="grid2"><label>Título<input id="eTit" value="' + esc(p.titulo) + '"></label><label>Categoría<select id="eCat">' + catOptions(p.categoria) + '</select></label></div>' +
-            '<label>Descripción<textarea id="eDesc">' + esc(p.descripcion) + '</textarea></label>' +
-            '<div class="grid2"><label>Imagen (URL) <small>se actualiza sola desde Amazon</small><input id="eImg" value="' + esc(p.imagen || '') + '"></label>' +
-            '<label>Destacado<select id="eDest"><option value="1"' + (p.destacado !== false ? ' selected' : '') + '>Sí</option><option value="0"' + (p.destacado === false ? ' selected' : '') + '>No</option></select></label></div>' +
-            '<div class="row"><button class="btn btn-sm" data-act="pSave" data-i="' + i + '">Guardar</button><button class="btn btn-ghost btn-sm" data-act="pCancel">Cancelar</button></div></div>';
-        }
-        return '<div class="item" data-q="' + esc((p.titulo + ' ' + p.asin + ' ' + catName(p.categoria)).toLowerCase()) + '">' +
-          (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="" loading="lazy">' : '<span class="ph"></span>') +
-          '<div class="t"><b>' + esc(p.titulo) + '</b><small>' + esc(catName(p.categoria)) + ' · ' + esc(p.asin) + (p.destacado === false ? ' · oculto en portada' : '') + '</small></div>' +
-          '<div class="acts"><button class="btn btn-ghost btn-sm" data-act="pUp" data-i="' + i + '" title="Subir">↑</button><button class="btn btn-ghost btn-sm" data-act="pDown" data-i="' + i + '" title="Bajar">↓</button>' +
-          '<a class="btn btn-ghost btn-sm" href="/producto/' + esc(p.asin) + '" target="_blank">Ver</a>' +
-          '<button class="btn btn-ghost btn-sm" data-act="pEdit" data-i="' + i + '">Editar</button><button class="btn btn-danger btn-sm" data-act="pDel" data-i="' + i + '">Quitar</button></div></div>';
-      }).join('') + '</div></div>';
+    // Agrupados por categoría, en el mismo orden en que salen en la web (dentro de cada categoría, el último añadido va primero).
+    var grupos = S.data.categorias.map(function (c) { return { slug: c.slug, nombre: c.nombre }; });
+    if (P.some(function (p) { return !catExiste(p.categoria); })) grupos.push({ slug: '__sin', nombre: 'Sin categoría' });
+    var list = '<div class="card"><div class="head"><h2 style="margin:0">Productos en la web (' + P.length + ')</h2><input id="q" placeholder="Buscar…" style="max-width:240px"></div>' +
+      '<p class="muted small">Ordenados por categoría. El número es la posición en la que sale dentro de su categoría (1 = el primero). Usa ↑ ↓ o «Editar» para cambiarla.</p>' +
+      grupos.map(function (g) {
+        var items = enCategoria(g.slug);
+        if (!items.length) return '';
+        return '<div class="pgroup" data-group><h3 class="pg-h">' + esc(g.nombre) + ' <span class="tag">' + items.length + '</span></h3><div class="list">' + items.map(function (i, pos) {
+          var p = P[i];
+          if (S.editing === 'p' + i) {
+            return '<div class="item" style="display:block"><div class="grid2"><label>Título<input id="eTit" value="' + esc(p.titulo) + '"></label><label>Categoría<select id="eCat">' + catOptions(p.categoria) + '</select></label></div>' +
+              '<label>Descripción<textarea id="eDesc">' + esc(p.descripcion) + '</textarea></label>' +
+              '<div class="grid3"><label>Posición en la categoría <small>1 = la primera</small><input id="ePos" type="number" min="1" value="' + (pos + 1) + '"></label>' +
+              '<label>Imagen (URL) <small>se actualiza sola desde Amazon</small><input id="eImg" value="' + esc(p.imagen || '') + '"></label>' +
+              '<label>Destacado<select id="eDest"><option value="1"' + (p.destacado !== false ? ' selected' : '') + '>Sí</option><option value="0"' + (p.destacado === false ? ' selected' : '') + '>No</option></select></label></div>' +
+              '<div class="row"><button class="btn btn-sm" data-act="pSave" data-i="' + i + '">Guardar</button><button class="btn btn-ghost btn-sm" data-act="pCancel">Cancelar</button></div></div>';
+          }
+          return '<div class="item" data-q="' + esc((p.titulo + ' ' + p.asin + ' ' + catName(p.categoria)).toLowerCase()) + '"><span class="pos">' + (pos + 1) + '</span>' +
+            (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="" loading="lazy">' : '<span class="ph"></span>') +
+            '<div class="t"><b>' + esc(p.titulo) + '</b><small>' + esc(p.asin) + (p.destacado === false ? ' · oculto en portada' : '') + '</small></div>' +
+            '<div class="acts"><button class="btn btn-ghost btn-sm" data-act="pUp" data-i="' + i + '" title="Subir"' + (pos === 0 ? ' disabled' : '') + '>↑</button><button class="btn btn-ghost btn-sm" data-act="pDown" data-i="' + i + '" title="Bajar"' + (pos === items.length - 1 ? ' disabled' : '') + '>↓</button>' +
+            '<a class="btn btn-ghost btn-sm" href="/producto/' + esc(p.asin) + '" target="_blank">Ver</a>' +
+            '<button class="btn btn-ghost btn-sm" data-act="pEdit" data-i="' + i + '">Editar</button><button class="btn btn-danger btn-sm" data-act="pDel" data-i="' + i + '">Quitar</button></div></div>';
+        }).join('') + '</div></div>';
+      }).join('') + '</div>';
     return '<div class="head"><h1>Productos</h1></div>' + add + list;
   }
   bind.productos = function (m) {
@@ -326,13 +352,14 @@
       var next = P.concat([nuevo]);
       saveFile('data/productos.json', next, this).then(function () { S.data.productos = next; S.found = null; render(); });
     };
-    var q = $('#q'); if (q) q.oninput = function () { var t = q.value.toLowerCase(); m.querySelectorAll('.item[data-q]').forEach(function (it) { it.hidden = t && it.dataset.q.indexOf(t) < 0; }); };
+    var q = $('#q'); if (q) q.oninput = function () { var t = q.value.toLowerCase(); m.querySelectorAll('.item[data-q]').forEach(function (it) { it.hidden = t && it.dataset.q.indexOf(t) < 0; }); m.querySelectorAll('[data-group]').forEach(function (g) { g.hidden = !g.querySelector('.item[data-q]:not([hidden])'); }); };
     m.onclick = function (ev) {
       var b = ev.target.closest('[data-act]'); if (!b) return; var i = +b.dataset.i, act = b.dataset.act, next;
       if (act === 'pEdit') { S.editing = 'p' + i; render(); }
       if (act === 'pCancel') { S.editing = null; render(); }
       if (act === 'pSave') {
         next = P.slice(); next[i] = Object.assign({}, next[i], { titulo: val('#eTit'), categoria: val('#eCat'), descripcion: val('#eDesc'), imagen: val('#eImg'), destacado: val('#eDest') === '1' });
+        next = colocar(next, i, +val('#ePos'));
         saveFile('data/productos.json', next, b).then(function () { S.data.productos = next; S.editing = null; render(); });
       }
       if (act === 'pDel') {
@@ -341,9 +368,9 @@
         saveFile('data/productos.json', next, b).then(function () { S.data.productos = next; render(); });
       }
       if (act === 'pUp' || act === 'pDown') {
-        // La portada muestra primero los últimos de la lista: "subir" = mover hacia el final.
-        var j = act === 'pUp' ? i + 1 : i - 1; if (j < 0 || j >= P.length) return;
-        next = P.slice(); var t = next[i]; next[i] = next[j]; next[j] = t;
+        var orden = enCategoria(catExiste(P[i].categoria) ? P[i].categoria : '__sin'), pos = orden.indexOf(i);
+        var k = act === 'pUp' ? pos - 1 : pos + 1; if (k < 0 || k >= orden.length) return;
+        next = P.slice(); var t = next[i]; next[i] = next[orden[k]]; next[orden[k]] = t;
         saveFile('data/productos.json', next, b).then(function () { S.data.productos = next; render(); });
       }
     };
