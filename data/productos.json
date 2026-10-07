@@ -823,5 +823,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41X-JgYh7XL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0CGHXYM1Y",
+        "categoria": "hogar",
+        "titulo": "MEKO Alcachofa de Ducha con Filtro de 15 Pasos, Manguera, Alta Presión",
+        "descripcion": "[Filtración avanzada de 15 etapas] Las alcachofas de ducha de MEKO con manguera vienen equipadas con un potente sistema de filtración de 15 etapas, que incluye carbón activado de alta calidad y vitamina C para proteger su piel y su cabello. Equipada con un botón de parada inmediata, la alcachofa de ducha permite interrumpir el flujo de agua con un simple toque, facilitando el a",
+        "imagen": "https://m.media-amazon.com/images/I/51FxebV-fZL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
