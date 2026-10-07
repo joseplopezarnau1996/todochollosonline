@@ -1021,5 +1021,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51NlC9lcqcL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0CSSXZKJB",
+        "categoria": "tecnologia",
+        "titulo": "CORSAIR iCUE LINK RX120 RGB Ventiladores PWM – Paquete Triple, Negro",
+        "descripcion": "Velocidades con control PWM mediante iCUE LINK: Ajuste con precisión la velocidad del ventilador hasta 2.100 rpm mientras proporciona un caudal de aire de hasta 74,2 CFM a su sistema. Alta presión estática: Con 4,38 mm-H2O de presión estática, la serie RX es ideal para impulsar el aire cuando hay obstáculos como radiadores de alta densidad.",
+        "imagen": "https://m.media-amazon.com/images/I/410gaHkFYAL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
