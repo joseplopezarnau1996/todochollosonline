@@ -742,5 +742,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51z9tAHZ+lL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0D36DNPXN",
+        "categoria": "cocina",
+        "titulo": "Tefal Ingenio Emotion - Juego de 3 Sartenes, Acero inoxidable",
+        "descripcion": "SIMPLIFICA TU COCINA: Con las sartenes y cazos Ingenio puedes cocinar en el fuego, pasar al horno, servir directamente en la mesa y guardar en la nevera. Su mango extraíble y sistema de un solo clic facilitan todas tus tareas diarias. AHORRO DE ESPACIO: Diseño apilable que permite almacenar sartenes y cazos de forma compacta. Optimiza armarios y estanterías, manteniendo la coci",
+        "imagen": "https://m.media-amazon.com/images/I/41xhFY7aNFL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
