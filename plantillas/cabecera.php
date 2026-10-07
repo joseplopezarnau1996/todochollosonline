@@ -25,6 +25,7 @@
 <script>window.TC = <?= json_encode(['api' => cfg()['compare_api'] ?? '', 'tag' => cfg()['partner_tag'], 'mk' => cfg()['marketplace']]) ?>;</script>
 </head>
 <body>
+<?= buscador_amazon('arriba_todo') ?>
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="/" aria-label="Todo Chollos Online, inicio">
@@ -45,4 +46,5 @@
     </div>
   </div>
 </header>
+<?= buscador_amazon('bajo_cabecera') ?>
 <main>

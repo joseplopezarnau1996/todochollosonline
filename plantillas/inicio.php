@@ -49,6 +49,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
     </div>
   </div>
 </section>
+<?= buscador_amazon('portada_tras_comparador') ?>
 
 <section class="wrap section">
   <div class="sec-head"><h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.cat_titulo')) ?> <em><?= e(aj('textos.cat_destacado')) ?></em></h2><a href="/categorias">Ver todas las categorías <?= icon('arrow', 18) ?></a></div>
@@ -59,6 +60,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
   </div>
 </section>
 
+<?= buscador_amazon('portada_antes_productos') ?>
 <section class="wrap section" id="productos">
   <div class="sec-head">
     <h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.prod_titulo')) ?> <em><?= e(aj('textos.prod_destacado')) ?></em></h2>
@@ -90,6 +92,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
   <p class="empty" id="empty" hidden>No hay productos que coincidan. Prueba con el comparador de arriba.</p>
 </section>
 
+<?= buscador_amazon('portada_antes_guias') ?>
 <section class="wrap section">
   <div class="sec-head"><h2><?= e(aj('textos.guias_titulo')) ?> <em><?= e(aj('textos.guias_destacado')) ?></em></h2><a href="/guias/">Todas las guías <?= icon('arrow', 18) ?></a></div>
   <div class="guides">

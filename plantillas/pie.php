@@ -1,4 +1,5 @@
 </main>
+<?= buscador_amazon('sobre_pie') ?>
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">

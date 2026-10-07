@@ -90,7 +90,7 @@
   }
 
   // ---------- estructura ----------
-  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
+  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['buscador', '🔎 Buscador Amazon'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
   function shell() {
     app.innerHTML = '<div class="layout"><aside class="side" id="side">' + brand() +
       VIEWS.filter(function (v) { return v[0] !== 'usuarios' || S.role === 'admin'; }).map(function (v) { return '<button data-view="' + v[0] + '">' + v[1] + '</button>'; }).join('') +
@@ -105,8 +105,8 @@
     app.querySelectorAll('[data-view]').forEach(function (b) { b.classList.toggle('on', b.dataset.view === S.view); });
     var m = $('#main');
     var menu = '<button class="btn btn-ghost btn-sm menu-btn" onclick="document.getElementById(\'side\').classList.toggle(\'open\')">☰ Menú</button>';
-    m.onclick = null; m.onchange = null;
-    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
+    m.onclick = null; m.onchange = null; m.oninput = null;
+    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, buscador: vBuscador, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
     bind[S.view] && bind[S.view](m);
     window.scrollTo(0, 0);
   }
@@ -435,6 +435,52 @@
       saveFile('data/ajustes.json', A, this).then(function () { S.data.ajustes = A; });
     }
     $('#sSave').onclick = save; $('#sSave2').onclick = save;
+  };
+
+  // ---------- BUSCADOR DE AMAZON ----------
+  var BA_POS = [['arriba_todo', 'Arriba del todo (encima del menú, en todas las páginas)'], ['bajo_cabecera', 'Debajo del menú (en todas las páginas)'],
+    ['portada_tras_comparador', 'Portada: debajo del comparador'], ['portada_antes_productos', 'Portada: antes de los productos'],
+    ['portada_antes_guias', 'Portada: antes de las guías'], ['sobre_pie', 'Abajo, encima del pie de página (en todas las páginas)']];
+  function baConf() {
+    var b = S.data.ajustes.buscador_amazon;
+    return Object.assign({ activo: true, posicion: 'arriba_todo', titulo: 'Busca en Amazon', placeholder: 'Busca cualquier producto en Amazon...', boton: 'Buscar en Amazon', nota: '',
+      color_fondo: '#ffd21f', color_texto: '#111111', color_boton: '#111111', color_texto_boton: '#ffd21f', nueva_pestana: true }, b || {});
+  }
+  function vBuscador() {
+    var b = baConf();
+    var col = function (k, l) { return '<label>' + l + '<input type="color" data-ba="' + k + '" value="' + esc(b[k]) + '"></label>'; };
+    return '<div class="head"><h1>Buscador de Amazon</h1><button class="btn" id="baSave">Guardar</button></div>' +
+      '<div class="card"><p class="muted small">Una barra para que la gente busque <b>cualquier producto en Amazon</b>. Al pulsar el botón se abre Amazon con tu código de afiliado (deskfind-21): si compran en las 24 horas siguientes, ganas comisión aunque compren otro producto.</p>' +
+      '<label class="sw" style="margin-bottom:14px"><input type="checkbox" data-ba="activo"' + (b.activo ? ' checked' : '') + '> <span>Mostrar la barra en la web</span></label>' +
+      '<label>Dónde aparece<select data-ba="posicion">' + BA_POS.map(function (p) { return '<option value="' + p[0] + '"' + (p[0] === b.posicion ? ' selected' : '') + '>' + p[1] + '</option>'; }).join('') + '</select></label>' +
+      '<div class="grid2"><label>Texto a la izquierda <small>(déjalo vacío para no mostrarlo)</small><input data-ba="titulo" maxlength="60" value="' + esc(b.titulo) + '"></label>' +
+      '<label>Texto dentro de la barra<input data-ba="placeholder" maxlength="80" value="' + esc(b.placeholder) + '"></label>' +
+      '<label>Texto del botón<input data-ba="boton" maxlength="30" value="' + esc(b.boton) + '"></label>' +
+      '<label>Nota pequeña debajo <small>(opcional)</small><input data-ba="nota" maxlength="120" value="' + esc(b.nota) + '"></label></div>' +
+      '<div class="grid2">' + col('color_fondo', 'Color de fondo') + col('color_texto', 'Color del texto') + col('color_boton', 'Color del botón') + col('color_texto_boton', 'Color del texto del botón') + '</div>' +
+      '<label class="sw"><input type="checkbox" data-ba="nueva_pestana"' + (b.nueva_pestana ? ' checked' : '') + '> <span>Abrir Amazon en una pestaña nueva (tu web sigue abierta)</span></label></div>' +
+      '<div class="card"><h2>Vista previa</h2><div id="baPrev"></div></div>';
+  }
+  function baLeer(m) {
+    var b = baConf();
+    m.querySelectorAll('[data-ba]').forEach(function (i) { b[i.dataset.ba] = i.type === 'checkbox' ? i.checked : i.value.trim(); });
+    return b;
+  }
+  function baPreview(b) {
+    return '<div style="background:' + esc(b.color_fondo) + ';color:' + esc(b.color_texto) + ';padding:12px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;' + (b.activo ? '' : 'opacity:.4') + '">' +
+      (b.titulo ? '<b>🔎 ' + esc(b.titulo) + '</b>' : '') +
+      '<div style="flex:1;display:flex;background:#fff;border-radius:10px;overflow:hidden;min-width:220px"><span style="flex:1;padding:10px 14px;color:#888">' + esc(b.placeholder) + '</span>' +
+      '<span style="background:' + esc(b.color_boton) + ';color:' + esc(b.color_texto_boton) + ';font-weight:800;padding:10px 16px">' + esc(b.boton || 'Buscar en Amazon') + '</span></div>' +
+      (b.nota ? '<small style="width:100%;opacity:.75">' + esc(b.nota) + '</small>' : '') + '</div>' +
+      (b.activo ? '' : '<p class="small muted">La barra está desactivada: no se verá en la web.</p>');
+  }
+  bind.buscador = function (m) {
+    var upd = function () { $('#baPrev').innerHTML = baPreview(baLeer(m)); };
+    m.oninput = upd; m.onchange = upd; upd();
+    $('#baSave').onclick = function () {
+      var A = JSON.parse(JSON.stringify(S.data.ajustes)); A.buscador_amazon = baLeer(m);
+      saveFile('data/ajustes.json', A, this).then(function () { S.data.ajustes = A; });
+    };
   };
 
   // ---------- CATEGORÍAS ----------

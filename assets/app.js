@@ -51,6 +51,15 @@
     } catch (e) {}
   }, true);
 
+  // Búsquedas en la barra de Amazon (se cuentan como clic «Buscador Amazon» en las estadísticas)
+  document.addEventListener('submit', function (ev) {
+    var f = ev.target.closest && ev.target.closest('form[data-amz-search]');
+    if (!f || !TC.api || !navigator.sendBeacon) return;
+    try { if (localStorage.getItem('tc_no_contar') === '1') return; } catch (e) {}
+    var q = (f.querySelector('input[name=k]').value || '').trim();
+    try { navigator.sendBeacon(TC.api.replace(/\/$/, '') + '/c', new Blob([JSON.stringify({ a: 'busqueda', t: 'Búsqueda: ' + q.slice(0, 70), p: location.pathname, s: 'Buscador Amazon' })], { type: 'text/plain' })); } catch (e) {}
+  }, true);
+
   // ---------- Compartir ----------
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('.share');

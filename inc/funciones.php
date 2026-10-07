@@ -292,3 +292,38 @@ function csrf_ok(): bool
 {
     return !empty($_POST['csrf']) && !empty($_SESSION['csrf']) && hash_equals($_SESSION['csrf'], $_POST['csrf']);
 }
+
+
+/** Posiciones posibles de la barra de búsqueda de Amazon (se eligen en el panel). */
+function buscador_posiciones(): array
+{
+    return [
+        'arriba_todo' => 'Arriba del todo (encima del menú, en todas las páginas)',
+        'bajo_cabecera' => 'Debajo del menú (en todas las páginas)',
+        'portada_tras_comparador' => 'Portada: debajo del comparador',
+        'portada_antes_productos' => 'Portada: antes de los productos',
+        'portada_antes_guias' => 'Portada: antes de las guías',
+        'sobre_pie' => 'Abajo, encima del pie de página (en todas las páginas)',
+    ];
+}
+
+/** Barra para buscar en Amazon con el código de afiliado. Solo se pinta en la posición elegida en el panel. */
+function buscador_amazon(string $pos): string
+{
+    $b = aj('buscador_amazon', null);
+    if (!is_array($b)) $b = ['activo' => true, 'titulo' => 'Busca en Amazon'];   // activado por defecto hasta que se configure en el panel
+    if (empty($b['activo']) || ($b['posicion'] ?? 'arriba_todo') !== $pos) return '';
+    $c = cfg();
+    $st = '--ba-bg:' . color($b['color_fondo'] ?? '', '#ffd21f') . ';--ba-tx:' . color($b['color_texto'] ?? '', '#111111')
+        . ';--ba-btn:' . color($b['color_boton'] ?? '', '#111111') . ';--ba-btntx:' . color($b['color_texto_boton'] ?? '', '#ffd21f');
+    $nueva = !isset($b['nueva_pestana']) || $b['nueva_pestana'];
+    return '<div class="ba ba-' . e($pos) . '" style="' . $st . '"><div class="wrap ba-in">'
+        . (($b['titulo'] ?? '') !== '' ? '<span class="ba-t">' . icon('search', 20) . ' ' . e($b['titulo']) . '</span>' : '')
+        . '<form class="ba-f" action="https://' . e($c['marketplace']) . '/s" method="get"' . ($nueva ? ' target="_blank"' : '') . ' rel="sponsored nofollow noopener" data-amz-search>'
+        . '<label class="sr" for="ba-q-' . e($pos) . '">Buscar en Amazon</label>'
+        . '<input id="ba-q-' . e($pos) . '" name="k" type="search" required autocomplete="off" placeholder="' . e($b['placeholder'] ?? 'Busca cualquier producto en Amazon...') . '">'
+        . '<input type="hidden" name="tag" value="' . e($c['partner_tag']) . '">'
+        . '<button type="submit">' . e(($b['boton'] ?? '') ?: 'Buscar en Amazon') . '</button></form>'
+        . (($b['nota'] ?? '') !== '' ? '<small class="ba-n">' . e($b['nota']) . '</small>' : '')
+        . '</div></div>';
+}
