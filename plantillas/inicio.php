@@ -71,7 +71,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
     </div>
   </div>
   <div id="strips">
-    <?php $ico = ['ofertas' => 'coin', 'novedades' => 'star', 'manual' => 'fire', 'categoria' => 'etiqueta']; foreach (secciones_portada($prods, $amz) as $sec): ?>
+    <?php $ico = ['ofertas' => 'coin', 'novedades' => 'star', 'manual' => 'fire', 'categoria' => 'etiqueta', 'comparados' => 'chart']; foreach (secciones_portada($prods, $amz) as $sec): ?>
       <div class="strip-block">
         <div class="strip-head">
           <h3><span class="strip-ico"><?= icon($sec['tipo'] === 'categoria' ? ((categorias()[substr($sec['link'], 11)]['icono'] ?? 'etiqueta')) : $ico[$sec['tipo']], 22) ?></span> <?= e($sec['titulo']) ?></h3>

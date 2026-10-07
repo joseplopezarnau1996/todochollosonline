@@ -90,7 +90,7 @@
   }
 
   // ---------- estructura ----------
-  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['comparador', '🔗 Comparador'], ['buscador', '🔎 Buscador Amazon'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
+  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['auto', '🤖 Automáticos'], ['comparador', '🔗 Comparador'], ['buscador', '🔎 Buscador Amazon'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
   function shell() {
     app.innerHTML = '<div class="layout"><aside class="side" id="side">' + brand() +
       VIEWS.filter(function (v) { return v[0] !== 'usuarios' || S.role === 'admin'; }).map(function (v) { return '<button data-view="' + v[0] + '">' + v[1] + '</button>'; }).join('') +
@@ -106,7 +106,7 @@
     var m = $('#main');
     var menu = '<button class="btn btn-ghost btn-sm menu-btn" onclick="document.getElementById(\'side\').classList.toggle(\'open\')">☰ Menú</button>';
     m.onclick = null; m.onchange = null; m.oninput = null;
-    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, buscador: vBuscador, comparador: vComparador, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
+    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, auto: vAuto, buscador: vBuscador, comparador: vComparador, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
     bind[S.view] && bind[S.view](m);
     window.scrollTo(0, 0);
   }
@@ -378,13 +378,19 @@
 
   // ---------- PORTADA (tiras de productos) ----------
   function seccionesPorDefecto() {
-    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 10 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 10 }];
+    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 10 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 10 }, { titulo: 'Lo más comparado', tipo: 'comparados', cantidad: 10 }];
     S.data.categorias.forEach(function (c) { out.push({ titulo: c.nombre, tipo: 'categoria', categoria: c.slug, cantidad: 10 }); });
     return out;
   }
-  var TIPOS = { ofertas: 'Ofertas (productos con descuento ahora mismo)', novedades: 'Novedades (los últimos que has añadido)', categoria: 'Una categoría', manual: 'Productos elegidos a mano' };
+  var TIPOS = { ofertas: 'Ofertas (automático: se renuevan cada 3 días)', novedades: 'Novedades (automático: se renuevan cada 3 días)', comparados: 'Lo más comparado por la gente (automático)', categoria: 'Una categoría', manual: 'Productos elegidos a mano' };
   function vPortada() {
-    if (!S.secs) S.secs = JSON.parse(JSON.stringify((S.data.ajustes.secciones && S.data.ajustes.secciones.length) ? S.data.ajustes.secciones : seccionesPorDefecto()));
+    if (!S.secs) {
+      S.secs = JSON.parse(JSON.stringify((S.data.ajustes.secciones && S.data.ajustes.secciones.length) ? S.data.ajustes.secciones : seccionesPorDefecto()));
+      if (!S.secs.some(function (x) { return x.tipo === 'comparados'; })) {
+        var pos = 0; S.secs.forEach(function (x, i) { if (x.tipo === 'ofertas' || x.tipo === 'novedades') pos = i + 1; });
+        S.secs.splice(pos, 0, { titulo: 'Lo más comparado', tipo: 'comparados', cantidad: 10 });
+      }
+    }
     var P = S.data.productos;
     return '<div class="head"><h1>Portada</h1><div class="row"><button class="btn btn-ghost" id="sAuto">Generar automáticamente</button><button class="btn" id="sSave">Guardar portada</button></div></div>' +
       '<p class="muted">Cada bloque es una tira de productos en la portada, en este orden. Las tiras vacías (por ejemplo, «Ofertas» si ahora no hay descuentos) no se muestran.</p>' +
@@ -421,7 +427,7 @@
     m.onclick = function (ev) {
       var b = ev.target.closest('[data-act]'); if (!b) return; sync();
       var i = +b.closest('[data-sec]').dataset.sec, a = b.dataset.act, L = S.secs;
-      if (a === 'sDel') { if (!confirm('¿Quitar la tira «' + (L[i].titulo || '') + '»?')) return; L.splice(i, 1); }
+      if (a === 'sDel') { if (L[i].tipo === 'comparados') { L[i].oculta = true; toast('La tira «Lo más comparado» se ha ocultado (puedes volver a mostrarla).'); } else { if (!confirm('¿Quitar la tira «' + (L[i].titulo || '') + '»?')) return; L.splice(i, 1); } }
       if (a === 'sHide') L[i].oculta = !L[i].oculta;
       if (a === 'sUp' && i > 0) { var t = L[i]; L[i] = L[i - 1]; L[i - 1] = t; }
       if (a === 'sDown' && i < L.length - 1) { var t2 = L[i]; L[i] = L[i + 1]; L[i + 1] = t2; }
@@ -435,6 +441,54 @@
       saveFile('data/ajustes.json', A, this).then(function () { S.data.ajustes = A; });
     }
     $('#sSave').onclick = save; $('#sSave2').onclick = save;
+  };
+
+  // ---------- PRODUCTOS AUTOMÁTICOS ----------
+  function vAuto() {
+    return '<div class="head"><h1>Productos automáticos</h1><button class="btn" id="auRun">🔄 Renovar ahora</button></div>' +
+      '<p class="muted">El servidor rellena solo tres tiras de la portada: <b>Ofertas</b> y <b>Novedades</b> (productos nuevos de Amazon de tus categorías, se sustituyen cada 3 días) y <b>Lo más comparado</b> (lo que la gente pega en el comparador, últimos 30 días, se actualiza cada día). ' +
+      'Puedes ocultar cualquiera o pasarlo a tu catálogo en una categoría.</p><div id="au"><div class="card"><span class="spin"></span></div></div>';
+  }
+  function auLista(titulo, l, conN) {
+    return '<div class="card"><h2>' + titulo + ' <span class="tag">' + l.length + '</span></h2>' + (l.length ? '<div class="list">' + l.map(function (p) {
+      var ya = S.data.productos.some(function (x) { return x.asin === p.asin; });
+      return '<div class="item">' + (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="" loading="lazy">' : '<span class="ph"></span>') +
+        '<div class="t"><b>' + esc(p.titulo || p.asin) + '</b><small>' + esc(p.asin) + (p.categoria ? ' · ' + esc(catName(p.categoria)) : '') + (conN ? ' · comparado ' + p.n + ' ' + (p.n === 1 ? 'vez' : 'veces') : '') + (ya ? ' · ya está en tu catálogo' : '') + '</small></div>' +
+        '<div class="acts"><a class="btn btn-ghost btn-sm" href="https://www.amazon.es/dp/' + esc(p.asin) + '" target="_blank" rel="noopener">Ver</a>' +
+        (ya ? '' : '<select class="mini" data-cat-for="' + esc(p.asin) + '"><option value="">Pasar a…</option>' + catOptions('') + '</select>') +
+        '<button class="btn btn-danger btn-sm" data-au="ocultar" data-asin="' + esc(p.asin) + '">Ocultar</button></div></div>';
+    }).join('') + '</div>' : '<p class="muted small">Todavía vacío.' + (conN ? ' Se irá llenando cuando la gente use el comparador.' : ' Pulsa «Renovar ahora».') + '</p>') + '</div>';
+  }
+  function drawAuto(r) {
+    S.auto = r; var a = r.auto || {}, oc = r.ocultos || [];
+    var fecha = function (d) { return d ? new Date(d).toLocaleString('es-ES', { dateStyle: 'medium', timeStyle: 'short' }) : '—'; };
+    var prox = a.renovado ? new Date(Date.parse(a.renovado) + 3 * 86400000) : null;
+    $('#au').innerHTML = '<div class="tiles t4"><div class="tile"><small>Última renovación</small><b style="font-size:1rem">' + fecha(a.renovado) + '</b></div><div class="tile"><small>Próxima renovación</small><b style="font-size:1rem">' + (prox ? fecha(prox) : 'al pulsar «Renovar»') + '</b></div>' +
+      '<div class="tile"><small>Ocultos</small><b>' + oc.length + '</b></div><div class="tile"><small>Comparados (30 días)</small><b>' + (a.comparados || []).reduce(function (s, x) { return s + (x.n || 0); }, 0) + '</b></div></div>' +
+      auLista('💸 Ofertas', a.ofertas || []) + auLista('✨ Novedades', a.novedades || []) + auLista('📊 Lo más comparado', a.comparados || [], true) +
+      (oc.length ? '<div class="card"><h2>Ocultos</h2><p class="muted small">No volverán a salir en las tiras automáticas.</p><div class="row">' + oc.map(function (x) { return '<span class="tag">' + esc(x) + ' <a href="#" data-au="mostrar" data-asin="' + esc(x) + '">mostrar</a></span>'; }).join(' ') + '</div></div>' : '') +
+      '<p class="small muted">Después de cualquier cambio, la web tarda 1-2 minutos en actualizarse.</p>';
+  }
+  bind.auto = function (m) {
+    api('GET', 'auto').then(drawAuto).catch(function (e) { $('#au').innerHTML = '<div class="card"><p class="err">' + esc(e.message) + '</p></div>'; });
+    $('#auRun').onclick = function () {
+      var b = this; busy(b, true); toast('Buscando ofertas y novedades en Amazon… (tarda unos 20 segundos)');
+      api('POST', 'auto/actualizar').then(function (r) { drawAuto({ auto: r.auto, ocultos: (S.auto || {}).ocultos || [] }); toast('✅ Renovado. La web se actualizará en 1-2 minutos.'); })
+        .catch(function (e) { toast('❌ ' + e.message, true); }).finally(function () { busy(b, false); });
+    };
+    m.onclick = function (ev) {
+      var b = ev.target.closest('[data-au]'); if (!b) return; ev.preventDefault();
+      busy(b, true);
+      api('POST', 'auto/ocultar', { asin: b.dataset.asin, mostrar: b.dataset.au === 'mostrar' }).then(function (r) { drawAuto(r); toast('✅ Hecho. La web se actualizará en 1-2 minutos.'); })
+        .catch(function (e) { toast('❌ ' + e.message, true); busy(b, false); });
+    };
+    m.onchange = function (ev) {
+      var sel = ev.target.closest('[data-cat-for]'); if (!sel || !sel.value) return;
+      var a = sel.dataset.catFor, L = S.auto.auto || {}, p = [].concat(L.ofertas || [], L.novedades || [], L.comparados || []).find(function (x) { return x.asin === a; });
+      if (!p || !confirm('¿Añadir «' + (p.titulo || a) + '» a tu catálogo en «' + catName(sel.value) + '»?')) { sel.value = ''; return; }
+      var next = S.data.productos.concat([{ asin: a, categoria: sel.value, titulo: p.titulo || a, descripcion: '', imagen: p.imagen || '', destacado: true, alta: today() }]);
+      saveFile('data/productos.json', next, null).then(function () { S.data.productos = next; drawAuto(S.auto); });
+    };
   };
 
   // ---------- COMPARADOR (aspecto de la barra) ----------

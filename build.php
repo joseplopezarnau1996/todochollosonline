@@ -33,7 +33,7 @@ function capture(string $tpl, array $vars): string { ob_start(); page($tpl, $var
 
 // 1) Pedir a Amazon los datos de todos los productos de una vez.
 $prods = productos();
-$amz = amz_items(array_column($prods, 'asin'));
+$amz = amz_items(array_values(array_unique(array_merge(array_column($prods, 'asin'), auto_asins()))));
 $conPrecio = count(array_filter($amz, 'precio_valido'));
 echo amz_configured() ? "Amazon: $conPrecio/" . count($prods) . " productos con precio\n" : "Amazon: sin credenciales, se publica sin precios\n";
 

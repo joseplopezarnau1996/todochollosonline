@@ -173,12 +173,31 @@ function icon(string $name, int $size = 24): string
 }
 
 /** Tiras de la portada configuradas en el panel (ajustes.secciones). Si no hay, se generan solas. */
+/** Productos automáticos (data/auto.json, los genera el servidor: ofertas y novedades cada 3 días y lo más comparado). */
+function auto_data(): array
+{
+    static $a = null;
+    if ($a === null) { $a = read_json(DATA_DIR . '/auto.json'); if (!is_array($a)) $a = []; }
+    return $a;
+}
+function auto_asins(): array
+{
+    $a = auto_data(); $out = [];
+    foreach (['ofertas', 'novedades', 'comparados'] as $k) foreach ((array) ($a[$k] ?? []) as $p) if (!empty($p['asin'])) $out[] = $p['asin'];
+    return array_values(array_unique($out));
+}
+
 function secciones_portada(array $prods, array $amz): array
 {
     $cfg = aj('secciones', []);
     if (!is_array($cfg) || !$cfg) {
         $cfg = [['titulo' => 'Ofertas', 'tipo' => 'ofertas'], ['titulo' => 'Novedades', 'tipo' => 'novedades']];
         foreach (categorias() as $c) $cfg[] = ['titulo' => $c['nombre'], 'tipo' => 'categoria', 'categoria' => $c['slug']];
+    }
+    // La tira «Lo más comparado» aparece sola tras «Novedades» si aún no está en la portada (se puede ocultar desde el panel).
+    if (!array_filter($cfg, fn($s) => ($s['tipo'] ?? '') === 'comparados')) {
+        $pos = 0; foreach ($cfg as $i => $s) if (in_array($s['tipo'] ?? '', ['ofertas', 'novedades'], true)) $pos = $i + 1;
+        array_splice($cfg, $pos, 0, [['titulo' => 'Lo más comparado', 'tipo' => 'comparados']]);
     }
     $visibles = array_values(array_filter($prods, fn($p) => ($p['destacado'] ?? true) !== false));
     $porAsin = [];
@@ -190,7 +209,17 @@ function secciones_portada(array $prods, array $amz): array
         $tipo = $s['tipo'] ?? 'categoria';
         $lista = [];
         $link = null;
-        if ($tipo === 'ofertas') {
+        $auto = auto_data();
+        $conPrecio = fn($l) => array_values(array_filter((array) $l, fn($p) => !empty($p['asin']) && precio_valido($amz[$p['asin']] ?? null)));
+        if ($tipo === 'ofertas' && $conPrecio($auto['ofertas'] ?? [])) {
+            $lista = array_values(array_filter($conPrecio($auto['ofertas']), fn($p) => !empty($amz[$p['asin']]['savings_pct'])));
+            if (!$lista) $lista = $conPrecio($auto['ofertas']);
+            usort($lista, fn($a, $b) => ($amz[$b['asin']]['savings_pct'] ?? 0) <=> ($amz[$a['asin']]['savings_pct'] ?? 0));
+        } elseif ($tipo === 'novedades' && $conPrecio($auto['novedades'] ?? [])) {
+            $lista = $conPrecio($auto['novedades']);
+        } elseif ($tipo === 'comparados') {
+            $lista = $conPrecio($auto['comparados'] ?? []);
+        } elseif ($tipo === 'ofertas') {
             $lista = array_values(array_filter($visibles, fn($p) => precio_valido($amz[$p['asin']] ?? null) && !empty($amz[$p['asin']]['savings_pct'])));
             usort($lista, fn($a, $b) => ($amz[$b['asin']]['savings_pct'] ?? 0) <=> ($amz[$a['asin']]['savings_pct'] ?? 0));
         } elseif ($tipo === 'novedades') {
@@ -227,8 +256,9 @@ function tarjeta(?array $p, ?array $amz, int $n = 0): string
     $cat   = $p ? ($cats[$p['categoria']]['nombre'] ?? '') : '';
     $img   = $amz['image'] ?? ($p['imagen'] ?? null);
     $link  = amazon_link($asin);
-    $page  = $p ? '/producto/' . $asin : $link;
-    $ext   = $p ? '' : ' rel="sponsored nofollow noopener" target="_blank"';
+    $propio = $p && empty($p['auto']);   // los automáticos no tienen ficha propia: van directos a Amazon
+    $page  = $propio ? '/producto/' . $asin : $link;
+    $ext   = $propio ? '' : ' rel="sponsored nofollow noopener" target="_blank"';
     $tag   = etiqueta($p, $amz);
     ob_start(); ?>
     <article class="card" data-cat="<?= e($p['categoria'] ?? '') ?>" data-q="<?= e(mb_strtolower($title . ' ' . $cat)) ?>">
