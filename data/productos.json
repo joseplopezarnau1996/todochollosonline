@@ -40,18 +40,18 @@
         "alta": "2026-09-19"
     },
     {
-        "asin": "B0H8ZLN4QT",
-        "categoria": "halloween",
-        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
-        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
-        "destacado": true,
-        "alta": "2026-09-19"
-    },
-    {
         "asin": "B0FK9WQSNK",
         "categoria": "halloween",
         "titulo": "Disfraz de payaso para adultos",
         "descripcion": "Incluye falda tutú, cuello, guantes, calcetines, martillo hinchable y calcomanías.",
+        "destacado": true,
+        "alta": "2026-09-19"
+    },
+    {
+        "asin": "B0H8ZLN4QT",
+        "categoria": "halloween",
+        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
+        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
         "destacado": true,
         "alta": "2026-09-19"
     },
