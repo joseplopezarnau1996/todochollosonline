@@ -48,18 +48,18 @@
         "alta": "2026-09-19"
     },
     {
-        "asin": "B0H8ZLN4QT",
-        "categoria": "halloween",
-        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
-        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
-        "destacado": true,
-        "alta": "2026-09-19"
-    },
-    {
         "asin": "B0G6DR5JT7",
         "categoria": "halloween",
         "titulo": "DiULi Disfraz Victoriano Niño (castañero), 3 piezas",
         "descripcion": "Pantalón con parche, gorra y chaqueta-camisa de estilo callejero desgastado.",
+        "destacado": true,
+        "alta": "2026-09-19"
+    },
+    {
+        "asin": "B0H8ZLN4QT",
+        "categoria": "halloween",
+        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
+        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
         "destacado": true,
         "alta": "2026-09-19"
     },
