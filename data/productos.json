@@ -976,5 +976,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51xv-lX1iGL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0BYZR8T38",
+        "categoria": "tecnologia",
+        "titulo": "TP-Link Archer MR550 - Router 4G+ LTE SIM, WiFi 5 AC1200, 4 Puertos GE",
+        "descripcion": "Router 4G+ Wi-Fi. Compatible con 4G+ Cat6 que alcanza una velocidad de hasta 300 Mbps*. Tarjeta Nano SIM. Plug & Play sin necesidad de configuraciones extra. Inserta la tarjeta y listo.",
+        "imagen": "https://m.media-amazon.com/images/I/41y3ylqyR9L._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
