@@ -958,5 +958,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41FvaVrI4wL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0C3HCD34R",
+        "categoria": "tecnologia",
+        "titulo": "Soundcore Q20i de Anker Cascos Bluetooth con ANC Híbrida, Hi-Res, 40H",
+        "descripcion": "​​CANCELACIÓN DE RUIDO ACTIVA HÍBRIDA: 2 micrófonos internos y 2 externos funcionan en conjunto para detectar el ruido externo y reducirlo de manera efectiva hasta en un 90 %, como los motores de aviones y coches. SUMÉRJASE EN UN AUDIO DETALLADO: los auriculares con cancelación de ruido tienen controladores dinámicos de gran tamaño de 40 mm que producen un sonido detallado y gr",
+        "imagen": "https://m.media-amazon.com/images/I/31+TBfMs9DL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
