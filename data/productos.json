@@ -56,14 +56,6 @@
         "alta": "2026-09-19"
     },
     {
-        "asin": "B0H8ZLN4QT",
-        "categoria": "halloween",
-        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
-        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
-        "destacado": true,
-        "alta": "2026-09-19"
-    },
-    {
         "asin": "B0BGPR7B2G",
         "categoria": "halloween",
         "titulo": "Funidelia Disfraz de Conde Drácula para hombre",
@@ -102,6 +94,15 @@
         "descripcion": "Incluye sombrero y vestido; guantes, medias y botas no incluidos.",
         "destacado": true,
         "alta": "2026-09-19"
+    },
+    {
+        "asin": "B0H8ZLN4QT",
+        "categoria": "halloween",
+        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
+        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
+        "destacado": true,
+        "alta": "2026-09-19",
+        "imagen": ""
     },
     {
         "asin": "B00J28D2ZQ",
