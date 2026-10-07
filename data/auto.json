@@ -1,0 +1,219 @@
+{
+  "ofertas": [
+    {
+      "asin": "B07SBW1DDP",
+      "titulo": "PUMA Cilia Mode, Zapatillas de Deporte Mujer, Puma White-Puma Silver, 38.5 EU",
+      "imagen": "https://m.media-amazon.com/images/I/215rpb1XtNL._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
+    },
+    {
+      "asin": "B01MF9YDQN",
+      "titulo": "Neutrogena Hydro Boost Gel de Agua Crema Hidratante Facial ligera, 50 ml",
+      "imagen": "https://m.media-amazon.com/images/I/41BY0WqNFcL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B0H1QNCRZF",
+      "titulo": "La gran guía de la suplementación: El manual definitivo para optimizar tu cuerpo y potenciar tu salud física y mental a largo plazo (Salud y Bienestar)",
+      "imagen": "https://m.media-amazon.com/images/I/413UKzgVMcL._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B00KW8LZB8",
+      "titulo": "Renova - Maxiabsorption, Rollos de cocina XXL, Triple, Blanco - 1 Rollo",
+      "imagen": "https://m.media-amazon.com/images/I/51XRxxi-5qL._SL500_.jpg",
+      "categoria": "cocina",
+      "auto": true
+    },
+    {
+      "asin": "B08Y1PCDW4",
+      "titulo": "Joma Academy Iv, Camiseta Hombre, Marino-rojo, L",
+      "imagen": "https://m.media-amazon.com/images/I/313AgMWr1RL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B09M9TK5S1",
+      "titulo": "VERO MODA Jacket VMMALOU Raincoat Black M Black M",
+      "imagen": "https://m.media-amazon.com/images/I/31nsdoBQyJL._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
+    },
+    {
+      "asin": "B012WJRQVC",
+      "titulo": "ARREGUI TB-027-G Taburete Plegable Cocina o Baño| Escalera Pequeña | Taburete Infantil | Banqueta | Escalón para Adultos y Niños (hasta 150Kg) | 27 cm de Altura | Gris",
+      "imagen": "https://m.media-amazon.com/images/I/41a581-k-oL._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "B00J28D3DW",
+      "titulo": "Joma Combi M/C, T-Shirt Hombre, Negro, M",
+      "imagen": "https://m.media-amazon.com/images/I/31rdO8BySML._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B0CZPPCL7F",
+      "titulo": "adidas Mujer Essentials 3-Stripes Cotton Leggings Tights, Black/White, L",
+      "imagen": "https://m.media-amazon.com/images/I/31z7cUMO2HL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B08J4NMBL2",
+      "titulo": "Braun Mini Depiladora Facial para Mujer FS1000, Blanco",
+      "imagen": "https://m.media-amazon.com/images/I/41M8rgnvO5L._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B07S9JFN7W",
+      "titulo": "KIKO Milano Lip Volume Tutu Rose | Crema labial perfeccionadora con efecto voluminizador",
+      "imagen": "https://m.media-amazon.com/images/I/21my2RJz26L._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B08XWM3J42",
+      "titulo": "ShoeDry Secador de Zapatos Eléctrico, Tecnología de ION, CE",
+      "imagen": "https://m.media-amazon.com/images/I/41rIYj8bjTL._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
+      "asin": "B0D2P7WP5R",
+      "titulo": "Mould King 10088 Tecnología V8 Motor Bloques de Construcción Juguete, 535 Piezas App Motor Bloques de Montaje Kit de Construcción de Bloques de Construcción Regalo para Niños Niñas",
+      "imagen": "https://m.media-amazon.com/images/I/51by2ypcbqL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B074GTL2QJ",
+      "titulo": "SONGMICS Cesto de la Ropa Sucia con Tapa, 72 L, Cesta de Lavandería de Bambú, Plegable, con Bolsa Lavable Extraíble, Asas, para Lavandería, Dormitorio, Natural LCB10Y",
+      "imagen": "https://m.media-amazon.com/images/I/41JPbp3Fp4L._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "B0BQB4MKD5",
+      "titulo": "DEKO Caja Herramientas Completa con Destornillador Electrico/Taladro con bateria de 8V, Maletin de 126 Piezas, Caja profesional de herramientas Domésticas de Bricolaje para Oficinas y Jardín, Gris",
+      "imagen": "https://m.media-amazon.com/images/I/51nKGql1r3L._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    }
+  ],
+  "novedades": [
+    {
+      "asin": "B09K9Q5ZQ1",
+      "titulo": "Viernes 13",
+      "imagen": "https://m.media-amazon.com/images/I/417ecCZZScL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
+    },
+    {
+      "asin": "8413445604",
+      "titulo": "Suplementa tu menopausia: Una guía para elegir suplementos con criterio y potenciar tus hábitos (Alienta)",
+      "imagen": "https://m.media-amazon.com/images/I/41uuOjrO4TL._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B0FXL97YLZ",
+      "titulo": "Reobrix 33015 Maqueta de Motor V8 para Adultos, Modelo Motor V8 Motorizado",
+      "imagen": "https://m.media-amazon.com/images/I/51avyfyjSYL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B099KBNSPG",
+      "titulo": "BIIB Regalos Originales para Hombre, Inusual Útil Guantes LED Luminosos",
+      "imagen": "https://m.media-amazon.com/images/I/41Rb2KizwDL._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
+      "asin": "B0D7VWWQFV",
+      "titulo": "FYDEE Cepillo Electrico Limpieza Hogar, Cepillo Limpieza Hogar con 7 Cabezales Reemplazables y Impermeable IPX7, Fregadora Giratoria Eléctrica, Cepillo para Limpieza del Hogar, Baño, Suelos, Azulejos",
+      "imagen": "https://m.media-amazon.com/images/I/419BS0SWTKL._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "B00R3Z4FR4",
+      "titulo": "Amazon Basics Premium Tijeras de Cocina multifunción, 20,32 cm, Negro",
+      "imagen": "https://m.media-amazon.com/images/I/31Tt4n4PqjL._SL500_.jpg",
+      "categoria": "cocina",
+      "auto": true
+    },
+    {
+      "asin": "B06Y693DG7",
+      "titulo": "Joma Short Deportivo de Hombre y Niño | Bermuda Transpirable y Ajustable",
+      "imagen": "https://m.media-amazon.com/images/I/31Akt6SQfRL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B0DJ2XLZ5B",
+      "titulo": "Cecotec Limpiador Facial Masajeador Fototerapia Facecare Skinroutine. Skin Care: Limpiador, Dispositivo Antiojeras y Masajeador, Potencia Elasticidad de La Piel, Incluye Diadema y Muñequeras",
+      "imagen": "https://m.media-amazon.com/images/I/41uFvluE-PL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "0241420563",
+      "titulo": "Moda. Historia y estilos (Enciclopedia visual)",
+      "imagen": "https://m.media-amazon.com/images/I/31OHn+MCF4L._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
+    },
+    {
+      "asin": "8428399670",
+      "titulo": "Bricolaje. Albañilería (Oficios)",
+      "imagen": "https://m.media-amazon.com/images/I/41KpQ7e7Q0L._SL500_.jpg",
+      "categoria": "bricolaje",
+      "auto": true
+    },
+    {
+      "asin": "B0DBLS6JR5",
+      "titulo": "Hotel Transilvania",
+      "imagen": "https://m.media-amazon.com/images/I/51XuXcMExjL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
+    },
+    {
+      "asin": "8497359283",
+      "titulo": "Los 100 Mejores Suplementos Y Alimentos Que Cambiaran Tu Vida: Descubre qué beneficios aportan y qué dolencias ayudan a combatir (SIN COLECCION)",
+      "imagen": "https://m.media-amazon.com/images/I/51r22mgYEQL._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B001CZSG94",
+      "titulo": "Liqui Moly Pro-Line Lavado de cárter de Motor, 500 ml, Aditivo de Aceite, SKU 2427",
+      "imagen": "https://m.media-amazon.com/images/I/413uluzMZEL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B0D1TYLP8W",
+      "titulo": "Rain-X Líquido Limpiaparabrisas Coche Anti Mosquitos - Repele la Lluvia -5L",
+      "imagen": "https://m.media-amazon.com/images/I/41WST8lTT8L._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
+      "asin": "B0CT8YBJYC",
+      "titulo": "T-LOVENDO.ES Puff o Banco de almacenaje Plegable | Taburete Reposapiés Otomana | Baúl de Almacenamiento para Cama, Dormitorio, salón, Comedor o Recibidor | 38x76x38cm | Soporta 300kg.",
+      "imagen": "https://m.media-amazon.com/images/I/217AZX0ecCL._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    }
+  ],
+  "renovado": "2026-10-07T21:25:27.180Z",
+  "comparados": [],
+  "actualizado": "2026-10-07T21:25:27.180Z"
+}
