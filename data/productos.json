@@ -72,14 +72,6 @@
         "alta": "2026-09-19"
     },
     {
-        "asin": "B06WVSFKT9",
-        "categoria": "halloween",
-        "titulo": "Rubies Disfraz Bruja Candy para niña",
-        "descripcion": "Vestido con manguitos, medias y sombrero con calabacitas impresas. Producto original de Rubies.",
-        "destacado": true,
-        "alta": "2026-09-19"
-    },
-    {
         "asin": "B0BHDT8CFR",
         "categoria": "halloween",
         "titulo": "Funidelia Disfraz de Convicto Naranja para hombre",
@@ -94,6 +86,15 @@
         "descripcion": "Incluye sombrero y vestido; guantes, medias y botas no incluidos.",
         "destacado": true,
         "alta": "2026-09-19"
+    },
+    {
+        "asin": "B06WVSFKT9",
+        "categoria": "halloween",
+        "titulo": "Rubies Disfraz Bruja Candy para niña",
+        "descripcion": "Vestido con manguitos, medias y sombrero con calabacitas impresas. Producto original de Rubies.",
+        "destacado": true,
+        "alta": "2026-09-19",
+        "imagen": ""
     },
     {
         "asin": "B0H8ZLN4QT",
