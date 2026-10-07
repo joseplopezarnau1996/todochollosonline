@@ -78,5 +78,18 @@
         "color_boton": "#111111",
         "color_texto_boton": "#ffd21f",
         "nueva_pestana": true
+    },
+    "comparador": {
+        "fondo": "#ffffff",
+        "texto": "#111111",
+        "borde": "#ffd21f",
+        "grosor": 0,
+        "esquinas": 15,
+        "boton": "#ffd21f",
+        "texto_boton": "#111111",
+        "brillo": "#ffd21f",
+        "efecto": "pulso",
+        "tamano": "normal",
+        "etiqueta": ""
     }
 }
