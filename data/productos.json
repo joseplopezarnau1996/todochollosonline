@@ -796,5 +796,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51I0W3w4HlL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0BGSQZW3Q",
+        "categoria": "cocina",
+        "titulo": "Cecotec Robot de Cocina con Pantalla TFT 5\" Multifunción Mambo Touch",
+        "descripcion": "Robot de cocina multifunción con 37 funciones: trocea, pica, licua, tritura, sofríe, muele, pulveriza, ralla, recalienta, bate, yogurtera, monta, emulsiona, mezcla, cocina, remueve, cocina al vapor, escalfa, confita, amasa, cocina a baja temperatura, hierve, mantiene caliente, fermenta, SlowMambo, cocina con precisión grado a grado, cocina al baño maría, cocción lenta, velocida",
+        "imagen": "https://m.media-amazon.com/images/I/41hXgoJ5zCL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
