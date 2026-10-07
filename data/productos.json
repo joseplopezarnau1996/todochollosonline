@@ -868,5 +868,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51x5Z6cZTqL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B075XVBFR6",
+        "categoria": "belleza",
+        "titulo": "PraNaturals Jabón Negro Africano 200g, Orgánico y Vegano para Todo Tipo",
+        "descripcion": "EL SECRETO PARA UNA PIEL PERFECTA: promueve una piel más joven y saludable. EL SECRETO PARA UNA PIEL PERFECTA: promueve una piel más joven y saludable.",
+        "imagen": "https://m.media-amazon.com/images/I/51kH8hXqFTL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
