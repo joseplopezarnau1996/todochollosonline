@@ -769,5 +769,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41HyD7uQrzL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0C69K51L6",
+        "categoria": "cocina",
+        "titulo": "Ibergrif Aireador giratorio 1440° con 2 modos de chorro",
+        "descripcion": "Material Premium – Latón macizo cromado resistente a la corrosión que mantiene su brillo y durabilidad Rotación 1440° – Extensor grifo giratorio universal que permite dirigir el agua en cualquier ángulo, ideal para lavabo, cocina y baño",
+        "imagen": "https://m.media-amazon.com/images/I/41mOJrV8vqL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
