@@ -832,5 +832,14 @@
         "imagen": "https://m.media-amazon.com/images/I/51FxebV-fZL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B0F3JF1YBR",
+        "categoria": "hogar",
+        "titulo": "Vileda H2Pro Sistema de Mopa Plana, Microfibra Gris y Azul",
+        "descripcion": "AGUA LIMPIA - El sistema de dos depósitos de esta mopa fregona con cubo escurridor mantiene separadas el agua limpia y la sucia para que la mopa lave el suelo con agua limpia de principio a fin. AHORRO DE AGUA - Con solo 1,2 litros, esta mopa con cubo escurridor limpia hasta 60 m² y reduce el consumo de agua hasta un 75 % frente a una mopa tradicional, gracias a su cubo fregona",
+        "imagen": "https://m.media-amazon.com/images/I/41FQwk3EmwL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
