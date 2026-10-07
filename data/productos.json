@@ -949,5 +949,14 @@
         "imagen": "https://m.media-amazon.com/images/I/41+awLa2ToL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-07"
+    },
+    {
+        "asin": "B07PPS1RN9",
+        "categoria": "tecnologia",
+        "titulo": "INIU 15W Cargador Inalámbrico, Base de Carga Inalámbrica Rápida con LED",
+        "descripcion": "[Un Nuevo Nivel de Velocidad] Se actualizó el cargador inalámbrico rápido promedio de 10 W a una carga más rápida de 15 W; casi elimina al menos 45 minutos de su tiempo de espera. [No Más Luces Molestas] El primer indicador inteligente autoadaptativo en un cargador inalámbrico de la historia --- que no sólo informa inteligentemente de todo el estado de carga, sino que adapta au",
+        "imagen": "https://m.media-amazon.com/images/I/41FvaVrI4wL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-07"
     }
 ]
