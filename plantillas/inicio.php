@@ -16,7 +16,8 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
       <span class="kicker"><?= e(aj('textos.hero_kicker')) ?></span>
       <h1><?= e(aj('textos.hero_titulo')) ?> <em><?= e(aj('textos.hero_destacado')) ?></em></h1>
       <p class="lead"><?= e(aj('textos.hero_texto')) ?></p>
-      <form class="compare" action="/comparar" method="get" data-compare>
+      <?= comparador_etiqueta() ?>
+      <form class="compare <?= comparador_clases() ?>" action="/comparar" method="get" data-compare>
         <label for="u" class="sr">Enlace del producto de Amazon</label>
         <span class="compare-ico"><?= icon('link', 22) ?></span>
         <input id="u" name="u" type="text" required autocomplete="off" placeholder="<?= e(aj('textos.buscador_placeholder', 'Pega aquí el enlace del producto de Amazon...')) ?>">

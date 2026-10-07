@@ -90,7 +90,7 @@
   }
 
   // ---------- estructura ----------
-  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['buscador', '🔎 Buscador Amazon'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
+  var VIEWS = [['estadisticas', '📊 Estadísticas'], ['productos', '📦 Productos'], ['portada', '🏠 Portada'], ['comparador', '🔗 Comparador'], ['buscador', '🔎 Buscador Amazon'], ['categorias', '🏷️ Categorías'], ['textos', '✏️ Textos y diseño'], ['guias', '📘 Guías'], ['paginas', '📄 Páginas legales'], ['usuarios', '👥 Usuarios'], ['cuenta', '🔑 Mi cuenta']];
   function shell() {
     app.innerHTML = '<div class="layout"><aside class="side" id="side">' + brand() +
       VIEWS.filter(function (v) { return v[0] !== 'usuarios' || S.role === 'admin'; }).map(function (v) { return '<button data-view="' + v[0] + '">' + v[1] + '</button>'; }).join('') +
@@ -106,7 +106,7 @@
     var m = $('#main');
     var menu = '<button class="btn btn-ghost btn-sm menu-btn" onclick="document.getElementById(\'side\').classList.toggle(\'open\')">☰ Menú</button>';
     m.onclick = null; m.onchange = null; m.oninput = null;
-    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, buscador: vBuscador, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
+    m.innerHTML = menu + ({ estadisticas: vStats, productos: vProductos, portada: vPortada, buscador: vBuscador, comparador: vComparador, categorias: vCategorias, textos: vTextos, guias: vGuias, paginas: vPaginas, usuarios: vUsuarios, cuenta: vCuenta }[S.view])();
     bind[S.view] && bind[S.view](m);
     window.scrollTo(0, 0);
   }
@@ -435,6 +435,55 @@
       saveFile('data/ajustes.json', A, this).then(function () { S.data.ajustes = A; });
     }
     $('#sSave').onclick = save; $('#sSave2').onclick = save;
+  };
+
+  // ---------- COMPARADOR (aspecto de la barra) ----------
+  function cpConf() {
+    return Object.assign({ fondo: '#ffffff', texto: '#111111', borde: '#ffd21f', grosor: 0, esquinas: 12, boton: '#ffd21f', texto_boton: '#111111', brillo: '#ffd21f', efecto: 'ninguno', tamano: 'normal', etiqueta: '' }, S.data.ajustes.comparador || {});
+  }
+  function vComparador() {
+    var c = cpConf(), T = S.data.ajustes.textos || {};
+    var col = function (k, l) { return '<label>' + l + '<input type="color" data-cp="' + k + '" value="' + esc(c[k]) + '"></label>'; };
+    var sel = function (k, l, ops) { return '<label>' + l + '<select data-cp="' + k + '">' + ops.map(function (o) { return '<option value="' + o[0] + '"' + (String(c[k]) === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label>'; };
+    return '<div class="head"><h1>Comparador</h1><div class="row"><button class="btn btn-ghost" id="cpReset">Volver al diseño original</button><button class="btn" id="cpSave">Guardar</button></div></div>' +
+      '<div class="card"><h2>Vista previa</h2><div id="cpPrev" style="background:var(--bg);padding:26px 18px;border-radius:12px"></div></div>' +
+      '<div class="card"><h2>Textos</h2><div class="grid3"><label>Etiqueta encima <small>(opcional, p. ej. «¡Pruébalo gratis!»)</small><input data-cp="etiqueta" maxlength="50" value="' + esc(c.etiqueta) + '"></label>' +
+      '<label>Texto dentro de la barra<input data-cpt="buscador_placeholder" maxlength="90" value="' + esc(T.buscador_placeholder || 'Pega aquí el enlace del producto de Amazon...') + '"></label>' +
+      '<label>Texto del botón<input data-cpt="boton_comparar" maxlength="30" value="' + esc(T.boton_comparar || 'Comparar') + '"></label></div></div>' +
+      '<div class="card"><h2>Colores y bordes</h2><div class="grid3">' + col('fondo', 'Fondo de la barra') + col('texto', 'Texto de la barra') + col('borde', 'Color del borde') +
+      col('boton', 'Color del botón') + col('texto_boton', 'Texto del botón') + col('brillo', 'Color del resplandor y la etiqueta') + '</div>' +
+      '<div class="grid2"><label>Grosor del borde: <b id="cpG">' + c.grosor + ' px</b><input type="range" min="0" max="8" data-cp="grosor" value="' + c.grosor + '"></label>' +
+      '<label>Esquinas redondeadas: <b id="cpE">' + c.esquinas + ' px</b><input type="range" min="0" max="32" data-cp="esquinas" value="' + c.esquinas + '"></label></div></div>' +
+      '<div class="card"><h2>Hacer que resalte</h2><div class="grid2">' +
+      sel('efecto', 'Efecto', [['ninguno', 'Sin efecto'], ['brillo', 'Resplandor fijo alrededor'], ['pulso', 'Resplandor que late (llama la atención)']]) +
+      sel('tamano', 'Tamaño', [['normal', 'Normal'], ['grande', 'Grande']]) + '</div></div>';
+  }
+  function cpLeer(m) {
+    var c = cpConf(), t = {};
+    m.querySelectorAll('[data-cp]').forEach(function (i) { c[i.dataset.cp] = i.type === 'range' ? +i.value : i.value.trim(); });
+    m.querySelectorAll('[data-cpt]').forEach(function (i) { t[i.dataset.cpt] = i.value.trim(); });
+    return { c: c, t: t };
+  }
+  function cpPreview(d) {
+    var c = d.c, r = +c.esquinas;
+    var glow = c.efecto === 'ninguno' ? '0 6px 20px rgba(0,0,0,.3)' : '0 0 0 4px ' + c.brillo + '4d, 0 0 34px ' + c.brillo + '8c';
+    return (c.etiqueta ? '<span style="display:inline-block;margin-bottom:8px;background:' + esc(c.brillo) + ';color:#111;font-weight:800;font-size:.85rem;padding:5px 12px;border-radius:999px">' + esc(c.etiqueta) + '</span>' : '') +
+      '<div class="' + (c.efecto === 'pulso' ? 'cp-prev-pulso' : '') + '" style="--g:' + esc(c.brillo) + ';display:flex;align-items:center;max-width:' + (c.tamano === 'grande' ? 760 : 640) + 'px;background:' + esc(c.fondo) + ';border:' + c.grosor + 'px solid ' + esc(c.borde) + ';border-radius:' + r + 'px;padding:' + (c.tamano === 'grande' ? 9 : 6) + 'px;box-shadow:' + glow + '">' +
+      '<span style="flex:1;color:' + esc(c.texto) + ';opacity:.55;padding:' + (c.tamano === 'grande' ? '16px 12px' : '12px') + ';font-size:' + (c.tamano === 'grande' ? '1.15rem' : '1rem') + '">🔗 ' + esc(d.t.buscador_placeholder) + '</span>' +
+      '<span style="background:' + esc(c.boton) + ';color:' + esc(c.texto_boton) + ';font-weight:800;padding:12px 20px;border-radius:' + Math.max(4, r - 4) + 'px">🔍 ' + esc(d.t.boton_comparar || 'Comparar') + '</span></div>';
+  }
+  bind.comparador = function (m) {
+    var upd = function () { var d = cpLeer(m); $('#cpPrev').innerHTML = cpPreview(d); $('#cpG').textContent = d.c.grosor + ' px'; $('#cpE').textContent = d.c.esquinas + ' px'; };
+    m.oninput = upd; m.onchange = upd; upd();
+    $('#cpReset').onclick = function () {
+      var def = { fondo: '#ffffff', texto: '#111111', borde: '#ffd21f', grosor: 0, esquinas: 12, boton: '#ffd21f', texto_boton: '#111111', brillo: '#ffd21f', efecto: 'ninguno', tamano: 'normal' };
+      m.querySelectorAll('[data-cp]').forEach(function (i) { if (i.dataset.cp in def) i.value = def[i.dataset.cp]; }); upd();
+    };
+    $('#cpSave').onclick = function () {
+      var d = cpLeer(m), A = JSON.parse(JSON.stringify(S.data.ajustes));
+      A.comparador = d.c; A.textos = A.textos || {}; Object.keys(d.t).forEach(function (k) { A.textos[k] = d.t[k]; });
+      saveFile('data/ajustes.json', A, this).then(function () { S.data.ajustes = A; });
+    };
   };
 
   // ---------- BUSCADOR DE AMAZON ----------

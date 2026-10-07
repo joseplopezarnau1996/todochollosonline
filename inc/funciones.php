@@ -327,3 +327,30 @@ function buscador_amazon(string $pos): string
         . (($b['nota'] ?? '') !== '' ? '<small class="ba-n">' . e($b['nota']) . '</small>' : '')
         . '</div></div>';
 }
+
+
+/** Ajustes visuales del comparador (panel → Comparador). */
+function comparador_conf(): array
+{
+    return array_merge(['fondo' => '#ffffff', 'texto' => '#111111', 'borde' => '#ffd21f', 'grosor' => 0, 'esquinas' => 12,
+        'boton' => '', 'texto_boton' => '', 'brillo' => '#ffd21f', 'efecto' => 'ninguno', 'tamano' => 'normal', 'etiqueta' => ''], (array) aj('comparador', []));
+}
+function comparador_css(): string
+{
+    $c = comparador_conf();
+    $v = '--cp-bg:' . color($c['fondo'], '#ffffff') . ';--cp-tx:' . color($c['texto'], '#111111') . ';--cp-bc:' . color($c['borde'], '#ffd21f')
+        . ';--cp-bw:' . max(0, min(8, (int) $c['grosor'])) . 'px;--cp-r:' . max(0, min(32, (int) $c['esquinas'])) . 'px;--cp-glow:' . color($c['brillo'], '#ffd21f');
+    if ($c['boton']) $v .= ';--cp-btn:' . color($c['boton'], '#ffd21f');
+    if ($c['texto_boton']) $v .= ';--cp-btntx:' . color($c['texto_boton'], '#111111');
+    return '.compare{' . $v . '}';
+}
+function comparador_clases(): string
+{
+    $c = comparador_conf();
+    return trim((in_array($c['efecto'], ['brillo', 'pulso'], true) ? 'cp-' . $c['efecto'] : '') . ($c['tamano'] === 'grande' ? ' cp-grande' : ''));
+}
+function comparador_etiqueta(): string
+{
+    $t = trim((string) comparador_conf()['etiqueta']);
+    return $t === '' ? '' : '<span class="cp-tag">' . e($t) . '</span>';
+}

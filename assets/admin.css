@@ -123,3 +123,6 @@ label.sw{flex-direction:row;align-items:center;gap:8px;margin:0;font-weight:600}
 .pg-h{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line2);margin:0 0 4px;color:var(--y)}
 .item .pos{width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--card2);border:1px solid var(--line2);font-weight:800;font-size:.85rem}
 .btn:disabled{opacity:.3;cursor:default}
+.cp-prev-pulso{animation:cpPrev 2.2s ease-in-out infinite}
+@keyframes cpPrev{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--g) 55%,transparent),0 0 18px color-mix(in srgb,var(--g) 30%,transparent)}50%{box-shadow:0 0 0 10px transparent,0 0 40px color-mix(in srgb,var(--g) 60%,transparent)}}
+input[type=range]{padding:0;accent-color:var(--y)}

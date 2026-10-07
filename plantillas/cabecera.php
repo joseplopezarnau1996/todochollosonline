@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css?v=<?= defined('BUILD_VERSION') ? BUILD_VERSION : 2 ?>">
 <?php $bgImg = aj('fondo_imagen'); ?>
-<style>:root{--bg:<?= color(aj('colores.fondo'), '#0a0e0b') ?>;--card:<?= color(aj('colores.tarjetas'), '#121a15') ?>;--card2:color-mix(in srgb,var(--card) 88%,#fff);--y:<?= color(aj('colores.acento'), '#ffd21f') ?>;--y2:color-mix(in srgb,var(--y) 85%,#000);--ink:<?= color(aj('colores.texto'), '#f4f6f3') ?>}
+<style>:root{--bg:<?= color(aj('colores.fondo'), '#0a0e0b') ?>;--card:<?= color(aj('colores.tarjetas'), '#121a15') ?>;--card2:color-mix(in srgb,var(--card) 88%,#fff);--y:<?= color(aj('colores.acento'), '#ffd21f') ?>;--y2:color-mix(in srgb,var(--y) 85%,#000);--ink:<?= color(aj('colores.texto'), '#f4f6f3') ?>}<?= comparador_css() ?>
 <?php if ($bgImg && preg_match('~^https://~', $bgImg)): ?>body{background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url("<?= e($bgImg) ?>");background-size:cover;background-attachment:fixed;background-position:center}.hero{background:transparent}<?php endif; ?></style>
 <?php if ($schema): ?><script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script><?php endif; ?>
 <script>window.TC = <?= json_encode(['api' => cfg()['compare_api'] ?? '', 'tag' => cfg()['partner_tag'], 'mk' => cfg()['marketplace']]) ?>;</script>
