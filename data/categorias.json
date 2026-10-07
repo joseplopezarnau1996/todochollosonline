@@ -1,57 +1,62 @@
 [
-  {
-    "slug": "halloween",
-    "nombre": "Halloween",
-    "icono": "halloween"
-  },
-  {
-    "slug": "suplementacion",
-    "nombre": "Suplementación",
-    "icono": "suplementacion"
-  },
-  {
-    "slug": "motor",
-    "nombre": "Motor",
-    "icono": "motor"
-  },
-  {
-    "slug": "tecnologia",
-    "nombre": "Tecnología",
-    "icono": "tecnologia"
-  },
-  {
-    "slug": "hogar",
-    "nombre": "Hogar",
-    "icono": "hogar"
-  },
-  {
-    "slug": "cocina",
-    "nombre": "Cocina",
-    "icono": "cocina"
-  },
-  {
-    "slug": "deportes",
-    "nombre": "Deportes",
-    "icono": "deportes"
-  },
-  {
-    "slug": "belleza",
-    "nombre": "Belleza",
-    "icono": "belleza"
-  },
-  {
-    "slug": "moda",
-    "nombre": "Moda",
-    "icono": "moda"
-  },
-  {
-    "slug": "bricolaje",
-    "nombre": "Bricolaje",
-    "icono": "bricolaje"
-  },
-  {
-    "slug": "juguetes",
-    "nombre": "Juguetes",
-    "icono": "juguetes"
-  }
+    {
+        "slug": "halloween",
+        "nombre": "Halloween",
+        "icono": "halloween"
+    },
+    {
+        "slug": "suplementacion",
+        "nombre": "Suplementación",
+        "icono": "suplementacion"
+    },
+    {
+        "slug": "motor",
+        "nombre": "Motor",
+        "icono": "motor"
+    },
+    {
+        "slug": "tecnologia",
+        "nombre": "Tecnología",
+        "icono": "tecnologia"
+    },
+    {
+        "slug": "hogar",
+        "nombre": "Hogar",
+        "icono": "hogar"
+    },
+    {
+        "slug": "cocina",
+        "nombre": "Cocina",
+        "icono": "cocina"
+    },
+    {
+        "slug": "deportes",
+        "nombre": "Deportes",
+        "icono": "deportes"
+    },
+    {
+        "slug": "belleza",
+        "nombre": "Belleza",
+        "icono": "belleza"
+    },
+    {
+        "slug": "moda",
+        "nombre": "Moda",
+        "icono": "moda"
+    },
+    {
+        "slug": "bricolaje",
+        "nombre": "Bricolaje",
+        "icono": "bricolaje"
+    },
+    {
+        "slug": "juguetes",
+        "nombre": "Juguetes",
+        "icono": "juguetes"
+    },
+    {
+        "slug": "futuras-tendencias",
+        "nombre": "Futuras tendencias",
+        "icono": "fire"
+    }
 ]
