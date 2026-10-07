@@ -186,7 +186,7 @@ function secciones_portada(array $prods, array $amz): array
     $out = [];
     foreach ($cfg as $s) {
         if (!empty($s['oculta'])) continue;
-        $n = max(1, min(20, (int) ($s['cantidad'] ?? 5)));
+        $n = max(10, min(30, (int) ($s['cantidad'] ?? 10))); // mínimo 10 por tira (se desplaza hacia los lados)
         $tipo = $s['tipo'] ?? 'categoria';
         $lista = [];
         $link = null;

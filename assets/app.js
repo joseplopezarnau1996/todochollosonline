@@ -17,6 +17,15 @@
     var e = $('#empty'); if (e) e.hidden = !t || vis > 0;
   });
 
+  // ---------- Tiras de productos: flechas para desplazarse hacia los lados ----------
+  $$('.strip-wrap').forEach(function (w) {
+    var st = $('.strip', w), pv = $('.prev', w), nx = $('.next', w);
+    function upd() { var max = st.scrollWidth - st.clientWidth - 4; pv.hidden = st.scrollLeft <= 4; nx.hidden = st.scrollLeft >= max; }
+    pv.addEventListener('click', function () { st.scrollBy({ left: -st.clientWidth * 0.8 }); });
+    nx.addEventListener('click', function () { st.scrollBy({ left: st.clientWidth * 0.8 }); });
+    st.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
+  });
+
   // ---------- Visitantes únicos (el servidor cuenta 1 por dispositivo y día) ----------
   try {
     if (TC.api && navigator.sendBeacon && !/^\/admin/.test(location.pathname) && localStorage.getItem('tc_no_contar') !== '1') {
@@ -83,8 +92,11 @@
     var intro = d.modo === 'modelo' ? 'Hemos encontrado <b>el mismo modelo' + (d.modelo ? ' (' + esc(d.modelo) + ')' : '') + '</b> en otras ofertas de Amazon.'
       : d.modo === 'mixto' ? 'Hemos encontrado <b>el mismo modelo' + (d.modelo ? ' (' + esc(d.modelo) + ')' : '') + '</b> en algunas ofertas, y lo completamos con productos parecidos.'
       : 'No hemos encontrado otras ofertas del mismo modelo, así que te mostramos <b>productos parecidos</b>.';
-    box.innerHTML = '<p class="res-intro">' + intro + '</p><div class="opts opts4">' +
-      prodCard(o, 'yellow', 'Tu producto', 'search', '', '<span class="opt-tag">El que estás mirando</span>') +
+    box.innerHTML =
+      '<div class="res-orig">' + (o.image ? '<img src="' + esc(o.image) + '" alt="">' : '') +
+      '<div><span class="ro-lab">Tu producto</span><h3>' + esc(o.title) + '</h3><span class="price">' + esc(o.price || 'Sin precio disponible') + '</span>' +
+      ' <a href="' + esc(o.url) + '" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div></div>' +
+      '<p class="res-intro">' + intro + '</p><div class="opts">' +
       prodCard(op.barato, 'green', 'Más barato', 'coin', '¡Buena elección! No hemos encontrado una opción comparable más barata.') +
       prodCard(op.valorado, 'blue', 'Mejor valorado', 'star', 'No hay alternativas mejor valoradas en este rango de precio.') +
       prodCard(op.popular, 'orange', 'Alternativa popular', 'fire', 'No hemos encontrado más alternativas.') +

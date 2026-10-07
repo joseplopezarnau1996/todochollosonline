@@ -378,8 +378,8 @@
 
   // ---------- PORTADA (tiras de productos) ----------
   function seccionesPorDefecto() {
-    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 5 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 5 }];
-    S.data.categorias.forEach(function (c) { out.push({ titulo: c.nombre, tipo: 'categoria', categoria: c.slug, cantidad: 5 }); });
+    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 10 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 10 }];
+    S.data.categorias.forEach(function (c) { out.push({ titulo: c.nombre, tipo: 'categoria', categoria: c.slug, cantidad: 10 }); });
     return out;
   }
   var TIPOS = { ofertas: 'Ofertas (productos con descuento ahora mismo)', novedades: 'Novedades (los últimos que has añadido)', categoria: 'Una categoría', manual: 'Productos elegidos a mano' };
@@ -395,7 +395,7 @@
           '<button class="btn btn-ghost btn-sm" data-act="sHide">' + (sec.oculta ? 'Mostrar' : 'Ocultar') + '</button><button class="btn btn-danger btn-sm" data-act="sDel">Quitar</button></div>' +
           '<div class="grid3"><label>Título de la tira<input data-f="titulo" value="' + esc(sec.titulo || '') + '"></label>' +
           '<label>Qué productos muestra<select data-f="tipo">' + Object.keys(TIPOS).map(function (k) { return '<option value="' + k + '"' + (k === tipo ? ' selected' : '') + '>' + TIPOS[k] + '</option>'; }).join('') + '</select></label>' +
-          '<label>Cuántos productos<input data-f="cantidad" type="number" min="1" max="20" value="' + esc(sec.cantidad || 5) + '"></label></div>' +
+          '<label>Cuántos productos <small>(10 a 30, se ven deslizando)</small><input data-f="cantidad" type="number" min="10" max="30" value="' + esc(Math.max(10, sec.cantidad || 10)) + '"></label></div>' +
           (tipo === 'categoria' ? '<label>Categoría<select data-f="categoria">' + catOptions(sec.categoria) + '</select></label>' : '') +
           (tipo === 'manual' ? '<label>Elige los productos <small>(en el orden en que los marques)</small></label><div class="list" style="max-height:260px;overflow:auto">' +
             P.slice().reverse().map(function (p) { var on = (sec.asins || []).indexOf(p.asin) >= 0;
@@ -409,7 +409,7 @@
     function sync() {
       m.querySelectorAll('[data-sec]').forEach(function (card) {
         var sec = S.secs[+card.dataset.sec];
-        card.querySelectorAll('[data-f]').forEach(function (el) { sec[el.dataset.f] = el.dataset.f === 'cantidad' ? Math.max(1, Math.min(20, parseInt(el.value, 10) || 5)) : el.value.trim(); });
+        card.querySelectorAll('[data-f]').forEach(function (el) { sec[el.dataset.f] = el.dataset.f === 'cantidad' ? Math.max(10, Math.min(30, parseInt(el.value, 10) || 10)) : el.value.trim(); });
         if (sec.tipo !== 'categoria') delete sec.categoria;
         if (sec.tipo === 'manual') {
           var prev = sec.asins || [], now = [].map.call(card.querySelectorAll('[data-asin]:checked'), function (c) { return c.dataset.asin; });
@@ -427,7 +427,7 @@
       if (a === 'sDown' && i < L.length - 1) { var t2 = L[i]; L[i] = L[i + 1]; L[i + 1] = t2; }
       render();
     };
-    $('#sAdd').onclick = function () { sync(); S.secs.push({ titulo: 'Nueva tira', tipo: 'categoria', categoria: (S.data.categorias[0] || {}).slug, cantidad: 5 }); render(); window.scrollTo(0, document.body.scrollHeight); };
+    $('#sAdd').onclick = function () { sync(); S.secs.push({ titulo: 'Nueva tira', tipo: 'categoria', categoria: (S.data.categorias[0] || {}).slug, cantidad: 10 }); render(); window.scrollTo(0, document.body.scrollHeight); };
     $('#sAuto').onclick = function () { if (!confirm('¿Sustituir las tiras actuales por: Ofertas, Novedades y una tira por cada categoría?')) return; S.secs = seccionesPorDefecto(); render(); };
     function save() {
       sync();

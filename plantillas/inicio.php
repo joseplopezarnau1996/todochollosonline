@@ -74,8 +74,12 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
           <h3><span class="strip-ico"><?= icon($sec['tipo'] === 'categoria' ? ((categorias()[substr($sec['link'], 11)]['icono'] ?? 'etiqueta')) : $ico[$sec['tipo']], 22) ?></span> <?= e($sec['titulo']) ?></h3>
           <?php if ($sec['link']): ?><a class="more-link" href="<?= e($sec['link']) ?>">Ver todos <?= icon('arrow', 16) ?></a><?php endif; ?>
         </div>
-        <div class="strip">
-          <?php $n = 1; foreach ($sec['productos'] as $p) echo tarjeta($p, $amz[$p['asin']] ?? null, $n++); ?>
+        <div class="strip-wrap">
+          <button class="strip-nav prev" type="button" aria-label="Anteriores" hidden>&#8249;</button>
+          <div class="strip">
+            <?php $n = 1; foreach ($sec['productos'] as $p) echo tarjeta($p, $amz[$p['asin']] ?? null, $n++); ?>
+          </div>
+          <button class="strip-nav next" type="button" aria-label="Siguientes" hidden>&#8250;</button>
         </div>
       </div>
     <?php endforeach; ?>
