@@ -214,6 +214,47 @@
     }
   ],
   "renovado": "2026-10-07T21:25:27.180Z",
-  "comparados": [],
-  "actualizado": "2026-10-09T05:01:30.279Z"
+  "comparados": [
+    {
+      "asin": "B0H8ZLN4QT",
+      "titulo": "UNOLIGA Disfraz Fantasma Niño Niña Bebe, Disfraz Halloween Niño Fantasma, Edad Recomendada: 6-24 Meses, 2 3 4 5 Años, co",
+      "imagen": "https://m.media-amazon.com/images/I/31DNsThixaL._SL500_.jpg",
+      "n": 4,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B0H9Y39QZ5",
+      "titulo": "Herefun Proyector Navidad de Copos de Nieve, tres Cabezas Proyector Dinámica navidad exterior con Temporizador, Resisten",
+      "imagen": "https://m.media-amazon.com/images/I/611Nv7BaABL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B00JGX187G",
+      "titulo": "Nexcare ColdHot Therapy Pack Comfort, Caja de 1 Unidad (11cm x 26cm) Ayuda a Disminuir la Hinchazón, la Inflamación y el",
+      "imagen": "https://m.media-amazon.com/images/I/51+zX-LppiL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B0CXHTT9L7",
+      "titulo": "Sivenci - Manilla Abatible de Aluminio | Cremona Cuadrada Serie Europea | Maneta Apertura Interior 2 Palas | 177 x 34 x ",
+      "imagen": "https://m.media-amazon.com/images/I/21eIGraWqFL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B0FKB9BSVS",
+      "titulo": "Forté Pharma Hialsorb Cold Pack 2 x 100 ml | Alivio Articular y Muscular",
+      "imagen": "https://m.media-amazon.com/images/I/41BMcjhbPBL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    }
+  ],
+  "actualizado": "2026-10-09T19:10:29.952Z"
 }
