@@ -94,6 +94,11 @@
     },
     "secciones": [
         {
+            "titulo": "Lo más comparado",
+            "tipo": "comparados",
+            "cantidad": 10
+        },
+        {
             "titulo": "Ofertas",
             "tipo": "ofertas",
             "cantidad": 10
@@ -108,11 +113,6 @@
             "tipo": "categoria",
             "categoria": "futuras-tendencias",
             "cantidad": 12
-        },
-        {
-            "titulo": "Lo más comparado",
-            "tipo": "comparados",
-            "cantidad": 10
         },
         {
             "titulo": "Halloween",
