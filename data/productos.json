@@ -1165,5 +1165,14 @@
         "imagen": "https://m.media-amazon.com/images/I/21eIGraWqFL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-09"
+    },
+    {
+        "asin": "B0FKB9BSVS",
+        "categoria": "deportes",
+        "titulo": "Forté Pharma Hialsorb Cold Pack 2 x 100 ml | Alivio Articular y Muscular",
+        "descripcion": "Crema tópica con ácido hialurónico, condroitín sulfato y mentol, formulada para el alivio del dolor articular y muscular. Ideal para el cuidado diario de articulaciones y músculos. Indicada para molestias articulares y musculares, así como en casos de torceduras, esguinces, sobrecargas y hematomas. Su aplicación proporciona una agradable sensación de frescor.",
+        "imagen": "https://m.media-amazon.com/images/I/41BMcjhbPBL._SL500_.jpg",
+        "destacado": true,
+        "alta": "2026-10-09"
     }
 ]
