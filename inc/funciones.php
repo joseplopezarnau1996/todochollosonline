@@ -173,7 +173,7 @@ function icon(string $name, int $size = 24): string
 }
 
 /** Tiras de la portada configuradas en el panel (ajustes.secciones). Si no hay, se generan solas. */
-/** Productos automáticos (data/auto.json, los genera el servidor: ofertas y novedades cada 3 días y lo más comparado). */
+/** Productos automáticos (data/auto.json, los genera el servidor: ofertas y novedades cada 3 días y los más buscados). */
 function auto_data(): array
 {
     static $a = null;
@@ -194,10 +194,10 @@ function secciones_portada(array $prods, array $amz): array
         $cfg = [['titulo' => 'Ofertas', 'tipo' => 'ofertas'], ['titulo' => 'Novedades', 'tipo' => 'novedades']];
         foreach (categorias() as $c) $cfg[] = ['titulo' => $c['nombre'], 'tipo' => 'categoria', 'categoria' => $c['slug']];
     }
-    // La tira «Lo más comparado» aparece sola tras «Novedades» si aún no está en la portada (se puede ocultar desde el panel).
+    // La tira «Los más buscados» aparece sola tras «Novedades» si aún no está en la portada (se puede ocultar desde el panel).
     if (!array_filter($cfg, fn($s) => ($s['tipo'] ?? '') === 'comparados')) {
         $pos = 0; foreach ($cfg as $i => $s) if (in_array($s['tipo'] ?? '', ['ofertas', 'novedades'], true)) $pos = $i + 1;
-        array_splice($cfg, $pos, 0, [['titulo' => 'Lo más comparado', 'tipo' => 'comparados']]);
+        array_splice($cfg, $pos, 0, [['titulo' => 'Los más buscados', 'tipo' => 'comparados']]);
     }
     $visibles = array_values(array_filter($prods, fn($p) => ($p['destacado'] ?? true) !== false));
     $porAsin = [];
@@ -207,6 +207,7 @@ function secciones_portada(array $prods, array $amz): array
         if (!empty($s['oculta'])) continue;
         $n = max(10, min(30, (int) ($s['cantidad'] ?? 10))); // mínimo 10 por tira (se desplaza hacia los lados)
         $tipo = $s['tipo'] ?? 'categoria';
+        if ($tipo === 'comparados') $n = 30; // «Los más buscados»: se enseñan todos (hasta 30)
         $lista = [];
         $link = null;
         $auto = auto_data();
@@ -234,7 +235,9 @@ function secciones_portada(array $prods, array $amz): array
         }
         $lista = array_slice($lista, 0, $n);
         if (!$lista) continue;
-        $out[] = ['titulo' => $s['titulo'] ?? '', 'tipo' => $tipo, 'productos' => $lista, 'link' => $link];
+        $tit = $s['titulo'] ?? '';
+        if ($tipo === 'comparados' && in_array(trim($tit), ['', 'Lo más comparado'], true)) $tit = 'Los más buscados';
+        $out[] = ['titulo' => $tit, 'tipo' => $tipo, 'productos' => $lista, 'link' => $link];
     }
     return $out;
 }

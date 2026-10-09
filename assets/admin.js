@@ -378,17 +378,17 @@
 
   // ---------- PORTADA (tiras de productos) ----------
   function seccionesPorDefecto() {
-    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 10 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 10 }, { titulo: 'Lo más comparado', tipo: 'comparados', cantidad: 10 }];
+    var out = [{ titulo: 'Ofertas', tipo: 'ofertas', cantidad: 10 }, { titulo: 'Novedades', tipo: 'novedades', cantidad: 10 }, { titulo: 'Los más buscados', tipo: 'comparados', cantidad: 10 }];
     S.data.categorias.forEach(function (c) { out.push({ titulo: c.nombre, tipo: 'categoria', categoria: c.slug, cantidad: 10 }); });
     return out;
   }
-  var TIPOS = { ofertas: 'Ofertas (automático: se renuevan cada 3 días)', novedades: 'Novedades (automático: se renuevan cada 3 días)', comparados: 'Lo más comparado por la gente (automático)', categoria: 'Una categoría', manual: 'Productos elegidos a mano' };
+  var TIPOS = { ofertas: 'Ofertas (automático: se renuevan cada 3 días)', novedades: 'Novedades (automático: se renuevan cada 3 días)', comparados: 'Los más buscados en el comparador (automático)', categoria: 'Una categoría', manual: 'Productos elegidos a mano' };
   function vPortada() {
     if (!S.secs) {
       S.secs = JSON.parse(JSON.stringify((S.data.ajustes.secciones && S.data.ajustes.secciones.length) ? S.data.ajustes.secciones : seccionesPorDefecto()));
       if (!S.secs.some(function (x) { return x.tipo === 'comparados'; })) {
         var pos = 0; S.secs.forEach(function (x, i) { if (x.tipo === 'ofertas' || x.tipo === 'novedades') pos = i + 1; });
-        S.secs.splice(pos, 0, { titulo: 'Lo más comparado', tipo: 'comparados', cantidad: 10 });
+        S.secs.splice(pos, 0, { titulo: 'Los más buscados', tipo: 'comparados', cantidad: 10 });
       }
     }
     var P = S.data.productos;
@@ -427,7 +427,7 @@
     m.onclick = function (ev) {
       var b = ev.target.closest('[data-act]'); if (!b) return; sync();
       var i = +b.closest('[data-sec]').dataset.sec, a = b.dataset.act, L = S.secs;
-      if (a === 'sDel') { if (L[i].tipo === 'comparados') { L[i].oculta = true; toast('La tira «Lo más comparado» se ha ocultado (puedes volver a mostrarla).'); } else { if (!confirm('¿Quitar la tira «' + (L[i].titulo || '') + '»?')) return; L.splice(i, 1); } }
+      if (a === 'sDel') { if (L[i].tipo === 'comparados') { L[i].oculta = true; toast('La tira «Los más buscados» se ha ocultado (puedes volver a mostrarla).'); } else { if (!confirm('¿Quitar la tira «' + (L[i].titulo || '') + '»?')) return; L.splice(i, 1); } }
       if (a === 'sHide') L[i].oculta = !L[i].oculta;
       if (a === 'sUp' && i > 0) { var t = L[i]; L[i] = L[i - 1]; L[i - 1] = t; }
       if (a === 'sDown' && i < L.length - 1) { var t2 = L[i]; L[i] = L[i + 1]; L[i + 1] = t2; }
@@ -446,7 +446,7 @@
   // ---------- PRODUCTOS AUTOMÁTICOS ----------
   function vAuto() {
     return '<div class="head"><h1>Productos automáticos</h1><button class="btn" id="auRun">🔄 Renovar ahora</button></div>' +
-      '<p class="muted">El servidor rellena solo tres tiras de la portada: <b>Ofertas</b> y <b>Novedades</b> (productos nuevos de Amazon de tus categorías, se sustituyen cada 3 días) y <b>Lo más comparado</b> (lo que la gente pega en el comparador, últimos 30 días, se actualiza cada día). ' +
+      '<p class="muted">El servidor rellena solo tres tiras de la portada: <b>Ofertas</b> y <b>Novedades</b> (productos nuevos de Amazon de tus categorías, se sustituyen cada 3 días) y <b>Los más buscados</b> (todo lo que la gente pega en el comparador, últimos 60 días, se publica a los pocos minutos). ' +
       'Puedes ocultar cualquiera o pasarlo a tu catálogo en una categoría.</p><div id="au"><div class="card"><span class="spin"></span></div></div>';
   }
   function auLista(titulo, l, conN) {
@@ -464,8 +464,8 @@
     var fecha = function (d) { return d ? new Date(d).toLocaleString('es-ES', { dateStyle: 'medium', timeStyle: 'short' }) : '—'; };
     var prox = a.renovado ? new Date(Date.parse(a.renovado) + 3 * 86400000) : null;
     $('#au').innerHTML = '<div class="tiles t4"><div class="tile"><small>Última renovación</small><b style="font-size:1rem">' + fecha(a.renovado) + '</b></div><div class="tile"><small>Próxima renovación</small><b style="font-size:1rem">' + (prox ? fecha(prox) : 'al pulsar «Renovar»') + '</b></div>' +
-      '<div class="tile"><small>Ocultos</small><b>' + oc.length + '</b></div><div class="tile"><small>Comparados (30 días)</small><b>' + (a.comparados || []).reduce(function (s, x) { return s + (x.n || 0); }, 0) + '</b></div></div>' +
-      auLista('💸 Ofertas', a.ofertas || []) + auLista('✨ Novedades', a.novedades || []) + auLista('📊 Lo más comparado', a.comparados || [], true) +
+      '<div class="tile"><small>Ocultos</small><b>' + oc.length + '</b></div><div class="tile"><small>Búsquedas (60 días)</small><b>' + (a.comparados || []).reduce(function (s, x) { return s + (x.n || 0); }, 0) + '</b></div></div>' +
+      auLista('💸 Ofertas', a.ofertas || []) + auLista('✨ Novedades', a.novedades || []) + auLista('🔎 Los más buscados', a.comparados || [], true) +
       (oc.length ? '<div class="card"><h2>Ocultos</h2><p class="muted small">No volverán a salir en las tiras automáticas.</p><div class="row">' + oc.map(function (x) { return '<span class="tag">' + esc(x) + ' <a href="#" data-au="mostrar" data-asin="' + esc(x) + '">mostrar</a></span>'; }).join(' ') + '</div></div>' : '') +
       '<p class="small muted">Después de cualquier cambio, la web tarda 1-2 minutos en actualizarse.</p>';
   }
