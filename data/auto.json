@@ -1,10 +1,10 @@
 {
   "ofertas": [
     {
-      "asin": "B07SBW1DDP",
-      "titulo": "PUMA Cilia Mode, Zapatillas de Deporte Mujer, Puma White-Puma Silver, 38.5 EU",
-      "imagen": "https://m.media-amazon.com/images/I/215rpb1XtNL._SL500_.jpg",
-      "categoria": "moda",
+      "asin": "B09B8X9RGM",
+      "titulo": "Echo Dot (Última generación) | Altavoz inteligente wifi y Bluetooth, con sonido más potente y de mayor amplitud | Antracita, con Acceso Anticipado a Alexa+",
+      "imagen": "https://m.media-amazon.com/images/I/31B4IGJSyAL._SL500_.jpg",
+      "categoria": "hogar",
       "auto": true
     },
     {
@@ -36,20 +36,6 @@
       "auto": true
     },
     {
-      "asin": "B09M9TK5S1",
-      "titulo": "VERO MODA Jacket VMMALOU Raincoat Black M Black M",
-      "imagen": "https://m.media-amazon.com/images/I/31nsdoBQyJL._SL500_.jpg",
-      "categoria": "moda",
-      "auto": true
-    },
-    {
-      "asin": "B012WJRQVC",
-      "titulo": "ARREGUI TB-027-G Taburete Plegable Cocina o Baño| Escalera Pequeña | Taburete Infantil | Banqueta | Escalón para Adultos y Niños (hasta 150Kg) | 27 cm de Altura | Gris",
-      "imagen": "https://m.media-amazon.com/images/I/41a581-k-oL._SL500_.jpg",
-      "categoria": "hogar",
-      "auto": true
-    },
-    {
       "asin": "B00J28D3DW",
       "titulo": "Joma Combi M/C, T-Shirt Hombre, Negro, M",
       "imagen": "https://m.media-amazon.com/images/I/31rdO8BySML._SL500_.jpg",
@@ -57,10 +43,17 @@
       "auto": true
     },
     {
-      "asin": "B0CZPPCL7F",
-      "titulo": "adidas Mujer Essentials 3-Stripes Cotton Leggings Tights, Black/White, L",
-      "imagen": "https://m.media-amazon.com/images/I/31z7cUMO2HL._SL500_.jpg",
-      "categoria": "deportes",
+      "asin": "B08HLSL2FV",
+      "titulo": "Maybelline New York Lifter Gloss con Ácido Hialurónico, Tono 03 Moon",
+      "imagen": "https://m.media-amazon.com/images/I/41owhwZcQhL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B0812BKN39",
+      "titulo": "Arcos Juego de Cuchillos Mondadores de 3 Piezas",
+      "imagen": "https://m.media-amazon.com/images/I/41rf5GQMSaL._SL500_.jpg",
+      "categoria": "cocina",
       "auto": true
     },
     {
@@ -71,75 +64,10 @@
       "auto": true
     },
     {
-      "asin": "B07S9JFN7W",
-      "titulo": "KIKO Milano Lip Volume Tutu Rose | Crema labial perfeccionadora con efecto voluminizador",
-      "imagen": "https://m.media-amazon.com/images/I/21my2RJz26L._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
-      "asin": "B08XWM3J42",
-      "titulo": "ShoeDry Secador de Zapatos Eléctrico, Tecnología de ION, CE",
-      "imagen": "https://m.media-amazon.com/images/I/41rIYj8bjTL._SL500_.jpg",
-      "categoria": "tecnologia",
-      "auto": true
-    },
-    {
-      "asin": "B0D2P7WP5R",
-      "titulo": "Mould King 10088 Tecnología V8 Motor Bloques de Construcción Juguete, 535 Piezas App Motor Bloques de Montaje Kit de Construcción de Bloques de Construcción Regalo para Niños Niñas",
-      "imagen": "https://m.media-amazon.com/images/I/51by2ypcbqL._SL500_.jpg",
-      "categoria": "motor",
-      "auto": true
-    },
-    {
-      "asin": "B074GTL2QJ",
-      "titulo": "SONGMICS Cesto de la Ropa Sucia con Tapa, 72 L, Cesta de Lavandería de Bambú, Plegable, con Bolsa Lavable Extraíble, Asas, para Lavandería, Dormitorio, Natural LCB10Y",
-      "imagen": "https://m.media-amazon.com/images/I/41JPbp3Fp4L._SL500_.jpg",
-      "categoria": "hogar",
-      "auto": true
-    },
-    {
-      "asin": "B0BQB4MKD5",
-      "titulo": "DEKO Caja Herramientas Completa con Destornillador Electrico/Taladro con bateria de 8V, Maletin de 126 Piezas, Caja profesional de herramientas Domésticas de Bricolaje para Oficinas y Jardín, Gris",
-      "imagen": "https://m.media-amazon.com/images/I/51nKGql1r3L._SL500_.jpg",
-      "categoria": "hogar",
-      "auto": true
-    }
-  ],
-  "novedades": [
-    {
-      "asin": "B09K9Q5ZQ1",
-      "titulo": "Viernes 13",
-      "imagen": "https://m.media-amazon.com/images/I/417ecCZZScL._SL500_.jpg",
-      "categoria": "halloween",
-      "auto": true
-    },
-    {
-      "asin": "8413445604",
-      "titulo": "Suplementa tu menopausia: Una guía para elegir suplementos con criterio y potenciar tus hábitos (Alienta)",
-      "imagen": "https://m.media-amazon.com/images/I/41uuOjrO4TL._SL500_.jpg",
-      "categoria": "suplementacion",
-      "auto": true
-    },
-    {
-      "asin": "B0FXL97YLZ",
-      "titulo": "Reobrix 33015 Maqueta de Motor V8 para Adultos, Modelo Motor V8 Motorizado",
-      "imagen": "https://m.media-amazon.com/images/I/51avyfyjSYL._SL500_.jpg",
-      "categoria": "motor",
-      "auto": true
-    },
-    {
-      "asin": "B099KBNSPG",
-      "titulo": "BIIB Regalos Originales para Hombre, Inusual Útil Guantes LED Luminosos",
-      "imagen": "https://m.media-amazon.com/images/I/41Rb2KizwDL._SL500_.jpg",
-      "categoria": "tecnologia",
-      "auto": true
-    },
-    {
-      "asin": "B0D7VWWQFV",
-      "titulo": "FYDEE Cepillo Electrico Limpieza Hogar, Cepillo Limpieza Hogar con 7 Cabezales Reemplazables y Impermeable IPX7, Fregadora Giratoria Eléctrica, Cepillo para Limpieza del Hogar, Baño, Suelos, Azulejos",
-      "imagen": "https://m.media-amazon.com/images/I/419BS0SWTKL._SL500_.jpg",
-      "categoria": "hogar",
+      "asin": "B0FVXGNCPB",
+      "titulo": "adidas Hombre Galaxy 8 Running Shoes, Core Black/FTWR White/Carbon, 42 2/3 EU",
+      "imagen": "https://m.media-amazon.com/images/I/21KdNC2y6JL._SL500_.jpg",
+      "categoria": "deportes",
       "auto": true
     },
     {
@@ -150,38 +78,17 @@
       "auto": true
     },
     {
-      "asin": "B06Y693DG7",
-      "titulo": "Joma Short Deportivo de Hombre y Niño | Bermuda Transpirable y Ajustable",
-      "imagen": "https://m.media-amazon.com/images/I/31Akt6SQfRL._SL500_.jpg",
-      "categoria": "deportes",
+      "asin": "B0D7VWWQFV",
+      "titulo": "FYDEE Cepillo Electrico Limpieza Hogar, Cepillo Limpieza Hogar con 7 Cabezales Reemplazables y Impermeable IPX7, Fregadora Giratoria Eléctrica, Cepillo para Limpieza del Hogar, Baño, Suelos, Azulejos",
+      "imagen": "https://m.media-amazon.com/images/I/419BS0SWTKL._SL500_.jpg",
+      "categoria": "hogar",
       "auto": true
     },
     {
-      "asin": "B0DJ2XLZ5B",
-      "titulo": "Cecotec Limpiador Facial Masajeador Fototerapia Facecare Skinroutine. Skin Care: Limpiador, Dispositivo Antiojeras y Masajeador, Potencia Elasticidad de La Piel, Incluye Diadema y Muñequeras",
-      "imagen": "https://m.media-amazon.com/images/I/41uFvluE-PL._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
-      "asin": "0241420563",
-      "titulo": "Moda. Historia y estilos (Enciclopedia visual)",
-      "imagen": "https://m.media-amazon.com/images/I/31OHn+MCF4L._SL500_.jpg",
-      "categoria": "moda",
-      "auto": true
-    },
-    {
-      "asin": "8428399670",
-      "titulo": "Bricolaje. Albañilería (Oficios)",
-      "imagen": "https://m.media-amazon.com/images/I/41KpQ7e7Q0L._SL500_.jpg",
-      "categoria": "bricolaje",
-      "auto": true
-    },
-    {
-      "asin": "B0DBLS6JR5",
-      "titulo": "Hotel Transilvania",
-      "imagen": "https://m.media-amazon.com/images/I/51XuXcMExjL._SL500_.jpg",
-      "categoria": "halloween",
+      "asin": "8413445604",
+      "titulo": "Suplementa tu menopausia: Una guía para elegir suplementos con criterio y potenciar tus hábitos (Alienta)",
+      "imagen": "https://m.media-amazon.com/images/I/41uuOjrO4TL._SL500_.jpg",
+      "categoria": "suplementacion",
       "auto": true
     },
     {
@@ -192,34 +99,135 @@
       "auto": true
     },
     {
-      "asin": "B001CZSG94",
-      "titulo": "Liqui Moly Pro-Line Lavado de cárter de Motor, 500 ml, Aditivo de Aceite, SKU 2427",
-      "imagen": "https://m.media-amazon.com/images/I/413uluzMZEL._SL500_.jpg",
+      "asin": "B08CV5F6QJ",
+      "titulo": "VEVOR 600 kg Motor Puerta Corredera, Cremallera Metálica 4 m, Abridor Automático de Puerta Corrediza Control Remoto Más de 30 m, Riel de Liberación Fotocélula Clave, para Puerta de Jardín, Garaje",
+      "imagen": "https://m.media-amazon.com/images/I/51BRIVMQg2L._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    }
+  ],
+  "novedades": [
+    {
+      "asin": "B0DJR36GW6",
+      "titulo": "La familia Addams",
+      "imagen": "https://m.media-amazon.com/images/I/41Fviz9DqpL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
+    },
+    {
+      "asin": "B0GPCCS6H8",
+      "titulo": "El poder de la suplementación: Una guía práctica para integrar los complementos alimenticios en tu rutina y potenciar tu salud",
+      "imagen": "https://m.media-amazon.com/images/I/41HsomIsD2L._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B08BHNT496",
+      "titulo": "RUNCCI-YUN 8 PcsJuego de Motor Eletrico Bricolaje DC Motor Mini 1.5V-6V 15000RPM+4X AA Battery Holder Case+16x Crocodile Clip+2X Cables 1m para Bricolaje Proyectos Científicos",
+      "imagen": "https://m.media-amazon.com/images/I/51rLx3u1YfL._SL500_.jpg",
       "categoria": "motor",
       "auto": true
     },
     {
-      "asin": "B0D1TYLP8W",
-      "titulo": "Rain-X Líquido Limpiaparabrisas Coche Anti Mosquitos - Repele la Lluvia -5L",
-      "imagen": "https://m.media-amazon.com/images/I/41WST8lTT8L._SL500_.jpg",
+      "asin": "B08XWM3J42",
+      "titulo": "ShoeDry Secador de Zapatos Eléctrico, Tecnología de ION, CE",
+      "imagen": "https://m.media-amazon.com/images/I/41rIYj8bjTL._SL500_.jpg",
       "categoria": "tecnologia",
       "auto": true
     },
     {
-      "asin": "B0CT8YBJYC",
-      "titulo": "T-LOVENDO.ES Puff o Banco de almacenaje Plegable | Taburete Reposapiés Otomana | Baúl de Almacenamiento para Cama, Dormitorio, salón, Comedor o Recibidor | 38x76x38cm | Soporta 300kg.",
-      "imagen": "https://m.media-amazon.com/images/I/217AZX0ecCL._SL500_.jpg",
+      "asin": "B091TWFW3S",
+      "titulo": "Asevi Ambientador Concentrado Hogar y Textil White Jasmine 400 ml",
+      "imagen": "https://m.media-amazon.com/images/I/41GWAqVOQQL._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "B0DNFNQ1H2",
+      "titulo": "Strehknewen Juego de 12 Utensilios de cocina de silicona, resistentes al calor, antiadherentes, aptos para lavavajillas, ergonómicos, aptos para alimentos, Con cubo de almacenamiento, juego completo",
+      "imagen": "https://m.media-amazon.com/images/I/41VpDMQCphL._SL500_.jpg",
+      "categoria": "cocina",
+      "auto": true
+    },
+    {
+      "asin": "B0785VXRX2",
+      "titulo": "UA Tech 2.0 SS Tee",
+      "imagen": "https://m.media-amazon.com/images/I/31KLDwBvhFL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B0CNQ4DJRV",
+      "titulo": "L'Oréal Paris Infaillible Spray Fijador de Maquillaje hasta 36 Horas, 75ml",
+      "imagen": "https://m.media-amazon.com/images/I/2142V7VvINL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "8410578220",
+      "titulo": "Chanel | Colección Leyendas de la Moda | Libro I",
+      "imagen": "https://m.media-amazon.com/images/I/51ENfu4pjsL._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
+    },
+    {
+      "asin": "B0D5CX7SFL",
+      "titulo": "HYCHIKA Nivel Láser Autonivelante 15M, Nivel Laser Verde Ajustable con 3 Niveles de Brillo, Laser Autonivelante Uso Interior y Exterior, Soporte Magnético 360° Rotación 2 Batería Incluida",
+      "imagen": "https://m.media-amazon.com/images/I/41VHrEoynuL._SL500_.jpg",
+      "categoria": "bricolaje",
+      "auto": true
+    },
+    {
+      "asin": "B0DJFDHJSW",
+      "titulo": "La Noche de Halloween",
+      "imagen": "https://m.media-amazon.com/images/I/41MBWEoaiqL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
+    },
+    {
+      "asin": "B0BRSVF2J1",
+      "titulo": "Suplemento de Hierro con 40mg Vitamina C – bisglicinato de hierro – 240 comprimidos veganos – complejo de quelato de buena tolerancia – alta dosificación, sin aditivos innecesarios﻿",
+      "imagen": "https://m.media-amazon.com/images/I/41CA3JpahJL._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B0F3XMYW6S",
+      "titulo": "Franzis 67224 - Porsche 911 Boxermotor Facelift, Kit de construcción de Motor Fiel al Original del clásico Motor de 6 Cilindros refrigerado por Aire a Escala 1:4, Incl. módulo de Sonido, Manual de",
+      "imagen": "https://m.media-amazon.com/images/I/41KFHDtSUsL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B09BZ2622Z",
+      "titulo": "BIIB Regalos Originales para Hombre, 8 en 1 Boligrafo Multifuncion",
+      "imagen": "https://m.media-amazon.com/images/I/51KU-JoCOrL._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
+      "asin": "B07MFY6BBV",
+      "titulo": "Cecotec Humidificador Ultrasónico y Difusor de Aromas con Temporizador Pure Aroma 300 Yin. 10 W, 300 ml, Temporizador hasta 6 Horas, 7 Colores LED, Función Aromaterapia, Ultrasilencioso",
+      "imagen": "https://m.media-amazon.com/images/I/411A7NshwqL._SL500_.jpg",
       "categoria": "hogar",
       "auto": true
     }
   ],
-  "renovado": "2026-10-07T21:25:27.180Z",
+  "renovado": "2026-10-11T05:00:31.376Z",
   "comparados": [
     {
       "asin": "B0H8ZLN4QT",
       "titulo": "UNOLIGA Disfraz Fantasma Niño Niña Bebe, Disfraz Halloween Niño Fantasma, Edad Recomendada: 6-24 Meses, 2 3 4 5 Años, co",
       "imagen": "https://m.media-amazon.com/images/I/31DNsThixaL._SL500_.jpg",
       "n": 4,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B0B9P3XPY4",
+      "titulo": "30 Hojas Tatuajes Temporales Niños Halloween, Pegatinas Halloween Luminoso",
+      "imagen": "https://m.media-amazon.com/images/I/51NgVuReurL._SL500_.jpg",
+      "n": 1,
       "auto": true,
       "categoria": ""
     },
@@ -272,5 +280,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-10T15:16:07.042Z"
+  "actualizado": "2026-10-11T05:00:31.376Z"
 }
