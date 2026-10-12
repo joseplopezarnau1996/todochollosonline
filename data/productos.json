@@ -1140,15 +1140,6 @@
         "alta": "2026-10-07"
     },
     {
-        "asin": "B0H8ZLN4QT",
-        "categoria": "halloween",
-        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
-        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
-        "destacado": true,
-        "alta": "2026-09-19",
-        "imagen": ""
-    },
-    {
         "asin": "B0D9W7KBF8",
         "categoria": "halloween",
         "titulo": "Pegatinas Cara Halloween Boca Tatuajes, 10 Hojas Pegatinas Halloween Cara, Tatuajes Halloween Cara, Tatuajes Temporales Halloween, Boca Tatuaje Temporal Halloween para Fiesta Cosplay Halloween",
@@ -1156,6 +1147,15 @@
         "imagen": "https://m.media-amazon.com/images/I/51G+Q56unNL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-09"
+    },
+    {
+        "asin": "B0H8ZLN4QT",
+        "categoria": "halloween",
+        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
+        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
+        "destacado": true,
+        "alta": "2026-09-19",
+        "imagen": ""
     },
     {
         "asin": "B0CXHTT9L7",
