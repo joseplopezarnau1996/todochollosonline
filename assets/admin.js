@@ -493,7 +493,7 @@
 
   // ---------- COMPARADOR (aspecto de la barra) ----------
   function cpConf() {
-    return Object.assign({ fondo: '#ffffff', texto: '#111111', borde: '#ffd21f', grosor: 0, esquinas: 12, boton: '#ffd21f', texto_boton: '#111111', brillo: '#ffd21f', efecto: 'ninguno', tamano: 'normal', etiqueta: '' }, S.data.ajustes.comparador || {});
+    return Object.assign({ fondo: '#ffffff', texto: '#111111', borde: '#ffd21f', grosor: 0, esquinas: 12, boton: '#ffd21f', texto_boton: '#111111', brillo: '#ffd21f', efecto: 'ninguno', tamano: 'normal', etiqueta: '', ejemplo: '' }, S.data.ajustes.comparador || {});
   }
   function vComparador() {
     var c = cpConf(), T = S.data.ajustes.textos || {};
@@ -503,7 +503,8 @@
       '<div class="card"><h2>Vista previa</h2><div id="cpPrev" style="background:var(--bg);padding:26px 18px;border-radius:12px"></div></div>' +
       '<div class="card"><h2>Textos</h2><div class="grid3"><label>Etiqueta encima <small>(opcional, p. ej. «¡Pruébalo gratis!»)</small><input data-cp="etiqueta" maxlength="50" value="' + esc(c.etiqueta) + '"></label>' +
       '<label>Texto dentro de la barra<input data-cpt="buscador_placeholder" maxlength="90" value="' + esc(T.buscador_placeholder || 'Pega aquí el enlace del producto de Amazon...') + '"></label>' +
-      '<label>Texto del botón<input data-cpt="boton_comparar" maxlength="30" value="' + esc(T.boton_comparar || 'Comparar') + '"></label></div></div>' +
+      '<label>Texto del botón<input data-cpt="boton_comparar" maxlength="30" value="' + esc(T.boton_comparar || 'Comparar') + '"></label></div>' +
+      '<label>Producto del «Ejemplo de comparativa» de la portada <small>(pega el enlace de Amazon o el ASIN; vacío = lo elige la web sola, siempre uno con las 3 opciones)</small><input data-cp="ejemplo" maxlength="300" value="' + esc(c.ejemplo) + '" placeholder="https://www.amazon.es/dp/..."></label></div>' +
       '<div class="card"><h2>Colores y bordes</h2><div class="grid3">' + col('fondo', 'Fondo de la barra') + col('texto', 'Texto de la barra') + col('borde', 'Color del borde') +
       col('boton', 'Color del botón') + col('texto_boton', 'Texto del botón') + col('brillo', 'Color del resplandor y la etiqueta') + '</div>' +
       '<div class="grid2"><label>Grosor del borde: <b id="cpG">' + c.grosor + ' px</b><input type="range" min="0" max="8" data-cp="grosor" value="' + c.grosor + '"></label>' +

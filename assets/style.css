@@ -129,9 +129,9 @@ code{background:var(--card2);padding:1px 6px;border-radius:6px}
 .search-box{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line2);border-radius:9px;padding:0 12px;color:var(--muted)}
 .search-box input{background:transparent;border:0;outline:0;color:var(--ink);font:inherit;font-size:.88rem;padding:10px 0;width:190px}
 select{background:var(--card);color:var(--ink);border:1px solid var(--line2);border-radius:9px;padding:10px 12px;font:inherit;font-size:.88rem;min-width:130px}
-.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:10px}
-.cat-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 6px;text-decoration:none;font-size:.78rem;text-align:center;min-height:104px;transition:border-color .15s,transform .15s}
-.cat-tile .ico{color:var(--y)}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.cat-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 4px;text-decoration:none;font-size:.7rem;line-height:1.15;text-align:center;min-height:72px;transition:border-color .15s,transform .15s}
+.cat-tile .ico{color:var(--y);width:24px;height:24px}
 .cat-tile:hover,.cat-tile.on{border-color:var(--y);box-shadow:0 0 0 1px var(--y) inset}
 .cat-tile:hover{transform:translateY(-2px)}
 
