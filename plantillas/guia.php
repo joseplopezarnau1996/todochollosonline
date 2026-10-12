@@ -16,8 +16,8 @@ $recosAmz = amz_items(array_column($recos, 'asin'));
   <?php if (!empty($g['busqueda'])): ?>
     <div class="cta-box">
       <p><b>¿Ya sabes lo que buscas?</b> Mira las opciones disponibles en Amazon:</p>
-      <a class="btn" href="<?= e(amazon_search_link($g['busqueda'], 'review-rank')) ?>" rel="sponsored nofollow noopener" target="_blank">Ver los mejor valorados</a>
-      <a class="btn btn-ghost" href="<?= e(amazon_search_link($g['busqueda'], 'price-asc-rank')) ?>" rel="sponsored nofollow noopener" target="_blank">Ver los más baratos</a>
+      <a class="btn" href="<?= e(amazon_search_link($g['busqueda'], 'review-rank')) ?>" rel="sponsored nofollow noopener" target="_blank"><?= e(bt('btn_guia_valorados')) ?></a>
+      <a class="btn btn-ghost" href="<?= e(amazon_search_link($g['busqueda'], 'price-asc-rank')) ?>" rel="sponsored nofollow noopener" target="_blank"><?= e(bt('btn_guia_baratos')) ?></a>
     </div>
   <?php endif; ?>
 

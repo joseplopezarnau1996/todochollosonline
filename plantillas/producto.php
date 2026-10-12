@@ -24,14 +24,14 @@ $link = amazon_link($p['asin']);
           <span class="price muted">Consulta el precio actual en Amazon</span>
         <?php endif; ?>
       </div>
-      <a class="btn btn-lg" href="<?= e($link) ?>" rel="sponsored nofollow noopener" target="_blank">Ver precio y comprar en Amazon</a>
+      <a class="btn btn-lg" href="<?= e($link) ?>" rel="sponsored nofollow noopener" target="_blank"><?= icon('cart', 20) ?> <?= e(bt('btn_producto')) ?></a>
       <p class="small">Enlace de afiliado: no pagas nada extra.</p>
       <?php if (!empty($amz['features'])): ?>
         <h2>Características destacadas</h2>
         <ul class="features"><?php foreach ($amz['features'] as $f): ?><li><?= e($f) ?></li><?php endforeach; ?></ul>
       <?php endif; ?>
       <div class="compare-actions row">
-        <a class="btn btn-ghost" href="/comparar?u=<?= e($p['asin']) ?>"><?= icon('search', 18) ?> Comparar con alternativas</a>
+        <a class="btn btn-ghost" href="/comparar?u=<?= e($p['asin']) ?>"><?= icon('search', 18) ?> <?= e(bt('btn_comparar_alt')) ?></a>
       </div>
     </div>
   </div>

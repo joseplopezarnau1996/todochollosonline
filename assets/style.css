@@ -159,7 +159,8 @@ select{background:var(--card);color:var(--ink);border:1px solid var(--line2);bor
 .disc,.badge{background:var(--red);color:#fff;font-weight:800;font-size:.75rem;padding:2px 7px;border-radius:5px}
 .when{flex-basis:100%;display:flex;align-items:center;gap:4px;color:var(--dim);font-size:.72rem}
 .info{cursor:help}
-.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:6px}
+.card-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:auto;padding-top:6px}
+.card-actions .share{padding:9px 11px}
 .card-actions .btn{padding:9px 8px;font-size:.83rem}
 .empty{color:var(--muted);text-align:center;padding:30px 0}
 

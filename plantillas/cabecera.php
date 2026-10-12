@@ -22,7 +22,7 @@
 <style>:root{--bg:<?= color(aj('colores.fondo'), '#0a0e0b') ?>;--card:<?= color(aj('colores.tarjetas'), '#121a15') ?>;--card2:color-mix(in srgb,var(--card) 88%,#fff);--y:<?= color(aj('colores.acento'), '#ffd21f') ?>;--y2:color-mix(in srgb,var(--y) 85%,#000);--ink:<?= color(aj('colores.texto'), '#f4f6f3') ?>}<?= comparador_css() ?>
 <?php if ($bgImg && preg_match('~^https://~', $bgImg)): ?>body{background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url("<?= e($bgImg) ?>");background-size:cover;background-attachment:fixed;background-position:center}.hero{background:transparent}<?php endif; ?></style>
 <?php if ($schema): ?><script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?></script><?php endif; ?>
-<script>window.TC = <?= json_encode(['api' => cfg()['compare_api'] ?? '', 'tag' => cfg()['partner_tag'], 'mk' => cfg()['marketplace']]) ?>;</script>
+<script>window.TC = <?= json_encode(['api' => cfg()['compare_api'] ?? '', 'tag' => cfg()['partner_tag'], 'mk' => cfg()['marketplace'], 'txt' => ['ver_amazon' => bt('btn_ver_amazon'), 'mas_resultados' => bt('btn_mas_resultados'), 'comprar' => bt('btn_comprar'), 'compartir' => bt('btn_compartir')]]) ?>;</script>
 </head>
 <body>
 <?= buscador_amazon('arriba_todo') ?>

@@ -1,5 +1,6 @@
 (function () {
   var TC = window.TC || {};
+  var TXT = Object.assign({ ver_amazon: 'Comprar en Amazon', mas_resultados: 'Ver más resultados en Amazon', comprar: 'Comprar en Amazon', compartir: 'Compartir' }, TC.txt || {});
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -7,13 +8,14 @@
   // ---------- Menú móvil ----------
   $$('.nav a').forEach(function (a) { a.addEventListener('click', function () { document.body.classList.remove('menu-open'); }); });
 
+  function sinTildes(s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
   // ---------- Búsqueda en el catálogo (oculta las tiras mientras se busca) ----------
   var q = $('#q');
   if (q) q.addEventListener('input', function () {
-    var t = q.value.toLowerCase().trim(), vis = 0, grid = $('#grid'), strips = $('#strips');
+    var t = sinTildes(q.value.toLowerCase().trim()), vis = 0, grid = $('#grid'), strips = $('#strips');
     if (strips) strips.hidden = !!t;
     if (grid) grid.hidden = !t;
-    $$('#grid .card').forEach(function (card) { var ok = !!t && card.getAttribute('data-q').indexOf(t) > -1; card.hidden = !ok; if (ok) vis++; });
+    $$('#grid .card').forEach(function (card) { var ok = !!t && sinTildes(card.getAttribute('data-q')).indexOf(t) > -1; card.hidden = !ok; if (ok) vis++; });
     var e = $('#empty'); if (e) e.hidden = !t || vis > 0;
   });
 
@@ -25,6 +27,28 @@
     nx.addEventListener('click', function () { st.scrollBy({ left: st.clientWidth * 0.8 }); });
     st.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
   });
+
+  // ---------- «Los más buscados» en directo: lo que alguien compara aparece al momento ----------
+  var live = $('[data-live="buscados"]');
+  if (live && TC.api) {
+    fetch(TC.api.replace(/\/$/, '') + '/buscados', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      var it = (d && d.items) || []; if (!it.length) return;
+      var cart = ($('.card-actions .btn-buy svg') || {}).outerHTML || '', share = ($('.card-actions .share svg') || {}).outerHTML || '↗';
+      var st = $('.strip', live);
+      st.innerHTML = it.map(function (p, i) {
+        var u = 'https://' + TC.mk + '/dp/' + encodeURIComponent(p.asin) + '?tag=' + TC.tag, ext = ' rel="sponsored nofollow noopener" target="_blank"';
+        var f = new Date(p.u || Date.now()), when = f.toLocaleDateString('es-ES') + ' ' + f.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+        return '<article class="card"><div class="card-top"><span class="num">' + (i + 1) + '</span>' + (p.nuevo ? '<span class="lbl lbl-green">RECIÉN BUSCADO</span>' : '') + '</div>' +
+          '<a class="card-img" href="' + esc(u) + '"' + ext + '>' + (p.imagen ? '<img src="' + esc(p.imagen) + '" alt="' + esc(p.titulo) + '" loading="lazy">' : '') + '</a>' +
+          '<div class="card-body"><h3><a href="' + esc(u) + '"' + ext + '>' + esc(p.titulo) + '</a></h3><div class="price-box">' +
+          (p.precio ? '<span class="price">' + esc(p.precio) + '</span><small class="when">Precio a ' + esc(when) + ' <span class="info" tabindex="0" title="Los precios y la disponibilidad pueden cambiar. Se aplica el precio que figure en Amazon en el momento de la compra.">ⓘ</span></small>'
+            : '<span class="price muted">Consulta el precio en Amazon</span>') + '</div>' +
+          '<div class="card-actions"><a class="btn btn-buy" href="' + esc(u) + '"' + ext + '>' + cart + ' ' + esc(TXT.comprar) + '</a>' +
+          '<button type="button" class="btn btn-ghost share" data-url="' + esc(u) + '" data-title="' + esc(p.titulo) + '" aria-label="' + esc(TXT.compartir) + '" title="' + esc(TXT.compartir) + '">' + share + '</button></div></div></article>';
+      }).join('');
+      live.hidden = false; st.scrollLeft = 0; st.dispatchEvent(new Event('scroll'));
+    }).catch(function () {});
+  }
 
   // ---------- Visitantes únicos (el servidor cuenta 1 por dispositivo y día) ----------
   try {
@@ -91,7 +115,7 @@
       '<div class="price-box"><span class="price">' + esc(p.price || 'Sin precio disponible') + '</span>' +
       (p.oldPrice ? ' <s class="old">' + esc(p.oldPrice) + '</s>' : '') +
       (p.savings ? ' <span class="disc">-' + esc(p.savings) + '%</span>' : '') + '</div>' +
-      '<a class="btn btn-buy" href="' + esc(p.url) + '" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div></div></div>';
+      '<a class="btn btn-buy" href="' + esc(p.url) + '" rel="sponsored nofollow noopener" target="_blank">' + esc(TXT.ver_amazon) + '</a></div></div></div>';
   }
 
   function render(d) {
@@ -104,14 +128,14 @@
     box.innerHTML =
       '<div class="res-orig">' + (o.image ? '<img src="' + esc(o.image) + '" alt="">' : '') +
       '<div><span class="ro-lab">Tu producto</span><h3>' + esc(o.title) + '</h3><span class="price">' + esc(o.price || 'Sin precio disponible') + '</span>' +
-      ' <a href="' + esc(o.url) + '" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div></div>' +
+      ' <a href="' + esc(o.url) + '" rel="sponsored nofollow noopener" target="_blank">' + esc(TXT.ver_amazon) + '</a></div></div>' +
       '<p class="res-intro">' + intro + '</p><div class="opts">' +
       prodCard(op.barato, 'green', 'Más barato', 'coin', '¡Buena elección! No hemos encontrado una opción comparable más barata.') +
       prodCard(op.valorado, 'blue', 'Mejor valorado', 'star', 'No hay alternativas mejor valoradas en este rango de precio.') +
       prodCard(op.popular, 'orange', 'Alternativa popular', 'fire', 'No hemos encontrado más alternativas.') +
       '</div><p class="res-foot">Buscado en Amazon.es · Precios a ' + esc(hora) +
       ' · Pueden cambiar; se aplica el que figure en Amazon al comprar. ' +
-      (d.busqueda ? '<a href="' + esc(d.busqueda) + '" rel="sponsored nofollow noopener" target="_blank">Ver más resultados en Amazon</a>' : '') + '</p>';
+      (d.busqueda ? '<a href="' + esc(d.busqueda) + '" rel="sponsored nofollow noopener" target="_blank">' + esc(TXT.mas_resultados) + '</a>' : '') + '</p>';
   }
 
   function sinServicio(input) {

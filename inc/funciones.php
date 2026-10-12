@@ -47,6 +47,28 @@ function aj(string $path, $default = '')
     return ($v === '' || $v === null) ? $default : $v;
 }
 
+/** Textos de los botones de la web (editables en el panel: Textos y diseño → Botones). */
+const BOTONES = [
+    'btn_comprar'        => 'Comprar en Amazon',
+    'btn_compartir'      => 'Compartir',
+    'btn_producto'       => 'Comprar en Amazon',
+    'btn_comparar_alt'   => 'Comparar con alternativas',
+    'boton_comparar'     => 'Comparar',
+    'btn_ver_amazon'     => 'Comprar en Amazon',
+    'btn_mas_resultados' => 'Ver más resultados en Amazon',
+    'btn_ver_catalogo'   => 'Ver catálogo',
+    'btn_ver_todos'      => 'Ver todos',
+    'btn_ver_categorias' => 'Ver todas las categorías',
+    'btn_todas_guias'    => 'Todas las guías',
+    'btn_guia_valorados' => 'Ver los mejor valorados',
+    'btn_guia_baratos'   => 'Ver los más baratos',
+    'btn_404'            => 'Volver al inicio',
+];
+function bt(string $k): string
+{
+    return (string) aj('textos.' . $k, BOTONES[$k] ?? '');
+}
+
 function paginas(): array
 {
     $p = [];
@@ -234,7 +256,7 @@ function secciones_portada(array $prods, array $amz): array
             $link = '/categoria/' . $slug;
         }
         $lista = array_slice($lista, 0, $n);
-        if (!$lista) continue;
+        if (!$lista && $tipo !== 'comparados') continue; // «Los más buscados» se rellena también en directo desde el servidor
         $tit = $s['titulo'] ?? '';
         if ($tipo === 'comparados' && in_array(trim($tit), ['', 'Lo más comparado'], true)) $tit = 'Los más buscados';
         $out[] = ['titulo' => $tit, 'tipo' => $tipo, 'productos' => $lista, 'link' => $link];
@@ -286,8 +308,8 @@ function tarjeta(?array $p, ?array $amz, int $n = 0): string
           <?php endif; ?>
         </div>
         <div class="card-actions">
-          <a class="btn btn-buy" href="<?= e($link) ?>" rel="sponsored nofollow noopener" target="_blank">Comprar <?= icon('cart', 16) ?></a>
-          <button type="button" class="btn btn-ghost share" data-url="<?= e($p ? url('producto/' . $asin) : $link) ?>" data-title="<?= e($title) ?>"><?= icon('share', 15) ?> Compartir</button>
+          <a class="btn btn-buy" href="<?= e($link) ?>" rel="sponsored nofollow noopener" target="_blank"><?= icon('cart', 16) ?> <?= e(bt('btn_comprar')) ?></a>
+          <button type="button" class="btn btn-ghost share" data-url="<?= e($p ? url('producto/' . $asin) : $link) ?>" data-title="<?= e($title) ?>" aria-label="<?= e(bt('btn_compartir')) ?>" title="<?= e(bt('btn_compartir')) ?>"><?= icon('share', 16) ?></button>
         </div>
       </div>
     </article>

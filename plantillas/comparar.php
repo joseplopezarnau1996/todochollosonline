@@ -7,7 +7,7 @@
       <label for="u" class="sr">Enlace del producto de Amazon</label>
       <span class="compare-ico"><?= icon('link', 22) ?></span>
       <input id="u" name="u" type="text" required autocomplete="off" placeholder="<?= e(aj('textos.buscador_placeholder', 'Pega aquí el enlace del producto de Amazon...')) ?>">
-      <button class="btn btn-buy btn-lg" type="submit"><?= icon('search', 20) ?> <?= e(aj('textos.boton_comparar', 'Comparar')) ?></button>
+      <button class="btn btn-buy btn-lg" type="submit"><?= icon('search', 20) ?> <?= e(bt('boton_comparar')) ?></button>
     </form>
     <div id="resultado" class="result" hidden aria-live="polite"></div>
   </div>

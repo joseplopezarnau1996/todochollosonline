@@ -7,7 +7,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
         . '<a class="ex-img" href="' . e($link) . '" rel="sponsored nofollow noopener" target="_blank">'
         . ($x['image'] ? '<img src="' . e($x['image']) . '" alt="' . e($x['title']) . '" loading="lazy">' : icon('box', 40)) . '</a>'
         . '<div class="ex-price">' . e($x['price']) . (!empty($x['savings_pct']) ? ' <span class="disc">-' . (int) $x['savings_pct'] . '%</span>' : '') . '</div>'
-        . '<a class="btn btn-buy btn-sm" href="' . e($link) . '" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>';
+        . '<a class="btn btn-buy btn-sm" href="' . e($link) . '" rel="sponsored nofollow noopener" target="_blank">' . e(bt('btn_ver_amazon')) . '</a></div>';
 };
 ?>
 <section class="hero" id="comparador">
@@ -21,7 +21,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
         <label for="u" class="sr">Enlace del producto de Amazon</label>
         <span class="compare-ico"><?= icon('link', 22) ?></span>
         <input id="u" name="u" type="text" required autocomplete="off" placeholder="<?= e(aj('textos.buscador_placeholder', 'Pega aquí el enlace del producto de Amazon...')) ?>">
-        <button class="btn btn-buy btn-lg" type="submit"><?= icon('search', 20) ?> <?= e(aj('textos.boton_comparar', 'Comparar')) ?></button>
+        <button class="btn btn-buy btn-lg" type="submit"><?= icon('search', 20) ?> <?= e(bt('boton_comparar')) ?></button>
       </form>
     </div>
     <div class="hero-side">
@@ -53,7 +53,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
 <?= buscador_amazon('portada_tras_comparador') ?>
 
 <section class="wrap section">
-  <div class="sec-head"><h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.cat_titulo')) ?> <em><?= e(aj('textos.cat_destacado')) ?></em></h2><a href="/categorias">Ver todas las categorías <?= icon('arrow', 18) ?></a></div>
+  <div class="sec-head"><h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.cat_titulo')) ?> <em><?= e(aj('textos.cat_destacado')) ?></em></h2><a href="/categorias"><?= e(bt('btn_ver_categorias')) ?> <?= icon('arrow', 18) ?></a></div>
   <div class="cats">
     <?php $i = 0; foreach ($cats as $c): ?>
       <a class="cat-tile<?= $i++ === 0 ? ' on' : '' ?>" href="/categoria/<?= e($c['slug']) ?>"><?= icon($c['icono'] ?? $c['slug'], 34) ?><span><?= e($c['nombre']) ?></span></a>
@@ -67,15 +67,15 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
     <h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.prod_titulo')) ?> <em><?= e(aj('textos.prod_destacado')) ?></em></h2>
     <div class="tools">
       <label class="search-box"><?= icon('search', 18) ?><input id="q" type="search" placeholder="Buscar en el catálogo..." aria-label="Buscar en el catálogo"></label>
-      <a class="more-link" href="/categorias">Ver catálogo <?= icon('arrow', 18) ?></a>
+      <a class="more-link" href="/categorias"><?= e(bt('btn_ver_catalogo')) ?> <?= icon('arrow', 18) ?></a>
     </div>
   </div>
   <div id="strips">
     <?php $ico = ['ofertas' => 'coin', 'novedades' => 'star', 'manual' => 'fire', 'categoria' => 'etiqueta', 'comparados' => 'chart']; foreach (secciones_portada($prods, $amz) as $sec): ?>
-      <div class="strip-block">
+      <div class="strip-block"<?= $sec['tipo'] === 'comparados' ? ' data-live="buscados"' . ($sec['productos'] ? '' : ' hidden') : '' ?>>
         <div class="strip-head">
           <h3><span class="strip-ico"><?= icon($sec['tipo'] === 'categoria' ? ((categorias()[substr($sec['link'], 11)]['icono'] ?? 'etiqueta')) : $ico[$sec['tipo']], 22) ?></span> <?= e($sec['titulo']) ?></h3>
-          <?php if ($sec['link']): ?><a class="more-link" href="<?= e($sec['link']) ?>">Ver todos <?= icon('arrow', 16) ?></a><?php endif; ?>
+          <?php if ($sec['link']): ?><a class="more-link" href="<?= e($sec['link']) ?>"><?= e(bt('btn_ver_todos')) ?> <?= icon('arrow', 16) ?></a><?php endif; ?>
         </div>
         <div class="strip-wrap">
           <button class="strip-nav prev" type="button" aria-label="Anteriores" hidden>&#8249;</button>
@@ -95,7 +95,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
 
 <?= buscador_amazon('portada_antes_guias') ?>
 <section class="wrap section">
-  <div class="sec-head"><h2><?= e(aj('textos.guias_titulo')) ?> <em><?= e(aj('textos.guias_destacado')) ?></em></h2><a href="/guias/">Todas las guías <?= icon('arrow', 18) ?></a></div>
+  <div class="sec-head"><h2><?= e(aj('textos.guias_titulo')) ?> <em><?= e(aj('textos.guias_destacado')) ?></em></h2><a href="/guias/"><?= e(bt('btn_todas_guias')) ?> <?= icon('arrow', 18) ?></a></div>
   <div class="guides">
     <?php foreach ($guias as $g): ?>
       <a class="guide" href="/guias/<?= e($g['slug']) ?>">
