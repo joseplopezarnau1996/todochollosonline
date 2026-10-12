@@ -1149,15 +1149,6 @@
         "alta": "2026-10-09"
     },
     {
-        "asin": "B0H8ZLN4QT",
-        "categoria": "halloween",
-        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
-        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
-        "destacado": true,
-        "alta": "2026-09-19",
-        "imagen": ""
-    },
-    {
         "asin": "B0CXHTT9L7",
         "categoria": "hogar",
         "titulo": "Sivenci - Manilla Abatible de Aluminio | Cremona Cuadrada Serie Europea | Maneta Apertura Interior 2 Palas | 177 x 34 x 64 | Color Negro | Derecha",
@@ -1255,5 +1246,14 @@
         "imagen": "https://m.media-amazon.com/images/I/215CXILGkbL._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-12"
+    },
+    {
+        "asin": "B0H8ZLN4QT",
+        "categoria": "halloween",
+        "titulo": "Disfraz Fantasma Niño, Niña y Bebé",
+        "descripcion": "Disfraz de fantasma blanco clásico con cara sonriente cosida y dobladillo dentado.",
+        "destacado": true,
+        "alta": "2026-09-19",
+        "imagen": ""
     }
 ]
