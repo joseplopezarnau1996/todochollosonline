@@ -56,7 +56,7 @@ $opt = function (?array $x, string $label, string $ico, string $cls) {
   <div class="sec-head"><h2><span class="fire"><?= icon('fire', 30) ?></span> <?= e(aj('textos.cat_titulo')) ?> <em><?= e(aj('textos.cat_destacado')) ?></em></h2><a href="/categorias"><?= e(bt('btn_ver_categorias')) ?> <?= icon('arrow', 18) ?></a></div>
   <div class="cats">
     <?php $i = 0; foreach ($cats as $c): ?>
-      <a class="cat-tile<?= $i++ === 0 ? ' on' : '' ?>" href="/categoria/<?= e($c['slug']) ?>"><?= icon($c['icono'] ?? $c['slug'], 34) ?><span><?= e($c['nombre']) ?></span></a>
+      <a class="cat-tile<?= $i++ === 0 ? ' on' : '' ?>" href="/categoria/<?= e($c['slug']) ?>"><?= icon($c['icono'] ?? $c['slug'], 24) ?><span><?= e($c['nombre']) ?></span></a>
     <?php endforeach; ?>
   </div>
 </section>
