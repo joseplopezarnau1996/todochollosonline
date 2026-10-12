@@ -69,7 +69,7 @@
     "buscador_amazon": {
         "activo": true,
         "posicion": "arriba_todo",
-        "titulo": "Busca en la pagina oficial de Amazon",
+        "titulo": "Busca en la página oficial de Amazon",
         "placeholder": "Busca cualquier producto en Amazon...",
         "boton": "Buscar en Amazon",
         "nota": "",
