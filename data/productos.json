@@ -88,15 +88,6 @@
         "alta": "2026-09-19"
     },
     {
-        "asin": "B06WVSFKT9",
-        "categoria": "halloween",
-        "titulo": "Rubies Disfraz Bruja Candy para niña",
-        "descripcion": "Vestido con manguitos, medias y sombrero con calabacitas impresas. Producto original de Rubies.",
-        "destacado": true,
-        "alta": "2026-09-19",
-        "imagen": ""
-    },
-    {
         "asin": "B0HCP1LX2G",
         "categoria": "halloween",
         "titulo": "BIRLOZA Set de Tatuajes Temporales para Halloween, Pegatinas de Boca y Cara, Cicatrices y Heridas, Accesorios para Disfraces Vampiro y Payaso (Para Adultos y Niños)",
@@ -1210,6 +1201,15 @@
         "imagen": "https://m.media-amazon.com/images/I/61YJ6qqOK7L._SL500_.jpg",
         "destacado": true,
         "alta": "2026-10-12"
+    },
+    {
+        "asin": "B06WVSFKT9",
+        "categoria": "halloween",
+        "titulo": "Rubies Disfraz Bruja Candy para niña",
+        "descripcion": "Vestido con manguitos, medias y sombrero con calabacitas impresas. Producto original de Rubies.",
+        "destacado": true,
+        "alta": "2026-09-19",
+        "imagen": ""
     },
     {
         "asin": "B0D9W7KBF8",
