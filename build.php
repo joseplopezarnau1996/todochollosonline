@@ -39,10 +39,20 @@ echo amz_configured() ? "Amazon: $conPrecio/" . count($prods) . " productos con 
 
 // 2) Páginas
 // Ejemplo real de comparativa para la portada (el producto con precio más alto).
-$ejemplo = null;
-$conP = array_filter($prods, fn($p) => precio_valido($amz[$p['asin']] ?? null));
-usort($conP, fn($a, $b) => ($amz[$b['asin']]['amount'] ?? 0) <=> ($amz[$a['asin']]['amount'] ?? 0));
-foreach (array_slice($conP, 0, 3) as $p) { if ($ejemplo = amz_comparar($p['asin'])) break; }
+// Ejemplo de comparativa de la portada: el producto elegido en el panel (Comparador) o, si no, uno que tenga las 3 opciones.
+$ejemplo = null; $parcial = null;
+$cand = [];
+if (preg_match('/([A-Z0-9]{10})/i', (string) aj('comparador.ejemplo', ''), $mm)) $cand[] = strtoupper($mm[1]);
+$conP = array_values(array_filter($prods, fn($p) => precio_valido($amz[$p['asin']] ?? null) && ($amz[$p['asin']]['amount'] ?? 0) >= 15 && ($amz[$p['asin']]['amount'] ?? 0) <= 200));
+usort($conP, fn($a, $b) => strcmp($b['alta'] ?? '', $a['alta'] ?? ''));
+foreach ($conP as $p) $cand[] = $p['asin'];
+foreach (array_slice(array_values(array_unique($cand)), 0, 6) as $a) {
+    $x = amz_comparar($a);
+    if (!$x) continue;
+    if ($x['barato'] && $x['valorado'] && $x['popular']) { $ejemplo = $x; break; }
+    $parcial = $parcial ?: $x;
+}
+$ejemplo = $ejemplo ?: $parcial;
 echo $ejemplo ? "Ejemplo de comparativa: {$ejemplo['original']['title']}\n" : "Sin ejemplo de comparativa\n";
 
 out('index.html', capture('inicio', [
