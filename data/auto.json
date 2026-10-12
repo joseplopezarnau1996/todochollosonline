@@ -224,6 +224,14 @@
       "categoria": ""
     },
     {
+      "asin": "B0CGHXYM1Y",
+      "titulo": "MEKO Alcachofa de Ducha con Filtro de 15 Pasos, Manguera, Alta Presión",
+      "imagen": "https://m.media-amazon.com/images/I/51FxebV-fZL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
       "asin": "B0F94B51L2",
       "titulo": "Lentes de contacto de color rojo y lentes de contacto certificados - Lentes de contacto diarios espeluznantes para Hallo",
       "imagen": "https://m.media-amazon.com/images/I/51F47J2-lxL._SL500_.jpg",
@@ -312,5 +320,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-12T19:39:41.863Z"
+  "actualizado": "2026-10-12T22:02:16.570Z"
 }
