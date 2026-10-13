@@ -224,6 +224,30 @@
       "categoria": ""
     },
     {
+      "asin": "B0BFQ9RD5B",
+      "titulo": "d'alba Piedmont Trufa Blanca Italiana First Spray Serum (100ml)",
+      "imagen": "https://m.media-amazon.com/images/I/31f5KqI2DRL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B07GXS35PG",
+      "titulo": "BISSELL SpotClean ProHeat Aspiradora de Agua Tapicería 330W 36988",
+      "imagen": "https://m.media-amazon.com/images/I/41n33PwVS0L._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B0F3JF1YBR",
+      "titulo": "Vileda H2Pro Sistema de Mopa Plana, Microfibra Gris y Azul",
+      "imagen": "https://m.media-amazon.com/images/I/41FQwk3EmwL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
       "asin": "B0CGHXYM1Y",
       "titulo": "MEKO Alcachofa de Ducha con Filtro de 15 Pasos, Manguera, Alta Presión",
       "imagen": "https://m.media-amazon.com/images/I/51FxebV-fZL._SL500_.jpg",
@@ -320,5 +344,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-12T22:02:16.570Z"
+  "actualizado": "2026-10-13T05:00:37.373Z"
 }
