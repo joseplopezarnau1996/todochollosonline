@@ -224,6 +224,14 @@
       "categoria": ""
     },
     {
+      "asin": "B0848WQL3C",
+      "titulo": "Aboca Aliviolas Fisiolax 90 Comprimidos",
+      "imagen": "https://m.media-amazon.com/images/I/31QLf5cgooL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
       "asin": "B0H98K9B2M",
       "titulo": "Batería de Repuesto 22V 3000mAh Compatible con Rowenta X-Force Flex 8.60, Reemplazo para ZR009700, Batería de Iones de L",
       "imagen": "https://m.media-amazon.com/images/I/41-gVZfwqeL._SL500_.jpg",
@@ -352,5 +360,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-16T05:01:18.443Z"
+  "actualizado": "2026-10-16T19:33:14.153Z"
 }
