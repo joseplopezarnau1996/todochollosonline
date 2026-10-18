@@ -224,6 +224,14 @@
       "categoria": ""
     },
     {
+      "asin": "B0FQGYQTNG",
+      "titulo": "Apple iPhone 17 Pro MAX de 256 GB: Pantalla de 6,9 Pulgadas con Promotion, Chip A19 Pro, la Mayor autonomía en un iPhone",
+      "imagen": "https://m.media-amazon.com/images/I/31ncwrwZogL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
       "asin": "B0848WQL3C",
       "titulo": "Aboca Aliviolas Fisiolax 90 Comprimidos",
       "imagen": "https://m.media-amazon.com/images/I/31QLf5cgooL._SL500_.jpg",
@@ -360,5 +368,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-18T05:00:11.793Z"
+  "actualizado": "2026-10-18T12:18:13.695Z"
 }
