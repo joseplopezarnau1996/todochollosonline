@@ -1,13 +1,6 @@
 {
   "ofertas": [
     {
-      "asin": "B01MF9YDQN",
-      "titulo": "Neutrogena Hydro Boost Gel de Agua Crema Hidratante Facial ligera, 50 ml | Con Ácido Hialurónico y Aminoácidos, 72h de Hidratación, Oil-Free, No Comedogénico, Piel Normal/ Mixta y Sensible",
-      "imagen": "https://m.media-amazon.com/images/I/41HmBcEZ9NL._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
       "asin": "B0H1QNCRZF",
       "titulo": "La gran guía de la suplementación: El manual definitivo para optimizar tu cuerpo y potenciar tu salud física y mental a largo plazo (Salud y Bienestar)",
       "imagen": "https://m.media-amazon.com/images/I/413UKzgVMcL._SL500_.jpg",
@@ -29,13 +22,6 @@
       "auto": true
     },
     {
-      "asin": "B082N4HQLF",
-      "titulo": "Skechers Uno Stand On Air, Zapatillas Hombre, Navy Durabuck Trim, 44 EU",
-      "imagen": "https://m.media-amazon.com/images/I/41jX2MfVPiL._SL500_.jpg",
-      "categoria": "deportes",
-      "auto": true
-    },
-    {
       "asin": "B08HLSL2FV",
       "titulo": "Maybelline New York Lifter Gloss con Ácido Hialurónico, Tono 03 Moon | Labios más Hidratados, Rellenos y Jugosos, Brillo de Larga Duración, Sensación no Pegajosa, Acabado Natural, Lifter Gloss",
       "imagen": "https://m.media-amazon.com/images/I/41owhwZcQhL._SL500_.jpg",
@@ -43,24 +29,31 @@
       "auto": true
     },
     {
-      "asin": "B07P3H8XT5",
-      "titulo": "SINOPHANT Mallas Deporte Mujer de Cintura Alta, Leggins de Control de Abdomen Opacas, Elásticas, Leggings Mujer Vestir, Suaves como la Mantequilla L-XL 1 Piezas Negro",
-      "imagen": "https://m.media-amazon.com/images/I/315eAXVtnxS._SL500_.jpg",
+      "asin": "B00J28D3DW",
+      "titulo": "Joma Combi M/C, T-Shirt Hombre, Negro, M",
+      "imagen": "https://m.media-amazon.com/images/I/31SczG+xJVL._SL500_.jpg",
       "categoria": "deportes",
       "auto": true
     },
     {
-      "asin": "B082SCD2JC",
-      "titulo": "VICKY ESSENCE HOME SPRAY Ambientador de Hogar Velvet Garden – Home Spray Perfumado con Flores Blancas, Cereza y Vainilla – Aroma Romántico y Acogedor – 500 ml",
-      "imagen": "https://m.media-amazon.com/images/I/310tMquZ9LL._SL500_.jpg",
-      "categoria": "hogar",
+      "asin": "B082N4HQLF",
+      "titulo": "Skechers Uno Stand On Air, Zapatillas Hombre, Navy Durabuck Trim, 44 EU",
+      "imagen": "https://m.media-amazon.com/images/I/41jX2MfVPiL._SL500_.jpg",
+      "categoria": "deportes",
       "auto": true
     },
     {
-      "asin": "B00DKXTBCM",
-      "titulo": "Lavazza A Modo Mio Passionale, 36 cápsulas",
-      "imagen": "https://m.media-amazon.com/images/I/41qnlFOsP3L._SL500_.jpg",
-      "categoria": "moda",
+      "asin": "B08J4NMBL2",
+      "titulo": "Braun Mini Depiladora Facial para Mujer FS1000, Blanco | con Luz Smartlight Incorporada, Rasuradora de Precisión, Depilación de Labio Superior, Barbilla Y Mejillas",
+      "imagen": "https://m.media-amazon.com/images/I/41M8rgnvO5L._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B0CLY2TQH8",
+      "titulo": "TEEHON Cartera para Hombre Slim, Regalos Aniversario para Hombre (Negro) | Fibra de Carbono con Bloqueo RFID, Tarjetero Hombre Ranuras para Tarjetas de Crédito, Clip para Billetes, Cartera Bid-Fold",
+      "imagen": "https://m.media-amazon.com/images/I/51wcYTIqmNL._SL500_.jpg",
+      "categoria": "tecnologia",
       "auto": true
     },
     {
@@ -68,20 +61,6 @@
       "titulo": "TPfocus Auriculares Bluetooth para Dormir, Antifaz 100% Opaco Lateral | Orificios transpirables | Sonido nítido | Altavoces ultrafinos | Lavable | Sin presión ocular | 16 h de batería",
       "imagen": "https://m.media-amazon.com/images/I/51Y+cpqe2BL._SL500_.jpg",
       "categoria": "tecnologia",
-      "auto": true
-    },
-    {
-      "asin": "B0FXL97YLZ",
-      "titulo": "Reobrix 33015 Maqueta de Motor V8 para Adultos, Modelo Motor V8 Motorizado",
-      "imagen": "https://m.media-amazon.com/images/I/51avyfyjSYL._SL500_.jpg",
-      "categoria": "motor",
-      "auto": true
-    },
-    {
-      "asin": "B0FPQ96JPZ",
-      "titulo": "Reobrix Kit de Construction de Moteur V12, Modle de Moteur de Supercar | Modelo de Motor en V A 65°, Set de Construccin Mecnica 33016, Artculo de Coleccin Premium para Adultos, 1240 Piezas",
-      "imagen": "https://m.media-amazon.com/images/I/51ulAB9VCOL._SL500_.jpg",
-      "categoria": "motor",
       "auto": true
     },
     {
@@ -95,7 +74,7 @@
       "asin": "B0812BKN39",
       "titulo": "Arcos Juego de Cuchillos Mondadores de 3 Piezas | Cuchillos de cocina peladores de acero inoxidable para frutas y verduras con mango de polipropileno. Serie Nova. Multicolor.",
       "imagen": "https://m.media-amazon.com/images/I/41rf5GQMSaL._SL500_.jpg",
-      "categoria": "cocina",
+      "categoria": "hogar",
       "auto": true
     },
     {
@@ -104,14 +83,12 @@
       "imagen": "https://m.media-amazon.com/images/I/51XRxxi-5qL._SL500_.jpg",
       "categoria": "cocina",
       "auto": true
-    }
-  ],
-  "novedades": [
+    },
     {
-      "asin": "B0DJR36GW6",
-      "titulo": "La familia Addams",
-      "imagen": "https://m.media-amazon.com/images/I/41Fviz9DqpL._SL500_.jpg",
-      "categoria": "halloween",
+      "asin": "B07B6N9BGZ",
+      "titulo": "VASAGLE Estanteria Pared de 5 Niveles, Baldas Flotantes Pared | Estantería Libros, para Dormitorio, Sala de Estar, Cocina, Oficina en Casa, Blanco Nube, Colección CUSTOS LBC20WT",
+      "imagen": "https://m.media-amazon.com/images/I/21OwFl3hxdL._SL500_.jpg",
+      "categoria": "hogar",
       "auto": true
     },
     {
@@ -122,98 +99,121 @@
       "auto": true
     },
     {
-      "asin": "B08BHNT496",
-      "titulo": "RUNCCI-YUN 8 PcsJuego de Motor Eletrico Bricolaje DC Motor Mini 1.5V-6V 15000RPM+4X AA Battery Holder Case+16x Crocodile Clip+2X Cables 1m para Bricolaje Proyectos Científicos",
-      "imagen": "https://m.media-amazon.com/images/I/51rLx3u1YfL._SL500_.jpg",
-      "categoria": "motor",
-      "auto": true
-    },
-    {
-      "asin": "B08XWM3J42",
-      "titulo": "ShoeDry Secador de Zapatos Eléctrico, Tecnología de ION, CE | Seca en <2 h, Protege cuero y ante, Botas esquí, guantes, cascos, 100W Clase A+",
-      "imagen": "https://m.media-amazon.com/images/I/41rIYj8bjTL._SL500_.jpg",
-      "categoria": "tecnologia",
-      "auto": true
-    },
-    {
-      "asin": "B091TWFW3S",
-      "titulo": "Asevi Ambientador Concentrado Hogar y Textil White Jasmine 400 ml | Aroma a flores blancas en pulverización extrafina, con frescor que permanece hasta 12 horas en los tejidos",
-      "imagen": "https://m.media-amazon.com/images/I/41GWAqVOQQL._SL500_.jpg",
-      "categoria": "hogar",
-      "auto": true
-    },
-    {
-      "asin": "B08NDVTN5C",
-      "titulo": "GRIFEMA - GA2002, Báscula de Cocina con Pantalla LCD, Acero Inoxidable, Balanza de Alimentos Multifuncional 5 kg/11 lbs, Color gris: Color de pantalla: Azul [Exclusivo en Amazon]",
-      "imagen": "https://m.media-amazon.com/images/I/41shiHPa3wL._SL500_.jpg",
-      "categoria": "cocina",
-      "auto": true
-    },
-    {
-      "asin": "B00J28D3DW",
-      "titulo": "Joma Combi M/C, T-Shirt Hombre, Negro, M",
-      "imagen": "https://m.media-amazon.com/images/I/31SczG+xJVL._SL500_.jpg",
-      "categoria": "deportes",
-      "auto": true
-    },
-    {
-      "asin": "B08J4NMBL2",
-      "titulo": "Braun Mini Depiladora Facial para Mujer FS1000, Blanco | con Luz Smartlight Incorporada, Rasuradora de Precisión, Depilación de Labio Superior, Barbilla Y Mejillas",
-      "imagen": "https://m.media-amazon.com/images/I/41M8rgnvO5L._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
-      "asin": "8410578220",
-      "titulo": "Chanel | Colección Leyendas de la Moda | Libro I",
-      "imagen": "https://m.media-amazon.com/images/I/51ENfu4pjsL._SL500_.jpg",
-      "categoria": "moda",
-      "auto": true
-    },
-    {
-      "asin": "8430563733",
-      "titulo": "Bricolaje,Atlas Ilustrado",
-      "imagen": "https://m.media-amazon.com/images/I/51zaoPD3O3L._SL500_.jpg",
-      "categoria": "bricolaje",
-      "auto": true
-    },
-    {
-      "asin": "B0H8WSD9CR",
-      "titulo": "Halloween With The New Addams Family",
-      "imagen": "https://m.media-amazon.com/images/I/51xCirof8zL._SL500_.jpg",
-      "categoria": "halloween",
-      "auto": true
-    },
-    {
-      "asin": "B0BRSVF2J1",
-      "titulo": "Suplemento de Hierro con 40mg Vitamina C – bisglicinato de hierro – 240 comprimidos veganos – complejo de quelato de buena tolerancia – alta dosificación, sin aditivos innecesarios﻿",
-      "imagen": "https://m.media-amazon.com/images/I/41CA3JpahJL._SL500_.jpg",
-      "categoria": "suplementacion",
-      "auto": true
-    },
-    {
       "asin": "8413218713",
       "titulo": "Motores (Ciclos Formativos)",
       "imagen": "https://m.media-amazon.com/images/I/31Qe22vU0vL._SL500_.jpg",
       "categoria": "motor",
       "auto": true
+    }
+  ],
+  "novedades": [
+    {
+      "asin": "B0DBLS6JR5",
+      "titulo": "Hotel Transilvania",
+      "imagen": "https://m.media-amazon.com/images/I/51XuXcMExjL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
     },
     {
-      "asin": "B0CLL3S2XZ",
-      "titulo": "K&F CONCEPT 20 en 1 Kit Multifuncional Limpieza Teclado y PC, Blanco",
-      "imagen": "https://m.media-amazon.com/images/I/41R0xujZf8L._SL500_.jpg",
+      "asin": "B0GPCCS6H8",
+      "titulo": "El poder de la suplementación: Una guía práctica para integrar los complementos alimenticios en tu rutina y potenciar tu salud",
+      "imagen": "https://m.media-amazon.com/images/I/41HsomIsD2L._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B0FXL97YLZ",
+      "titulo": "Reobrix 33015 Maqueta de Motor V8 para Adultos, Modelo Motor V8 Motorizado",
+      "imagen": "https://m.media-amazon.com/images/I/51avyfyjSYL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B099KBNSPG",
+      "titulo": "BIIB Regalos Originales para Hombre, Inusual Útil Guantes LED Luminosos | Regalos Navidad para Hombre, Gadgets Tecnologicos Regalo Hombre Cumpleaños Mujer, Regalo Hombre Cumpleaños",
+      "imagen": "https://m.media-amazon.com/images/I/41Rb2KizwDL._SL500_.jpg",
       "categoria": "tecnologia",
       "auto": true
     },
     {
-      "asin": "B07FJ91KN5",
-      "titulo": "Amazon Basics Vajilla de 18 Unidad, Líneas modernas, 6 servicios",
-      "imagen": "https://m.media-amazon.com/images/I/41LEYEG7i9L._SL500_.jpg",
+      "asin": "B07MFY6BBV",
+      "titulo": "Cecotec Humidificador Ultrasónico y Difusor de Aromas con Temporizador Pure Aroma 300 Yin. 10 W, 300 ml, Temporizador hasta 6 Horas, 7 Colores LED, Función Aromaterapia, Ultrasilencioso",
+      "imagen": "https://m.media-amazon.com/images/I/411A7NshwqL._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "B0DK3K65KW",
+      "titulo": "Soporte para rollos de cocina sin taladrar, soporte para rollos de cocina, color blanco, autoadhesivo, práctico soporte para rollos de papel debajo del armario para almacenamiento y organización de la",
+      "imagen": "https://m.media-amazon.com/images/I/41zW4NO+ycL._SL500_.jpg",
+      "categoria": "cocina",
+      "auto": true
+    },
+    {
+      "asin": "B07P6L8BCS",
+      "titulo": "Joma Camiseta Deportiva Manga Corta Mujer, 6XS - 3XL - Mantiene Seco el Contacto con el Cuerpo, Ideal para Running o Gym - Combi",
+      "imagen": "https://m.media-amazon.com/images/I/319gNTwy4nL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B0GD6R7CFJ",
+      "titulo": "BIODANCE Parches de Ojos con Péptidos de Colágeno, Antiarrugas para Líneas de Expresión y Bolsas, Contorno de Ojos, Cuidado de la Piel Coreano (60 uds)",
+      "imagen": "https://m.media-amazon.com/images/I/41GgISko4iL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "0241420563",
+      "titulo": "Moda. Historia y estilos (Enciclopedia visual)",
+      "imagen": "https://m.media-amazon.com/images/I/31OHn+MCF4L._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
+    },
+    {
+      "asin": "8410842041",
+      "titulo": "Enciclopedia del bricolaje",
+      "imagen": "https://m.media-amazon.com/images/I/51YRtBO7hCL._SL500_.jpg",
+      "categoria": "bricolaje",
+      "auto": true
+    },
+    {
+      "asin": "B09KQ946D3",
+      "titulo": "Halloween at Aunt Ethel's",
+      "imagen": "https://m.media-amazon.com/images/I/41HTmj29uxL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
+    },
+    {
+      "asin": "B084G5XC29",
+      "titulo": "Omega 3 2000mg - 240 Perlas Aceite Pescado IFOS* (660mg EPA + 440mg DHA) | Ácidos Grasos Omega 3 de Anchoa para 4 Meses - Sin OGM, Sin Gluten, Sin Lactosa",
+      "imagen": "https://m.media-amazon.com/images/I/41G5TJ4cX3L._SL500_.jpg",
+      "categoria": "suplementacion",
+      "auto": true
+    },
+    {
+      "asin": "B07KW12KSC",
+      "titulo": "RUNCCI-YUN 10pcs DC Motor Mini, 1.5V-6V,130 +5pcs Conector de batería de 9V+ 5pcs SPDT Interruptor Mecedora, for DIY Arduino",
+      "imagen": "https://m.media-amazon.com/images/I/51rjbMkDwhL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B07DQBC6NH",
+      "titulo": "UGREEN Organizador Viaje Almacenamiento de Accesorios Electrónicos | Bolsa de Cable Impermeable Protección a Prueba de Golpes para Memoria USB Cargador de Disco Duro Batería",
+      "imagen": "https://m.media-amazon.com/images/I/413JlijnyjL._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
+      "asin": "B097RTJ1KP",
+      "titulo": "CIF Crema Limpiadora Rosa | Potente Limpiador de Superficies Multiusos Baño y Cocina | Con Fórmula Partículas de Limpieza 100% Naturales | Elimina el 100% de la Suciedad más Dificil. 650 ml.",
+      "imagen": "https://m.media-amazon.com/images/I/41NSe9qZy-L._SL500_.jpg",
       "categoria": "hogar",
       "auto": true
     }
   ],
-  "renovado": "2026-10-17T05:00:59.754Z",
+  "renovado": "2026-10-20T05:00:11.859Z",
   "comparados": [
     {
       "asin": "B0H8ZLN4QT",
@@ -368,5 +368,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-19T05:00:11.840Z"
+  "actualizado": "2026-10-20T05:00:11.859Z"
 }
