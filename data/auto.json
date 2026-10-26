@@ -1,24 +1,10 @@
 {
   "ofertas": [
     {
-      "asin": "B01MF9YDQN",
-      "titulo": "Neutrogena Hydro Boost Gel de Agua Crema Hidratante Facial ligera, 50 ml | Con Ácido Hialurónico y Aminoácidos, 72h de Hidratación, Oil-Free, No Comedogénico, Piel Normal/ Mixta y Sensible",
-      "imagen": "https://m.media-amazon.com/images/I/41HmBcEZ9NL._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
       "asin": "B0H1QNCRZF",
       "titulo": "La gran guía de la suplementación: El manual definitivo para optimizar tu cuerpo y potenciar tu salud física y mental a largo plazo (Salud y Bienestar)",
       "imagen": "https://m.media-amazon.com/images/I/413UKzgVMcL._SL500_.jpg",
       "categoria": "suplementacion",
-      "auto": true
-    },
-    {
-      "asin": "B0HFQRD8YD",
-      "titulo": "DOQAUS Termómetro Cocina mit Pantalla Retroiluminada (Negro mate) | Precisión ±1℃, Lectura Instantánea 3s, Calibrable, Memoria Temp. Máx./Mín., Para Carne, Bbq, Horno, Aceite y Líquidos",
-      "imagen": "https://m.media-amazon.com/images/I/31MHTnfIosL._SL500_.jpg",
-      "categoria": "cocina",
       "auto": true
     },
     {
@@ -43,13 +29,6 @@
       "auto": true
     },
     {
-      "asin": "B07P3H8XT5",
-      "titulo": "SINOPHANT Mallas Deporte Mujer de Cintura Alta, Leggins de Control de Abdomen Opacas, Elásticas, Leggings Mujer Vestir, Suaves como la Mantequilla L-XL 1 Piezas Negro",
-      "imagen": "https://m.media-amazon.com/images/I/315eAXVtnxS._SL500_.jpg",
-      "categoria": "deportes",
-      "auto": true
-    },
-    {
       "asin": "B08J4NMBL2",
       "titulo": "Braun Mini Depiladora Facial para Mujer FS1000, Blanco | con Luz Smartlight Incorporada, Rasuradora de Precisión, Depilación de Labio Superior, Barbilla Y Mejillas",
       "imagen": "https://m.media-amazon.com/images/I/41M8rgnvO5L._SL500_.jpg",
@@ -57,10 +36,17 @@
       "auto": true
     },
     {
-      "asin": "B0CLY2TQH8",
-      "titulo": "TEEHON Cartera para Hombre Slim, Regalos Aniversario para Hombre (Negro) | Fibra de Carbono con Bloqueo RFID, Tarjetero Hombre Ranuras para Tarjetas de Crédito, Clip para Billetes, Cartera Bid-Fold",
-      "imagen": "https://m.media-amazon.com/images/I/51wcYTIqmNL._SL500_.jpg",
-      "categoria": "tecnologia",
+      "asin": "B08P4YPB8Q",
+      "titulo": "Maybelline New York Lash Sensational Sky High Volumen y Longitud, Negro | Cepillo Flexible, Longitud sin Límites, Volumen Redefinido, Pestañas Definidas, Uso Diario, Lash Sensational Sky High",
+      "imagen": "https://m.media-amazon.com/images/I/31r5T-GLqlL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B07P6L8BCS",
+      "titulo": "Joma Camiseta Deportiva Manga Corta Mujer, 6XS - 3XL - Mantiene Seco el Contacto con el Cuerpo, Ideal para Running o Gym - Combi",
+      "imagen": "https://m.media-amazon.com/images/I/319gNTwy4nL._SL500_.jpg",
+      "categoria": "deportes",
       "auto": true
     },
     {
@@ -71,6 +57,13 @@
       "auto": true
     },
     {
+      "asin": "B0CP6NKFM3",
+      "titulo": "TPfocus Auriculares Bluetooth para Dormir, Antifaz 100 % Opaco Lateral | Orificios transpirables | Sonido nítido | Altavoces ultrafinos | Lavable | Sin presión ocular | 16 h de batería",
+      "imagen": "https://m.media-amazon.com/images/I/51Y+cpqe2BL._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
       "asin": "B00651DXO8",
       "titulo": "Superrollo Motor de persiana RM30MM (SW60, 30 Nm), motor tubular, hasta 12 m² de superficie de persiana (persiana hasta 66 kg), para eje octogonal de acero de 60 mm, juego completo",
       "imagen": "https://m.media-amazon.com/images/I/312U28nVvVL._SL500_.jpg",
@@ -78,17 +71,10 @@
       "auto": true
     },
     {
-      "asin": "B0GJCQ48LS",
-      "titulo": "Amplificador Pantalla Movil 12 Pulgadas, Amplificador de Pantalla para Movil Ultra HD, Gadgets Tecnologicos, Regalo Original Hombre Cumpleaños Adolescentes, Soporte Plegable Portátil",
-      "imagen": "https://m.media-amazon.com/images/I/413Zy+LUeGL._SL500_.jpg",
-      "categoria": "tecnologia",
-      "auto": true
-    },
-    {
       "asin": "B0812BKN39",
       "titulo": "Arcos Juego de Cuchillos Mondadores de 3 Piezas | Cuchillos de cocina peladores de acero inoxidable para frutas y verduras con mango de polipropileno. Serie Nova. Multicolor.",
       "imagen": "https://m.media-amazon.com/images/I/41rf5GQMSaL._SL500_.jpg",
-      "categoria": "hogar",
+      "categoria": "cocina",
       "auto": true
     },
     {
@@ -104,116 +90,130 @@
       "imagen": "https://m.media-amazon.com/images/I/21OwFl3hxdL._SL500_.jpg",
       "categoria": "hogar",
       "auto": true
-    }
-  ],
-  "novedades": [
-    {
-      "asin": "B0DJR36GW6",
-      "titulo": "La familia Addams",
-      "imagen": "https://m.media-amazon.com/images/I/41Fviz9DqpL._SL500_.jpg",
-      "categoria": "halloween",
-      "auto": true
     },
     {
-      "asin": "B084Q2T47B",
-      "titulo": "Suplementos de Vitaminas y Minerales [Vitamin and Mineral Supplements]: Ciencia o Marketing? Guía para Diferenciar Verdades (Basadas en Hechos) y Mentiras (Basadas en Mitos e Intereses",
-      "imagen": "https://m.media-amazon.com/images/I/51AdmjtdW5L._SL500_.jpg",
-      "categoria": "suplementacion",
-      "auto": true
-    },
-    {
-      "asin": "B08BHNT496",
-      "titulo": "RUNCCI-YUN 8 PcsJuego de Motor Eletrico Bricolaje DC Motor Mini 1.5V-6V 15000RPM+4X AA Battery Holder Case+16x Crocodile Clip+2X Cables 1m para Bricolaje Proyectos Científicos",
-      "imagen": "https://m.media-amazon.com/images/I/51rLx3u1YfL._SL500_.jpg",
-      "categoria": "motor",
-      "auto": true
-    },
-    {
-      "asin": "B07Q31QP8B",
-      "titulo": "AKIELO Blackout Tarjeta Bloqueadora RFID – Tarjeta Antirrobo Ultrafina con Tecnología Faraday para Protección de Tarjetas Contactless – Blindaje para Carteras (Edición Negra – 2 Unidades)",
-      "imagen": "https://m.media-amazon.com/images/I/41VlWi92OEL._SL500_.jpg",
-      "categoria": "tecnologia",
-      "auto": true
-    },
-    {
-      "asin": "B091TWFW3S",
-      "titulo": "Asevi Ambientador Concentrado Hogar y Textil White Jasmine 400 ml | Aroma a flores blancas en pulverización extrafina, con frescor que permanece hasta 12 horas en los tejidos",
-      "imagen": "https://m.media-amazon.com/images/I/41GWAqVOQQL._SL500_.jpg",
-      "categoria": "hogar",
-      "auto": true
-    },
-    {
-      "asin": "B08NDVTN5C",
-      "titulo": "GRIFEMA - GA2002, Báscula de Cocina con Pantalla LCD, Acero Inoxidable, Balanza de Alimentos Multifuncional 5 kg/11 lbs, Color gris: Color de pantalla: Azul [Exclusivo en Amazon]",
-      "imagen": "https://m.media-amazon.com/images/I/41shiHPa3wL._SL500_.jpg",
+      "asin": "B09CNFNZ3D",
+      "titulo": "MAGNIFICENT tijeras de cocina, tijeras resistentes para uso en cocina con cubierta de seguridad y agarre suave y tijeras de utilidad multifuncionales, tijeras para cortar carne, aves de corral",
+      "imagen": "https://m.media-amazon.com/images/I/611GRgme52L._SL500_.jpg",
       "categoria": "cocina",
       "auto": true
     },
     {
-      "asin": "B06Y693DG7",
-      "titulo": "Joma Short Deportivo de Hombre y Niño | Bermuda Transpirable y Ajustable",
-      "imagen": "https://m.media-amazon.com/images/I/31Akt6SQfRL._SL500_.jpg",
-      "categoria": "deportes",
+      "asin": "8413445604",
+      "titulo": "Suplementa tu menopausia: Una guía para elegir suplementos con criterio y potenciar tus hábitos (Alienta)",
+      "imagen": "https://m.media-amazon.com/images/I/41uuOjrO4TL._SL500_.jpg",
+      "categoria": "suplementacion",
       "auto": true
-    },
+    }
+  ],
+  "novedades": [
     {
-      "asin": "B0DJ2XLZ5B",
-      "titulo": "Cecotec Limpiador Facial Masajeador Fototerapia Facecare Skinroutine. Skin Care: Limpiador, Dispositivo Antiojeras y Masajeador, Potencia Elasticidad de La Piel, Incluye Diadema y Muñequeras",
-      "imagen": "https://m.media-amazon.com/images/I/41uFvluE-PL._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
-      "asin": "8410578220",
-      "titulo": "Chanel | Colección Leyendas de la Moda | Libro I",
-      "imagen": "https://m.media-amazon.com/images/I/51ENfu4pjsL._SL500_.jpg",
-      "categoria": "moda",
-      "auto": true
-    },
-    {
-      "asin": "B0D5CX7SFL",
-      "titulo": "HYCHIKA Nivel Láser Autonivelante 15M, Nivel Laser Verde Ajustable con 3 Niveles de Brillo, Laser Autonivelante Uso Interior y Exterior, Soporte Magnético 360° Rotación 2 Batería Incluida",
-      "imagen": "https://m.media-amazon.com/images/I/41VHrEoynuL._SL500_.jpg",
-      "categoria": "bricolaje",
-      "auto": true
-    },
-    {
-      "asin": "B09K9Q5ZQ1",
-      "titulo": "Viernes 13",
-      "imagen": "https://m.media-amazon.com/images/I/417ecCZZScL._SL500_.jpg",
+      "asin": "B0DBLS6JR5",
+      "titulo": "Hotel Transilvania",
+      "imagen": "https://m.media-amazon.com/images/I/51XuXcMExjL._SL500_.jpg",
       "categoria": "halloween",
       "auto": true
     },
     {
-      "asin": "B0BRSVF2J1",
-      "titulo": "Suplemento de Hierro con 40mg Vitamina C – bisglicinato de hierro – 240 comprimidos veganos – complejo de quelato de buena tolerancia – alta dosificación, sin aditivos innecesarios﻿",
-      "imagen": "https://m.media-amazon.com/images/I/41CA3JpahJL._SL500_.jpg",
+      "asin": "B0GPCCS6H8",
+      "titulo": "El poder de la suplementación: Una guía práctica para integrar los complementos alimenticios en tu rutina y potenciar tu salud",
+      "imagen": "https://m.media-amazon.com/images/I/41HsomIsD2L._SL500_.jpg",
       "categoria": "suplementacion",
       "auto": true
     },
     {
-      "asin": "8413661625",
-      "titulo": "Motores 3 Edicion 2022 (Transporte y Mantenimiento de Vehículos)",
-      "imagen": "https://m.media-amazon.com/images/I/51-D6jY9yiL._SL500_.jpg",
+      "asin": "B0FXL97YLZ",
+      "titulo": "Reobrix 33015 Maqueta de Motor V8 para Adultos, Modelo Motor V8 Motorizado | Modelo Mecánico Motorizado, Movimiento Realista del Motor, Pistones, Cigüeñal Funcionales, Modelo de Motor de Coche, Fans F1",
+      "imagen": "https://m.media-amazon.com/images/I/51avyfyjSYL._SL500_.jpg",
       "categoria": "motor",
       "auto": true
     },
     {
-      "asin": "B0CLL3S2XZ",
-      "titulo": "K&F CONCEPT 20 en 1 Kit Multifuncional Limpieza Teclado y PC, Blanco | Accesorios para Limpiar Electrónica Como Teclados, Laptop, Auriculares, Móviles, Ordenador y Gafas de Realidad Virtual, MM03",
-      "imagen": "https://m.media-amazon.com/images/I/41R0xujZf8L._SL500_.jpg",
+      "asin": "B07DQBC6NH",
+      "titulo": "UGREEN Organizador Viaje Almacenamiento de Accesorios Electrónicos | Bolsa de Cable Impermeable Protección a Prueba de Golpes para Memoria USB Cargador de Disco Duro Batería",
+      "imagen": "https://m.media-amazon.com/images/I/413JlijnyjL._SL500_.jpg",
       "categoria": "tecnologia",
       "auto": true
     },
     {
-      "asin": "B0D7VWWQFV",
-      "titulo": "FYDEE Cepillo Electrico Limpieza Hogar, Cepillo Limpieza Hogar con 7 Cabezales Reemplazables y Impermeable IPX7, Fregadora Giratoria Eléctrica, Cepillo para Limpieza del Hogar, Baño, Suelos, Azulejos",
-      "imagen": "https://m.media-amazon.com/images/I/419BS0SWTKL._SL500_.jpg",
+      "asin": "B0CT8YBJYC",
+      "titulo": "T-LOVENDO.ES Puff o Banco de almacenaje Plegable | Taburete Reposapiés Otomana | Baúl de Almacenamiento para Cama, Dormitorio, salón, Comedor o Recibidor | 38x76x38cm | Soporta 300kg.",
+      "imagen": "https://m.media-amazon.com/images/I/217AZX0ecCL._SL500_.jpg",
       "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "B00CFN1M6Q",
+      "titulo": "ARCOS Tijeras de Cocina Multiusos 200 mm | Tijeras ergonómicas para cocinar en acero inoxidable. Herramienta versátil y duradera. Serie Ecopro. Color Plata.",
+      "imagen": "https://m.media-amazon.com/images/I/31CM5lM50bL._SL500_.jpg",
+      "categoria": "cocina",
+      "auto": true
+    },
+    {
+      "asin": "B07P5MT4Y5",
+      "titulo": "Joma Cleo II Pantalon Largo Deportivo, Hombre, Negro, XL",
+      "imagen": "https://m.media-amazon.com/images/I/31IBCviXdvL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B00M9B66BU",
+      "titulo": "REVLON PROFESSIONAL UniqOne All in One Protector Térmico Pelo, Hidratación Profunda Cabello, Tratamiento en Spray sin Aclarado, Desenredante Pelo Mujer, Fragrancia Classic 150 ml",
+      "imagen": "https://m.media-amazon.com/images/I/31VHZkdJmbL._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "0241420563",
+      "titulo": "Moda. Historia y estilos (Enciclopedia visual)",
+      "imagen": "https://m.media-amazon.com/images/I/31OHn+MCF4L._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
+    },
+    {
+      "asin": "8430563733",
+      "titulo": "Bricolaje,Atlas Ilustrado",
+      "imagen": "https://m.media-amazon.com/images/I/51zaoPD3O3L._SL500_.jpg",
+      "categoria": "bricolaje",
+      "auto": true
+    },
+    {
+      "asin": "B09KPCJTCN",
+      "titulo": "SCRUFF Halloween",
+      "imagen": "https://m.media-amazon.com/images/I/41fa5GnbkqL._SL500_.jpg",
+      "categoria": "halloween",
+      "auto": true
+    },
+    {
+      "asin": "B07KW12KSC",
+      "titulo": "RUNCCI-YUN 10pcs DC Motor Mini, 1.5V-6V,130 +5pcs Conector de batería de 9V+ 5pcs SPDT Interruptor Mecedora, for DIY Arduino",
+      "imagen": "https://m.media-amazon.com/images/I/51rjbMkDwhL._SL500_.jpg",
+      "categoria": "motor",
+      "auto": true
+    },
+    {
+      "asin": "B08XWM3J42",
+      "titulo": "ShoeDry Secador de Zapatos Eléctrico, Tecnología de ION, CE | Seca en <2 h, Protege cuero y ante, Botas esquí, guantes, cascos, 100W Clase A+",
+      "imagen": "https://m.media-amazon.com/images/I/41rIYj8bjTL._SL500_.jpg",
+      "categoria": "tecnologia",
+      "auto": true
+    },
+    {
+      "asin": "B00GQP0XTQ",
+      "titulo": "Utopia Towels - Juego Toallas Baño Completo 8 Piezas (Gris) | Juego de 8 piezas con 2 toallas de baño, 2 de mano y 4 de lavabo. Suaves, absorbentes, resistentes y lavables.",
+      "imagen": "https://m.media-amazon.com/images/I/51rp-mVXnPL._SL500_.jpg",
+      "categoria": "hogar",
+      "auto": true
+    },
+    {
+      "asin": "8410286378",
+      "titulo": "La cocina casera de Enrique Sánchez: Las recetas del Chef de la tele (Gastronomía y Salud)",
+      "imagen": "https://m.media-amazon.com/images/I/51r9WFcZ1ML._SL500_.jpg",
+      "categoria": "cocina",
       "auto": true
     }
   ],
-  "renovado": "2026-10-23T05:00:27.009Z",
+  "renovado": "2026-10-26T05:00:26.114Z",
   "comparados": [
     {
       "asin": "B0H8ZLN4QT",
@@ -376,5 +376,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-10-25T05:00:26.544Z"
+  "actualizado": "2026-10-26T05:00:26.114Z"
 }
