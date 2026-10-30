@@ -224,6 +224,14 @@
       "categoria": ""
     },
     {
+      "asin": "B0FKB9BSVS",
+      "titulo": "Forté Pharma Hialsorb Cold Pack 2 x 100 ml | Alivio Articular y Muscular",
+      "imagen": "https://m.media-amazon.com/images/I/41BMcjhbPBL._SL500_.jpg",
+      "n": 2,
+      "auto": true,
+      "categoria": ""
+    },
+    {
       "asin": "B097XK35G4",
       "titulo": "Artoid Mode Protein Batidor de Proteínas con Compartimento para Polvos Bebidas Deportivas Jabón de Manos Negro/Verde 720",
       "imagen": "https://m.media-amazon.com/images/I/31lVa-VciQL._SL500_.jpg",
@@ -374,15 +382,7 @@
       "n": 1,
       "auto": true,
       "categoria": ""
-    },
-    {
-      "asin": "B0FKB9BSVS",
-      "titulo": "Forté Pharma Hialsorb Cold Pack 2 x 100 ml | Alivio Articular y Muscular",
-      "imagen": "https://m.media-amazon.com/images/I/41BMcjhbPBL._SL500_.jpg",
-      "n": 1,
-      "auto": true,
-      "categoria": ""
     }
   ],
-  "actualizado": "2026-10-29T20:11:40.329Z"
+  "actualizado": "2026-10-30T02:11:40.765Z"
 }
