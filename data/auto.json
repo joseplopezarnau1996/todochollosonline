@@ -1,24 +1,10 @@
 {
   "ofertas": [
     {
-      "asin": "B01MF9YDQN",
-      "titulo": "Neutrogena Hydro Boost Gel de Agua Crema Hidratante Facial ligera, 50 ml | Con Ácido Hialurónico y Aminoácidos, 72h de Hidratación, Oil-Free, No Comedogénico, Piel Normal/ Mixta y Sensible",
-      "imagen": "https://m.media-amazon.com/images/I/41HmBcEZ9NL._SL500_.jpg",
-      "categoria": "belleza",
-      "auto": true
-    },
-    {
       "asin": "B0H1QNCRZF",
       "titulo": "La gran guía de la suplementación: El manual definitivo para optimizar tu cuerpo y potenciar tu salud física y mental a largo plazo (Salud y Bienestar)",
       "imagen": "https://m.media-amazon.com/images/I/413UKzgVMcL._SL500_.jpg",
       "categoria": "suplementacion",
-      "auto": true
-    },
-    {
-      "asin": "B08HLSL2FV",
-      "titulo": "Maybelline New York Lifter Gloss con Ácido Hialurónico, Tono 03 Moon | Labios más Hidratados, Rellenos y Jugosos, Brillo de Larga Duración, Sensación no Pegajosa, Acabado Natural, Lifter Gloss",
-      "imagen": "https://m.media-amazon.com/images/I/41owhwZcQhL._SL500_.jpg",
-      "categoria": "belleza",
       "auto": true
     },
     {
@@ -29,16 +15,16 @@
       "auto": true
     },
     {
-      "asin": "B0CZPPCL7F",
-      "titulo": "adidas Women's Essentials 3-Stripes Cotton Leggings Black/White L L",
-      "imagen": "https://m.media-amazon.com/images/I/31z7cUMO2HL._SL500_.jpg",
-      "categoria": "deportes",
+      "asin": "B08HLSL2FV",
+      "titulo": "Maybelline New York Lifter Gloss con Ácido Hialurónico, Tono 03 Moon | Labios más Hidratados, Rellenos y Jugosos, Brillo de Larga Duración, Sensación no Pegajosa, Acabado Natural, Lifter Gloss",
+      "imagen": "https://m.media-amazon.com/images/I/41owhwZcQhL._SL500_.jpg",
+      "categoria": "belleza",
       "auto": true
     },
     {
-      "asin": "B0FVXGNCPB",
-      "titulo": "adidas Hombre Galaxy 8 Running Shoes, Core Black/FTWR White/Carbon, 42 2/3 EU",
-      "imagen": "https://m.media-amazon.com/images/I/21KdNC2y6JL._SL500_.jpg",
+      "asin": "B07P6L8BCS",
+      "titulo": "Joma Camiseta Deportiva Manga Corta Mujer, 6XS - 3XL - Mantiene Seco el Contacto con el Cuerpo, Ideal para Running o Gym - Combi",
+      "imagen": "https://m.media-amazon.com/images/I/319gNTwy4nL._SL500_.jpg",
       "categoria": "deportes",
       "auto": true
     },
@@ -50,17 +36,31 @@
       "auto": true
     },
     {
-      "asin": "B0D9B67WJS",
-      "titulo": "TATAY Porta Embutidos Fresh 17x3,2x25,2 cm Set de 4 Estándar Apilable | Porta Embutidos | Set de 4 Piezas | Lavavajillas, Microondas, Nevera y Congelador | Tapa Extraíble | Sin BPA | Colores Pastel",
-      "imagen": "https://m.media-amazon.com/images/I/31ix1M6PgEL._SL500_.jpg",
+      "asin": "B07P5MT4Y5",
+      "titulo": "Joma Cleo II Pantalon Largo Deportivo, Hombre, Negro, XL",
+      "imagen": "https://m.media-amazon.com/images/I/31IBCviXdvL._SL500_.jpg",
+      "categoria": "deportes",
+      "auto": true
+    },
+    {
+      "asin": "B0CR6DNXTF",
+      "titulo": "JATA HOGAR HMAQ4506 - Picadora Manual con Cuerda 900 ml, Trituradora de Alimentos Multifunción, Picador de Verduras, Cebolla, Ajo y Frutos Secos, Batidora Manual para Salsas y Emulsiones, Libre BPA",
+      "imagen": "https://m.media-amazon.com/images/I/31fVVNMX1fL._SL500_.jpg",
       "categoria": "hogar",
       "auto": true
     },
     {
-      "asin": "B0C7VC6D92",
-      "titulo": "Báscula de Cocina Digita, Báscula Digital 10kg - MedicióN Precisa Hasta 1g, Estilizada Y Delgada Balanza Para Alimentos, Pantalla Lcd, FuncióN De Tara (Negro)",
-      "imagen": "https://m.media-amazon.com/images/I/31NU13C85lL._SL500_.jpg",
-      "categoria": "cocina",
+      "asin": "B00GSUCEJ6",
+      "titulo": "essence I LOVE EXTREME crazy volume máscara de pestañas voluminizadora, de larga duración, dar volumen, curvar, alargar (12ml)",
+      "imagen": "https://m.media-amazon.com/images/I/41ip2nXP29L._SL500_.jpg",
+      "categoria": "belleza",
+      "auto": true
+    },
+    {
+      "asin": "B0D9B67WJS",
+      "titulo": "TATAY Porta Embutidos Fresh 17x3,2x25,2 cm Set de 4 Estándar Apilable | Porta Embutidos | Set de 4 Piezas | Lavavajillas, Microondas, Nevera y Congelador | Tapa Extraíble | Sin BPA | Colores Pastel",
+      "imagen": "https://m.media-amazon.com/images/I/31ix1M6PgEL._SL500_.jpg",
+      "categoria": "hogar",
       "auto": true
     },
     {
@@ -71,17 +71,10 @@
       "auto": true
     },
     {
-      "asin": "B0FVT59CH4",
-      "titulo": "Rolipo Plancha Vertical Vapor 1640W, 400ML Plancha Vapor Cepillo de Vapor Removedor de Arrugas Para El Hogar, La Oficina, Los Viajes",
-      "imagen": "https://m.media-amazon.com/images/I/41FNdxpSHkL._SL500_.jpg",
-      "categoria": "hogar",
-      "auto": true
-    },
-    {
-      "asin": "B0CP6NKFM3",
-      "titulo": "TPfocus Auriculares Bluetooth para Dormir, Antifaz 100 % Opaco Lateral | Orificios transpirables | Sonido nítido | Altavoces ultrafinos | Lavable | Sin presión ocular | 16 h de batería",
-      "imagen": "https://m.media-amazon.com/images/I/51Y+cpqe2BL._SL500_.jpg",
-      "categoria": "tecnologia",
+      "asin": "B017DLMFXS",
+      "titulo": "ARCOS Pinzas para Emplatar Acero Inoxidable 200 mm | Utensilio de cocina profesional para presentación de platos y gadget de chef. Serie Gadgets. Color plata*.",
+      "imagen": "https://m.media-amazon.com/images/I/21yWj-iTp-L._SL500_.jpg",
+      "categoria": "cocina",
       "auto": true
     },
     {
@@ -104,116 +97,123 @@
       "imagen": "https://m.media-amazon.com/images/I/51avyfyjSYL._SL500_.jpg",
       "categoria": "motor",
       "auto": true
+    },
+    {
+      "asin": "B0FFN31SWY",
+      "titulo": "Canal Toys - Style 4Ever - Fashion Designer Studio con Luz y Telas | Con Luz LED, Plantillas Electroestáticas, Telas Reales, Lápices de Colores, Rotulador, Gemas, Cintas Adhesivas y más",
+      "imagen": "https://m.media-amazon.com/images/I/51In6OjFKuL._SL500_.jpg",
+      "categoria": "moda",
+      "auto": true
     }
   ],
   "novedades": [
     {
-      "asin": "B09K9Q5ZQ1",
-      "titulo": "Viernes 13",
-      "imagen": "https://m.media-amazon.com/images/I/417ecCZZScL._SL500_.jpg",
+      "asin": "B0DBLS6JR5",
+      "titulo": "Hotel Transilvania",
+      "imagen": "https://m.media-amazon.com/images/I/51XuXcMExjL._SL500_.jpg",
       "categoria": "halloween",
       "auto": true
     },
     {
-      "asin": "B0BRSVF2J1",
-      "titulo": "Suplemento de Hierro con 40mg Vitamina C – bisglicinato de hierro – 240 comprimidos veganos – complejo de quelato de buena tolerancia – alta dosificación, sin aditivos innecesarios﻿",
-      "imagen": "https://m.media-amazon.com/images/I/41CA3JpahJL._SL500_.jpg",
+      "asin": "8413445604",
+      "titulo": "Suplementa tu menopausia: Una guía para elegir suplementos con criterio y potenciar tus hábitos (Alienta)",
+      "imagen": "https://m.media-amazon.com/images/I/41uuOjrO4TL._SL500_.jpg",
       "categoria": "suplementacion",
       "auto": true
     },
     {
-      "asin": "B08BHNT496",
-      "titulo": "RUNCCI-YUN 8 PcsJuego de Motor Eletrico Bricolaje DC Motor Mini 1.5V-6V 15000RPM+4X AA Battery Holder Case+16x Crocodile Clip+2X Cables 1m para Bricolaje Proyectos Científicos",
-      "imagen": "https://m.media-amazon.com/images/I/51rLx3u1YfL._SL500_.jpg",
+      "asin": "8413218713",
+      "titulo": "Motores (Ciclos Formativos)",
+      "imagen": "https://m.media-amazon.com/images/I/31Qe22vU0vL._SL500_.jpg",
       "categoria": "motor",
       "auto": true
     },
     {
-      "asin": "B099KBNSPG",
-      "titulo": "BIIB Regalos Originales para Hombre, Inusual Útil Guantes LED Luminosos | Regalos Navidad para Hombre, Gadgets Tecnologicos Regalo Original Hombre Cumpleaños Mujer",
-      "imagen": "https://m.media-amazon.com/images/I/41Rb2KizwDL._SL500_.jpg",
+      "asin": "B08XWM3J42",
+      "titulo": "ShoeDry Secador de Zapatos Eléctrico, Tecnología de ION, CE | Seca en <2 h, Protege cuero y ante, Botas esquí, guantes, cascos, 100W Clase A+",
+      "imagen": "https://m.media-amazon.com/images/I/41rIYj8bjTL._SL500_.jpg",
       "categoria": "tecnologia",
       "auto": true
     },
     {
-      "asin": "B091TWFW3S",
-      "titulo": "Asevi Ambientador Concentrado Hogar y Textil White Jasmine 400 ml | Aroma a flores blancas en pulverización extrafina, con frescor que permanece hasta 12 horas en los tejidos",
-      "imagen": "https://m.media-amazon.com/images/I/41GWAqVOQQL._SL500_.jpg",
+      "asin": "B09K45MFFC",
+      "titulo": "TATAY Papelera de Baño Apertura con Pedal Hecho en España Diseño Compacto | Papelera Baño | Capacidad 3 L | Medidas 19x21,8x22,1 cm | Diseño Práctico y Funcional | Plástico de Gran Resistencia, Ecohome",
+      "imagen": "https://m.media-amazon.com/images/I/21I-kKQ0jyL._SL500_.jpg",
       "categoria": "hogar",
       "auto": true
     },
     {
-      "asin": "B08NDVTN5C",
-      "titulo": "GRIFEMA - GA2002, Báscula de Cocina con Pantalla LCD, Acero Inoxidable, Balanza de Alimentos Multifuncional 5 kg/11 lbs, Color gris: Color de pantalla: Azul [Exclusivo en Amazon]",
-      "imagen": "https://m.media-amazon.com/images/I/41shiHPa3wL._SL500_.jpg",
+      "asin": "B00KW8LZB8",
+      "titulo": "Renova - Maxiabsorption, Rollos de cocina XXL, Triple, Blanco - 1 Rollo | 1 rollo XXL equivale a 3 rollos estándar (1=3), resistencia extra incluso estando mojado, maxiabsorbente, certificado FSC",
+      "imagen": "https://m.media-amazon.com/images/I/51XRxxi-5qL._SL500_.jpg",
       "categoria": "cocina",
       "auto": true
     },
     {
-      "asin": "B07P6L8BCS",
-      "titulo": "Joma Camiseta Deportiva Manga Corta Mujer, 6XS - 3XL - Mantiene Seco el Contacto con el Cuerpo, Ideal para Running o Gym - Combi",
-      "imagen": "https://m.media-amazon.com/images/I/319gNTwy4nL._SL500_.jpg",
+      "asin": "B0F5B924W7",
+      "titulo": "adidas Unisex adulto Thin&Light Sportswear Ankle 3 Pair Pack Socks, Medium Grey Heather/White/Black, 42-45",
+      "imagen": "https://m.media-amazon.com/images/I/31Ox2qyoosL._SL500_.jpg",
       "categoria": "deportes",
       "auto": true
     },
     {
-      "asin": "B01MDTVZTZ",
-      "titulo": "The Ordinary Niacinamide 10% + Zinc 1% Suero antirrojeces, 30 ml, formulaciones clínicas con integridad",
-      "imagen": "https://m.media-amazon.com/images/I/314cnBnNMJL._SL500_.jpg",
+      "asin": "B0DH59VK92",
+      "titulo": "NIVEA Body Milk Nutritivo (1 x 400 ml), leche corporal que hidrata durante 72 h, crema hidratante corporal con aceite de almendras y ácido hialurónico, para piel seca",
+      "imagen": "https://m.media-amazon.com/images/I/41jIQ4Wi4XL._SL500_.jpg",
       "categoria": "belleza",
       "auto": true
     },
     {
-      "asin": "B000HWY6EM",
-      "titulo": "Mod Podge (900112/301) 236ml 8 oz. Matt, Color Blanco (CS11301)",
-      "imagen": "https://m.media-amazon.com/images/I/41-SNkQTUaL._SL500_.jpg",
+      "asin": "0241420563",
+      "titulo": "Moda. Historia y estilos (Enciclopedia visual)",
+      "imagen": "https://m.media-amazon.com/images/I/31OHn+MCF4L._SL500_.jpg",
       "categoria": "moda",
       "auto": true
     },
     {
-      "asin": "8410842041",
-      "titulo": "Enciclopedia del bricolaje",
-      "imagen": "https://m.media-amazon.com/images/I/51YRtBO7hCL._SL500_.jpg",
+      "asin": "8430563733",
+      "titulo": "Bricolaje,Atlas Ilustrado",
+      "imagen": "https://m.media-amazon.com/images/I/51zaoPD3O3L._SL500_.jpg",
       "categoria": "bricolaje",
       "auto": true
     },
     {
-      "asin": "B09KPCJTCN",
-      "titulo": "SCRUFF Halloween",
-      "imagen": "https://m.media-amazon.com/images/I/41fa5GnbkqL._SL500_.jpg",
+      "asin": "B0B8HY27S7",
+      "titulo": "IT",
+      "imagen": "https://m.media-amazon.com/images/I/41bqTdrPAeL._SL500_.jpg",
       "categoria": "halloween",
       "auto": true
     },
     {
-      "asin": "B084Q2T47B",
-      "titulo": "Suplementos de Vitaminas y Minerales [Vitamin and Mineral Supplements]: Ciencia o Marketing? Guía para Diferenciar Verdades (Basadas en Hechos) y Mentiras (Basadas en Mitos e Intereses",
-      "imagen": "https://m.media-amazon.com/images/I/51AdmjtdW5L._SL500_.jpg",
+      "asin": "B0FL24SNH3",
+      "titulo": "Hierro Suplemento 28 mg - 400 Comprimidos + Vitamina C, B12 y Acido Folico | Bisglicinato de Hierro y Vitamina B12 - Glóbulos Rojos, Hemoglobina - Vitaminas para el Cansancio - Vegano - Iron - ALDOUS",
+      "imagen": "https://m.media-amazon.com/images/I/51rnHbPLs9L._SL500_.jpg",
       "categoria": "suplementacion",
       "auto": true
     },
     {
-      "asin": "B07KW12KSC",
-      "titulo": "RUNCCI-YUN 10pcs DC Motor Mini, 1.5V-6V,130 +5pcs Conector de batería de 9V+ 5pcs SPDT Interruptor Mecedora, for DIY Arduino",
-      "imagen": "https://m.media-amazon.com/images/I/51rjbMkDwhL._SL500_.jpg",
+      "asin": "8413661625",
+      "titulo": "Motores 3 Edicion 2022 (Transporte y Mantenimiento de Vehículos)",
+      "imagen": "https://m.media-amazon.com/images/I/51-D6jY9yiL._SL500_.jpg",
       "categoria": "motor",
       "auto": true
     },
     {
-      "asin": "B07DQBC6NH",
-      "titulo": "UGREEN Organizador Viaje Almacenamiento de Accesorios Electrónicos | Bolsa de Cable Impermeable Protección a Prueba de Golpes para Memoria USB Cargador de Disco Duro Batería",
-      "imagen": "https://m.media-amazon.com/images/I/413JlijnyjL._SL500_.jpg",
+      "asin": "B07Q31QP8B",
+      "titulo": "AKIELO Blackout Tarjeta Bloqueadora RFID – Tarjeta Antirrobo Ultrafina con Tecnología Faraday para Protección de Tarjetas Contactless – Blindaje para Carteras (Edición Negra – 2 Unidades)",
+      "imagen": "https://m.media-amazon.com/images/I/41VlWi92OEL._SL500_.jpg",
       "categoria": "tecnologia",
       "auto": true
     },
     {
-      "asin": "B0D7VWWQFV",
-      "titulo": "FYDEE Cepillo Electrico Limpieza Hogar, Cepillo Limpieza Hogar con 7 Cabezales Reemplazables y Impermeable IPX7, Fregadora Giratoria Eléctrica, Cepillo para Limpieza del Hogar, Baño, Suelos, Azulejos",
-      "imagen": "https://m.media-amazon.com/images/I/419BS0SWTKL._SL500_.jpg",
+      "asin": "B0CT8YBJYC",
+      "titulo": "T-LOVENDO.ES Puff o Banco de almacenaje Plegable | Taburete Reposapiés Otomana | Baúl de Almacenamiento para Cama, Dormitorio, salón, Comedor o Recibidor | 38x76x38cm | Soporta 300kg.",
+      "imagen": "https://m.media-amazon.com/images/I/217AZX0ecCL._SL500_.jpg",
       "categoria": "hogar",
       "auto": true
     }
   ],
-  "renovado": "2026-11-04T05:00:29.918Z",
+  "renovado": "2026-11-07T05:00:33.191Z",
   "comparados": [
     {
       "asin": "B0H8ZLN4QT",
@@ -416,5 +416,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-11-06T05:00:33.362Z"
+  "actualizado": "2026-11-07T05:00:33.191Z"
 }
