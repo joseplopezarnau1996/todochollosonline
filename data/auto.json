@@ -240,6 +240,22 @@
       "categoria": ""
     },
     {
+      "asin": "B0FX5217CY",
+      "titulo": "Moulinex Easy Fry XL Surface, Freidora de aire 2200W, Doble resistencia | Cocción Uniforme, Cesta Ancha, 10 Programas Au",
+      "imagen": "https://m.media-amazon.com/images/I/41iYBy743EL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
+      "asin": "B0G59GQ9M5",
+      "titulo": "DHOME Cabecero de Madera reciclada DM Horizontal Ancho Cama Palets Herrajes incluidos (160cm Dual Horizontal Ancho, Blan",
+      "imagen": "https://m.media-amazon.com/images/I/41kN3IuGLtL._SL500_.jpg",
+      "n": 1,
+      "auto": true,
+      "categoria": ""
+    },
+    {
       "asin": "B0G59CHJ22",
       "titulo": "DHOME Cabecero de Madera reciclada DM Horizontal Ancho Cama Palets Herrajes incluidos (190cm Dual Horizontal Ancho, Blan",
       "imagen": "https://m.media-amazon.com/images/I/41kN3IuGLtL._SL500_.jpg",
@@ -424,5 +440,5 @@
       "categoria": ""
     }
   ],
-  "actualizado": "2026-11-08T14:03:07.379Z"
+  "actualizado": "2026-11-09T05:00:33.210Z"
 }
